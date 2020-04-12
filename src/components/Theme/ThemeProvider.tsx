@@ -1,10 +1,10 @@
 // FIXME: https://github.com/mirumee/saleor/issues/4174
-import OldMuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
-import MuiThemeProvider from "@material-ui/styles/ThemeProvider";
-import React from "react";
+import OldMuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
+import MuiThemeProvider from '@material-ui/styles/ThemeProvider';
+import React from 'react';
 
-import Baseline from "../../Baseline";
-import createTheme, { IThemeColors } from "../../theme";
+import Baseline from '../../Baseline';
+import createTheme, { IThemeColors } from '../../theme';
 
 const dark: IThemeColors = {
   autofill: "#5D5881",
@@ -16,7 +16,7 @@ const dark: IThemeColors = {
     default: "#FFFFFF"
   },
   divider: "#252728",
-  error: "#C22D74",
+  error: "#F5333F",
   font: {
     button: "#202124",
     default: "#FCFCFC",
@@ -34,13 +34,13 @@ const dark: IThemeColors = {
     disabled: "#393939",
     disabledBackground: "#292A2D",
     disabledText: "#9D9D9D",
-    error: "#8C2054",
+    error: "#F5333F",
     text: "#FCFCFC",
     textHover: "#616161"
   },
   paperBorder: "#252728",
-  primary: "#13BEBB",
-  secondary: "#21125E"
+  primary: "#10CFC9",
+  secondary: "#1d224c"
 };
 const light: IThemeColors = {
   autofill: "#f4f6c5",
@@ -52,12 +52,12 @@ const light: IThemeColors = {
     default: "#616161"
   },
   divider: "#EAEAEA",
-  error: "#C22D74",
+  error: "#F5333F",
   font: {
     button: "#FFFFFF",
     default: "#3D3D3D",
     gray: "#616161",
-    textButton: "#06847B",
+    textButton: "#93D500",
     textDisabled: "#616161"
   },
   gray: {
@@ -70,13 +70,13 @@ const light: IThemeColors = {
     disabled: "#EAEAEA",
     disabledBackground: "#F4F4F4",
     disabledText: "#9D9D9D",
-    error: "#8C2054",
+    error: "#F5333F",
     text: "#3D3D3D",
     textHover: "#616161"
   },
   paperBorder: "#EAEAEA",
-  primary: "#06847B",
-  secondary: "#21125E"
+  primary: "#1d224c",
+  secondary: "#10CFC9"
 };
 
 interface IThemeContext {

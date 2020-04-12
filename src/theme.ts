@@ -1,7 +1,7 @@
-import Card from "@material-ui/core/Card";
-import { createMuiTheme, Theme } from "@material-ui/core/styles";
-import { darken, fade } from "@material-ui/core/styles/colorManipulator";
-import TextField from "@material-ui/core/TextField";
+import Card from '@material-ui/core/Card';
+import { createMuiTheme, Theme } from '@material-ui/core/styles';
+import { darken, fade } from '@material-ui/core/styles/colorManipulator';
+import TextField from '@material-ui/core/TextField';
 
 const createShadow = (pv, pb, ps, uv, ub, us, av, ab, as) =>
   [
@@ -42,7 +42,7 @@ export type IThemeColors = Record<
   >;
 };
 
-const fontFamily = '"Inter", "roboto", "sans-serif"';
+const fontFamily = '"Montserrat", "sans-serif"';
 
 export default (colors: IThemeColors): Theme =>
   createMuiTheme({

@@ -1,38 +1,31 @@
-import Button from "@material-ui/core/Button";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import Button from '@material-ui/core/Button';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import ActionDialog from '@saleor/components/ActionDialog';
+import AssignProductDialog from '@saleor/components/AssignProductDialog';
+import { WindowTitle } from '@saleor/components/WindowTitle';
+import useBulkActions from '@saleor/hooks/useBulkActions';
+import useNavigator from '@saleor/hooks/useNavigator';
+import useNotifier from '@saleor/hooks/useNotifier';
+import usePaginator, { createPaginationState } from '@saleor/hooks/usePaginator';
+import { commonMessages } from '@saleor/intl';
+import React from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 
-import ActionDialog from "@saleor/components/ActionDialog";
-import AssignProductDialog from "@saleor/components/AssignProductDialog";
-import { WindowTitle } from "@saleor/components/WindowTitle";
-import useBulkActions from "@saleor/hooks/useBulkActions";
-import useNavigator from "@saleor/hooks/useNavigator";
-import useNotifier from "@saleor/hooks/useNotifier";
-import usePaginator, {
-  createPaginationState
-} from "@saleor/hooks/usePaginator";
-import { commonMessages } from "@saleor/intl";
-import { DEFAULT_INITIAL_SEARCH_DATA, PAGINATE_BY } from "../../config";
-import SearchProducts from "../../containers/SearchProducts";
-import { getMutationState, maybe } from "../../misc";
-import { productUrl } from "../../products/urls";
-import { CollectionInput } from "../../types/globalTypes";
+import { DEFAULT_INITIAL_SEARCH_DATA, PAGINATE_BY } from '../../config';
+import SearchProducts from '../../containers/SearchProducts';
+import { getMutationState, maybe } from '../../misc';
+import { productUrl } from '../../products/urls';
+import { CollectionInput } from '../../types/globalTypes';
 import CollectionDetailsPage, {
-  CollectionDetailsPageFormData
-} from "../components/CollectionDetailsPage/CollectionDetailsPage";
-import CollectionOperations from "../containers/CollectionOperations";
-import { TypedCollectionDetailsQuery } from "../queries";
-import { CollectionAssignProduct } from "../types/CollectionAssignProduct";
-import { CollectionUpdate } from "../types/CollectionUpdate";
-import { RemoveCollection } from "../types/RemoveCollection";
-import { UnassignCollectionProduct } from "../types/UnassignCollectionProduct";
-import {
-  collectionListUrl,
-  collectionUrl,
-  CollectionUrlDialog,
-  CollectionUrlQueryParams
-} from "../urls";
+  CollectionDetailsPageFormData,
+} from '../components/CollectionDetailsPage/CollectionDetailsPage';
+import CollectionOperations from '../containers/CollectionOperations';
+import { TypedCollectionDetailsQuery } from '../queries';
+import { CollectionAssignProduct } from '../types/CollectionAssignProduct';
+import { CollectionUpdate } from '../types/CollectionUpdate';
+import { RemoveCollection } from '../types/RemoveCollection';
+import { UnassignCollectionProduct } from '../types/UnassignCollectionProduct';
+import { collectionListUrl, collectionUrl, CollectionUrlDialog, CollectionUrlQueryParams } from '../urls';
 
 interface CollectionDetailsProps {
   id: string;
@@ -230,7 +223,7 @@ export const CollectionDetails: React.StatelessComponent<
                     onAdd={() => openModal("assign")}
                     onBack={() => navigate(collectionListUrl())}
                     disabled={loading}
-                    collection={data.collection}
+                    collection={maybe(() => data.collection)}
                     isFeatured={maybe(
                       () =>
                         data.shop.homepageCollection.id === data.collection.id,

@@ -1,18 +1,12 @@
-import Button from "@material-ui/core/Button";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import Typography from "@material-ui/core/Typography";
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
-
-import Form from "@saleor/components/Form";
-import { FormSpacer } from "@saleor/components/FormSpacer";
-import { commonMessages } from "@saleor/intl";
+import Button from '@material-ui/core/Button';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
+import Form from '@saleor/components/Form';
+import { FormSpacer } from '@saleor/components/FormSpacer';
+import { commonMessages } from '@saleor/intl';
+import React from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 export interface FormData {
   email: string;
@@ -89,7 +83,7 @@ const LoginCard = withStyles(styles, { name: "LoginCard" })(
               fullWidth
               autoComplete="password"
               label={intl.formatMessage({
-                defaultMessage: "Password"
+                defaultMessage: "Contraseña"
               })}
               name="password"
               onChange={handleChange}
@@ -110,13 +104,13 @@ const LoginCard = withStyles(styles, { name: "LoginCard" })(
                 type="submit"
                 data-tc="submit"
               >
-                <FormattedMessage defaultMessage="Login" description="button" />
+                <FormattedMessage defaultMessage="Ingresa" description="button" />
               </Button>
             </div>
             <FormSpacer />
             <Typography className={classes.link} onClick={onPasswordRecovery}>
               <FormattedMessage
-                defaultMessage="Reset your password"
+                defaultMessage="Olvide mi Contraseña"
                 description="button"
               />
             </Typography>

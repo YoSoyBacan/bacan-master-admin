@@ -1,12 +1,9 @@
-import { Theme } from "@material-ui/core/styles";
-import { makeStyles } from "@material-ui/styles";
-import React from "react";
-import SVG from "react-inlinesvg";
-
-import backgroundArt from "@assets/images/login-background.svg";
-import saleorDarkLogo from "@assets/images/logo-dark.svg";
-import saleorLightLogo from "@assets/images/logo-light.svg";
-import useTheme from "@saleor/hooks/useTheme";
+import backgroundArt from '@assets/images/login-background.svg';
+import { Theme } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/styles';
+import React from 'react';
+import SVG from 'react-inlinesvg';
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -57,14 +54,21 @@ const useStyles = makeStyles(
     },
     sidebar: {
       [theme.breakpoints.up("lg")]: {
-        display: "block"
+        backgroundColor: theme.palette.primary.main,
+        display: "block",
+        paddingTop: '20%'
       },
-      display: "none"
+      display: "none",
     },
     sidebarArt: {
       "& svg": {
         width: "100%"
       }
+    },
+    title: {
+      flex: 1,
+      fontSize: 24,
+      paddingBottom: theme.spacing.unit * 2
     }
   }),
   {
@@ -76,7 +80,6 @@ const Layout: React.FC = props => {
   const { children } = props;
 
   const classes = useStyles(props);
-  const { isDark } = useTheme();
 
   return (
     <div className={classes.root}>
@@ -85,10 +88,9 @@ const Layout: React.FC = props => {
       </div>
       <div className={classes.mainPanel}>
         <div className={classes.mainPanelContent}>
-          <SVG
-            className={classes.logo}
-            src={isDark ? saleorDarkLogo : saleorLightLogo}
-          />
+          <Typography className={classes.title} variant="h5">
+            Bienvenido/a, ingresa a tu cuenta
+          </Typography> 
           {children}
         </div>
       </div>

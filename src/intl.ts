@@ -1,11 +1,11 @@
-import { defineMessages, IntlShape } from "react-intl";
+import { defineMessages, IntlShape } from 'react-intl';
 
 export const commonMessages = defineMessages({
   availability: {
-    defaultMessage: "Availability"
+    defaultMessage: "Disponibilidad"
   },
   catalog: {
-    defaultMessage: "Catalog"
+    defaultMessage: "Catálogo"
   },
   dashboard: {
     defaultMessage: "Dashboard"
@@ -14,34 +14,34 @@ export const commonMessages = defineMessages({
     defaultMessage: "Description"
   },
   discounts: {
-    defaultMessage: "Discounts"
+    defaultMessage: "Descuentos"
   },
   drafts: {
     defaultMessage: "Drafts"
   },
   email: {
-    defaultMessage: "E-mail Address"
+    defaultMessage: "E-mail"
   },
   endDate: {
-    defaultMessage: "End Date"
+    defaultMessage: "Fecha Final"
   },
   endHour: {
-    defaultMessage: "End Hour"
+    defaultMessage: "Hora Final"
   },
   firstName: {
-    defaultMessage: "First Name"
+    defaultMessage: "Nombre"
   },
   generalInformations: {
-    defaultMessage: "General Informations"
+    defaultMessage: "Información General"
   },
   lastName: {
-    defaultMessage: "Last Name"
+    defaultMessage: "Apellido"
   },
   no: {
     defaultMessage: "No"
   },
   optionalField: {
-    defaultMessage: "Optional",
+    defaultMessage: "Opcional",
     description: "field is optional"
   },
   properties: {
@@ -51,71 +51,71 @@ export const commonMessages = defineMessages({
     defaultMessage: "Saleor runs in read-only mode. Changes not saved."
   },
   requiredField: {
-    defaultMessage: "This field is required"
+    defaultMessage: "Este campo es requerido."
   },
   savedChanges: {
-    defaultMessage: "Saved changes"
+    defaultMessage: "Cambios Guardados"
   },
   somethingWentWrong: {
-    defaultMessage: "Saleor ran into an unexpected problem"
+    defaultMessage: "Bacán ha tenido un problema inesperado"
   },
   startDate: {
-    defaultMessage: "Start Date"
+    defaultMessage: "Fecha Inicial"
   },
   startHour: {
-    defaultMessage: "Start Hour"
+    defaultMessage: "Hora Inicial"
   },
   summary: {
-    defaultMessage: "Summary"
+    defaultMessage: "Resumen"
   },
   uploadImage: {
-    defaultMessage: "Upload image",
+    defaultMessage: "Carga Imágenes",
     description: "button"
   },
   yes: {
-    defaultMessage: "Yes"
+    defaultMessage: "Si"
   }
 });
 
 export const buttonMessages = defineMessages({
   back: {
-    defaultMessage: "Back",
+    defaultMessage: "Atrás",
     description: "button"
   },
   cancel: {
-    defaultMessage: "Cancel",
+    defaultMessage: "Cancelar",
     description: "button"
   },
   confirm: {
-    defaultMessage: "Confirm",
+    defaultMessage: "Confirmar",
     description: "button"
   },
   delete: {
-    defaultMessage: "Delete",
+    defaultMessage: "Eliminar",
     description: "button"
   },
   done: {
-    defaultMessage: "Done",
+    defaultMessage: "Hecho",
     description: "button"
   },
   edit: {
-    defaultMessage: "Edit",
+    defaultMessage: "Editar",
     description: "button"
   },
   manage: {
-    defaultMessage: "Manage",
+    defaultMessage: "Manejar",
     description: "button"
   },
   remove: {
-    defaultMessage: "Remove",
+    defaultMessage: "Remover",
     description: "button"
   },
   save: {
-    defaultMessage: "Save",
+    defaultMessage: "Guardar",
     description: "button"
   },
   show: {
-    defaultMessage: "Show",
+    defaultMessage: "Mostrar",
     description: "button"
   },
   undo: {
@@ -126,23 +126,23 @@ export const buttonMessages = defineMessages({
 
 export const sectionNames = defineMessages({
   attributes: {
-    defaultMessage: "Attributes",
+    defaultMessage: "Atributos",
     description: "attributes section name"
   },
   categories: {
-    defaultMessage: "Categories",
+    defaultMessage: "Industrias",
     description: "categories section name"
   },
   collections: {
-    defaultMessage: "Collections",
+    defaultMessage: "Colecciones",
     description: "collections section name"
   },
   configuration: {
-    defaultMessage: "Configuration",
+    defaultMessage: "Configuración",
     description: "configuration section name"
   },
   customers: {
-    defaultMessage: "Customers",
+    defaultMessage: "Clientes",
     description: "customers section name"
   },
   draftOrders: {
@@ -150,19 +150,19 @@ export const sectionNames = defineMessages({
     description: "draft orders section name"
   },
   home: {
-    defaultMessage: "Home",
+    defaultMessage: "Inicio",
     description: "home section name"
   },
   navigation: {
-    defaultMessage: "Navigation",
+    defaultMessage: "Navegación",
     description: "navigation section name"
   },
   orders: {
-    defaultMessage: "Orders",
+    defaultMessage: "Órdenes",
     description: "orders section name"
   },
   pages: {
-    defaultMessage: "Pages",
+    defaultMessage: "Páginas",
     description: "pages section name"
   },
   plugins: {
@@ -174,12 +174,12 @@ export const sectionNames = defineMessages({
     description: "product types section name"
   },
   products: {
-    defaultMessage: "Products",
+    defaultMessage: "Productos",
     description: "products section name"
   },
   sales: {
-    defaultMessage: "Sales",
-    description: "sales section name"
+    defaultMessage: "Descuentos",
+    description: "Sección de descuentos"
   },
   serviceAccounts: {
     defaultMessage: "Service Accounts",
@@ -190,19 +190,19 @@ export const sectionNames = defineMessages({
     description: "shipping section name"
   },
   siteSettings: {
-    defaultMessage: "Site Settings",
+    defaultMessage: "Ajustes de Sitio",
     description: "site settings section name"
   },
   staff: {
-    defaultMessage: "Staff Members",
-    description: "staff section name"
+    defaultMessage: "Staff",
+    description: "Sección para manejar roles de acceso."
   },
   taxes: {
-    defaultMessage: "Taxes",
+    defaultMessage: "Impuestos",
     description: "taxes section name"
   },
   translations: {
-    defaultMessage: "Translations",
+    defaultMessage: "Traducciones",
     description: "translations section name"
   },
   vouchers: {

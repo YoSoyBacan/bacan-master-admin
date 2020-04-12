@@ -1,21 +1,19 @@
-import React from "react";
-import { useIntl } from "react-intl";
+import { WindowTitle } from '@saleor/components/WindowTitle';
+import SearchProductTypes from '@saleor/containers/SearchProductTypes';
+import useNavigator from '@saleor/hooks/useNavigator';
+import useNotifier from '@saleor/hooks/useNotifier';
+import useShop from '@saleor/hooks/useShop';
+import React from 'react';
+import { useIntl } from 'react-intl';
 
-import { WindowTitle } from "@saleor/components/WindowTitle";
-import SearchProductTypes from "@saleor/containers/SearchProductTypes";
-import useNavigator from "@saleor/hooks/useNavigator";
-import useNotifier from "@saleor/hooks/useNotifier";
-import useShop from "@saleor/hooks/useShop";
-import { DEFAULT_INITIAL_SEARCH_DATA } from "../../config";
-import SearchCategories from "../../containers/SearchCategories";
-import SearchCollections from "../../containers/SearchCollections";
-import { decimal, getMutationState, maybe } from "../../misc";
-import ProductCreatePage, {
-  ProductCreatePageSubmitData
-} from "../components/ProductCreatePage";
-import { TypedProductCreateMutation } from "../mutations";
-import { ProductCreate } from "../types/ProductCreate";
-import { productListUrl, productUrl } from "../urls";
+import { DEFAULT_INITIAL_SEARCH_DATA } from '../../config';
+import SearchCategories from '../../containers/SearchCategories';
+import SearchCollections from '../../containers/SearchCollections';
+import { decimal, getMutationState, maybe } from '../../misc';
+import ProductCreatePage, { ProductCreatePageSubmitData } from '../components/ProductCreatePage';
+import { TypedProductCreateMutation } from '../mutations';
+import { ProductCreate } from '../types/ProductCreate';
+import { productListUrl, productUrl } from '../urls';
 
 interface ProductUpdateProps {
   id: string;
@@ -146,7 +144,7 @@ export const ProductUpdate: React.StatelessComponent<
                             fetchCollections={searchCollection}
                             fetchProductTypes={searchProductTypes}
                             header={intl.formatMessage({
-                              defaultMessage: "New Product",
+                              defaultMessage: "Nuevo Establecimiento",
                               description: "page header"
                             })}
                             productTypes={maybe(() =>

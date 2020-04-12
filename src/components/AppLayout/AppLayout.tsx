@@ -1,45 +1,39 @@
-import Avatar from "@material-ui/core/Avatar";
-import Chip from "@material-ui/core/Chip";
-import ClickAwayListener from "@material-ui/core/ClickAwayListener";
-import Grow from "@material-ui/core/Grow";
-import Hidden from "@material-ui/core/Hidden";
-import LinearProgress from "@material-ui/core/LinearProgress";
-import MenuItem from "@material-ui/core/MenuItem";
-import Menu from "@material-ui/core/MenuList";
-import Paper from "@material-ui/core/Paper";
-import Popper from "@material-ui/core/Popper";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import classNames from "classnames";
-import React from "react";
-import SVG from "react-inlinesvg";
-import { FormattedMessage, useIntl } from "react-intl";
-import { RouteComponentProps, withRouter } from "react-router";
+import saleorDarkLogoSmall from '@assets/images/logo-dark-small.svg';
+import saleorDarkLogo from '@assets/images/logo-dark.svg';
+import menuArrowIcon from '@assets/images/menu-arrow-icon.svg';
+import Chip from '@material-ui/core/Chip';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import Grow from '@material-ui/core/Grow';
+import Hidden from '@material-ui/core/Hidden';
+import LinearProgress from '@material-ui/core/LinearProgress';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/MenuList';
+import Paper from '@material-ui/core/Paper';
+import Popper from '@material-ui/core/Popper';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import AppProgressProvider from '@saleor/components/AppProgress';
+import { createConfigurationMenu } from '@saleor/configuration';
+import useLocalStorage from '@saleor/hooks/useLocalStorage';
+import useNavigator from '@saleor/hooks/useNavigator';
+import useTheme from '@saleor/hooks/useTheme';
+import useUser from '@saleor/hooks/useUser';
+import ArrowDropdown from '@saleor/icons/ArrowDropdown';
+import { maybe } from '@saleor/misc';
+import { staffMemberDetailsUrl } from '@saleor/staff/urls';
+import classNames from 'classnames';
+import React from 'react';
+import SVG from 'react-inlinesvg';
+import { FormattedMessage, useIntl } from 'react-intl';
+import { RouteComponentProps, withRouter } from 'react-router';
 
-import saleorDarkLogoSmall from "@assets/images/logo-dark-small.svg";
-import saleorDarkLogo from "@assets/images/logo-dark.svg";
-import menuArrowIcon from "@assets/images/menu-arrow-icon.svg";
-import AppProgressProvider from "@saleor/components/AppProgress";
-import { createConfigurationMenu } from "@saleor/configuration";
-import useLocalStorage from "@saleor/hooks/useLocalStorage";
-import useNavigator from "@saleor/hooks/useNavigator";
-import useTheme from "@saleor/hooks/useTheme";
-import useUser from "@saleor/hooks/useUser";
-import ArrowDropdown from "@saleor/icons/ArrowDropdown";
-import { maybe } from "@saleor/misc";
-import { staffMemberDetailsUrl } from "@saleor/staff/urls";
-import Container from "../Container";
-import AppActionContext from "./AppActionContext";
-import AppHeaderContext from "./AppHeaderContext";
-import { appLoaderHeight, drawerWidth, drawerWidthExpanded } from "./consts";
-import MenuList from "./MenuList";
-import createMenuStructure from "./menuStructure";
-import ResponsiveDrawer from "./ResponsiveDrawer";
-import ThemeSwitch from "./ThemeSwitch";
+import Container from '../Container';
+import AppActionContext from './AppActionContext';
+import AppHeaderContext from './AppHeaderContext';
+import { appLoaderHeight, drawerWidth, drawerWidthExpanded } from './consts';
+import MenuList from './MenuList';
+import createMenuStructure from './menuStructure';
+import ResponsiveDrawer from './ResponsiveDrawer';
+import ThemeSwitch from './ThemeSwitch';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -135,9 +129,9 @@ const styles = (theme: Theme) =>
         top: "50%",
         transform: "translate(-50%,-50%)"
       },
-      background: theme.palette.secondary.main,
+      background: theme.palette.primary.main,
       display: "block",
-      height: 80,
+      height: 100,
       position: "relative"
     },
     logoDark: {
@@ -425,14 +419,6 @@ const AppLayout = withStyles(styles, {
                                 ref={anchor}
                               >
                                 <Chip
-                                  avatar={
-                                    user.avatar && (
-                                      <Avatar
-                                        alt="user"
-                                        src={user.avatar.url}
-                                      />
-                                    )
-                                  }
                                   className={classes.userChip}
                                   label={
                                     <>
