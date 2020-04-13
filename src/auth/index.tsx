@@ -1,17 +1,14 @@
-import React from "react";
-import { Route, Switch } from "react-router-dom";
+import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 
-import Layout from "./components/Layout";
-import { User } from "./types/User";
-import {
-  newPasswordPath,
-  passwordResetPath,
-  passwordResetSuccessPath
-} from "./urls";
-import LoginView from "./views/Login";
-import NewPassword from "./views/NewPassword";
-import ResetPassword from "./views/ResetPassword";
-import ResetPasswordSuccess from "./views/ResetPasswordSuccess";
+import Layout from './components/Layout';
+import { User } from './types/User';
+import { newPasswordPath, passwordResetPath, passwordResetSuccessPath, registerBusinessPath } from './urls';
+import { BusinessRegistration } from './views/BusinessRegistration';
+import LoginView from './views/Login';
+import NewPassword from './views/NewPassword';
+import ResetPassword from './views/ResetPassword';
+import ResetPasswordSuccess from './views/ResetPasswordSuccess';
 
 interface UserContext {
   login: (username: string, password: string) => void;
@@ -36,6 +33,7 @@ const AuthRouter: React.FC = () => (
       <Route path={passwordResetSuccessPath} component={ResetPasswordSuccess} />
       <Route path={passwordResetPath} component={ResetPassword} />
       <Route path={newPasswordPath} component={NewPassword} />
+      <Route path={registerBusinessPath} component={BusinessRegistration}/>
       <Route component={LoginView} />
     </Switch>
   </Layout>

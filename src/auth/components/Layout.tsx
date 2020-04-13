@@ -1,6 +1,5 @@
 import backgroundArt from '@assets/images/login-background.svg';
 import { Theme } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/styles';
 import React from 'react';
 import SVG from 'react-inlinesvg';
@@ -22,6 +21,7 @@ const useStyles = makeStyles(
       display: "flex",
       flexDirection: "column",
       height: "100vh",
+      overflowY: "scroll",
       justifyContent: "center",
       padding: theme.spacing.unit * 6,
       width: "100%"
@@ -34,10 +34,12 @@ const useStyles = makeStyles(
         width: 328
       },
       "@media (min-width: 1440px)": {
-        width: 464
+        width: 650
       },
+      height: "100%",
       margin: "auto",
-      width: "100%"
+      paddingTop: "10%",
+      width: "100%",
     },
     root: {
       [theme.breakpoints.up("lg")]: {
@@ -65,11 +67,6 @@ const useStyles = makeStyles(
         width: "100%"
       }
     },
-    title: {
-      flex: 1,
-      fontSize: 24,
-      paddingBottom: theme.spacing.unit * 2
-    }
   }),
   {
     name: "Layout"
@@ -88,9 +85,6 @@ const Layout: React.FC = props => {
       </div>
       <div className={classes.mainPanel}>
         <div className={classes.mainPanelContent}>
-          <Typography className={classes.title} variant="h5">
-            Bienvenido/a, ingresa a tu cuenta
-          </Typography> 
           {children}
         </div>
       </div>
