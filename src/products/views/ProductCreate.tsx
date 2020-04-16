@@ -52,7 +52,7 @@ export const ProductUpdate: React.StatelessComponent<
                   if (data.productCreate.errors.length === 0) {
                     notify({
                       text: intl.formatMessage({
-                        defaultMessage: "Product created"
+                        defaultMessage: "Esblecimiento creado"
                       })
                     });
                     navigate(productUrl(data.productCreate.product.id));

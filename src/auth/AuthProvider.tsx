@@ -1,17 +1,17 @@
-import React from "react";
-
 import {
   isSupported as isCredentialsManagementAPISupported,
   login as loginWithCredentialsManagementAPI,
-  saveCredentials
-} from "@saleor/utils/credentialsManagement";
-import { MutationFunction, MutationResult } from "react-apollo";
-import { UserContext } from "./";
-import { TypedTokenAuthMutation, TypedVerifyTokenMutation } from "./mutations";
-import { TokenAuth, TokenAuthVariables } from "./types/TokenAuth";
-import { User } from "./types/User";
-import { VerifyToken, VerifyTokenVariables } from "./types/VerifyToken";
-import { getAuthToken, removeAuthToken, setAuthToken } from "./utils";
+  saveCredentials,
+} from '@saleor/utils/credentialsManagement';
+import React from 'react';
+import { MutationFunction, MutationResult } from 'react-apollo';
+
+import { UserContext } from './';
+import { TypedTokenAuthMutation, TypedVerifyTokenMutation } from './mutations';
+import { TokenAuth, TokenAuthVariables } from './types/TokenAuth';
+import { User } from './types/User';
+import { VerifyToken, VerifyTokenVariables } from './types/VerifyToken';
+import { getAuthToken, removeAuthToken, setAuthToken } from './utils';
 
 interface AuthProviderOperationsProps {
   children: (props: {
@@ -92,7 +92,7 @@ class AuthProvider extends React.Component<
         );
       }
     } else {
-      if (tokenVerifyOpts.data && tokenVerifyOpts.data.tokenVerify.user) {
+      if (tokenVerifyOpts.data && tokenVerifyOpts.data.tokenVerify && tokenVerifyOpts.data.tokenVerify.user) {
         const user = tokenVerifyOpts.data.tokenVerify.user;
         this.setState({ user });
       }
@@ -120,8 +120,10 @@ class AuthProvider extends React.Component<
     });
   };
 
-  loginByToken = (token: string, user: User) => {
-    this.setState({ user });
+  loginByToken = (token: string, user?: User) => {
+    if (user) {
+      this.setState({ user });
+    }
     setAuthToken(token, this.state.persistToken);
   };
 

@@ -1,39 +1,28 @@
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import { fade } from "@material-ui/core/styles/colorManipulator";
-import Typography from "@material-ui/core/Typography";
-import classNames from "classnames";
-import { RawDraftContentState } from "draft-js";
-import {
-  BLOCK_TYPE,
-  DraftailEditor,
-  ENTITY_TYPE,
-  INLINE_STYLE
-} from "draftail";
-import isEqual from "lodash-es/isEqual";
-import React from "react";
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import { fade } from '@material-ui/core/styles/colorManipulator';
+import Typography from '@material-ui/core/Typography';
+import { ChangeEvent } from '@saleor/hooks/useForm';
+import classNames from 'classnames';
+import { RawDraftContentState } from 'draft-js';
+import { BLOCK_TYPE, DraftailEditor, ENTITY_TYPE, INLINE_STYLE } from 'draftail';
+import isEqual from 'lodash-es/isEqual';
+import React from 'react';
 
-import BoldIcon from "../../icons/BoldIcon";
-import HeaderOne from "../../icons/HeaderOne";
-import HeaderThree from "../../icons/HeaderThree";
-import HeaderTwo from "../../icons/HeaderTwo";
-import ItalicIcon from "../../icons/ItalicIcon";
-import LinkIcon from "../../icons/LinkIcon";
-import OrderedListIcon from "../../icons/OrderedListIcon";
-import QuotationIcon from "../../icons/QuotationIcon";
-import StrikethroughIcon from "../../icons/StrikethroughIcon";
-import UnorderedListIcon from "../../icons/UnorderedListIcon";
+import BoldIcon from '../../icons/BoldIcon';
+import HeaderOne from '../../icons/HeaderOne';
+import HeaderThree from '../../icons/HeaderThree';
+import HeaderTwo from '../../icons/HeaderTwo';
+import ItalicIcon from '../../icons/ItalicIcon';
+import LinkIcon from '../../icons/LinkIcon';
+import OrderedListIcon from '../../icons/OrderedListIcon';
+import QuotationIcon from '../../icons/QuotationIcon';
+import StrikethroughIcon from '../../icons/StrikethroughIcon';
+import UnorderedListIcon from '../../icons/UnorderedListIcon';
+import LinkEntity from './LinkEntity';
+import LinkSource from './LinkSource';
 
 // import ImageEntity from "./ImageEntity";
 // import ImageSource from "./ImageSource";
-import { ChangeEvent } from "@saleor/hooks/useForm";
-import LinkEntity from "./LinkEntity";
-import LinkSource from "./LinkSource";
-
 export interface RichTextEditorProps {
   disabled: boolean;
   error: boolean;
@@ -105,6 +94,7 @@ const styles = (theme: Theme) =>
           borderRadius: 4,
           padding: "27px 12px 10px",
           position: "relative",
+          height: '300px',
           transition: theme.transitions.duration.shortest + "ms"
         },
         "&-Toolbar": {

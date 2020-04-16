@@ -1,5 +1,5 @@
 {
-  "name": "saleor-dashboard",
+  "name": "bacan-master-dashboard",
   "version": "2.0.0",
   "main": "src/index.tsx",
   "repository": {
@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/mirumee/saleor-dashboard/issues"
   },
-  "homepage": "http://getsaleor.com/",
+  "homepage": "https://admin.yosoybacan.com/",
   "engines": {
     "node": ">=10.6.0",
     "npm": ">=6.1.0"
@@ -31,6 +31,8 @@
     "apollo-upload-client": "^9.1.0",
     "classnames": "^2.2.6",
     "crc-32": "^1.2.0",
+    "dotenv": "^8.2.0",
+    "dotenv-webpack": "^1.7.0",
     "downshift": "^1.31.16",
     "draft-js": "^0.10.5",
     "draftail": "^1.3.0",
@@ -172,7 +174,7 @@
     ]
   },
   "scripts": {
-    "build": "API_URI=https://bacan-shop.herokuapp.com/graphql/ && webpack -p",
+    "build": "webpack -p",
     "extract-json-messages": "rimraf build/locale && babel src 'src/**/*.{ts,tsx}' -o build/dashboard.bundle.js",
     "extract-pot-messages": "rip json2pot \"build/locale/**/*.json\" -c description -o locale/messages.pot",
     "extract-messages": "npm run extract-json-messages && npm run extract-pot-messages",

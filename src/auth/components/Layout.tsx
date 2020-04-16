@@ -10,7 +10,8 @@ const useStyles = makeStyles(
       "& svg": {
         display: "block",
         height: 40,
-        marginBottom: theme.spacing.unit * 4
+        marginBottom: theme.spacing.unit * 2,
+        paddingTop: "25%"
       }
     },
     mainPanel: {
@@ -31,10 +32,10 @@ const useStyles = makeStyles(
         width: "100%"
       },
       [theme.breakpoints.up("sm")]: {
-        width: 328
+        width: 600
       },
       "@media (min-width: 1440px)": {
-        width: 650
+        width: 850
       },
       height: "100%",
       margin: "auto",
@@ -46,7 +47,7 @@ const useStyles = makeStyles(
         gridTemplateColumns: "376px 1fr"
       },
       "@media (min-width: 1440px)": {
-        gridTemplateColumns: "520px 1fr"
+        gridTemplateColumns: "376px 1fr"
       },
       display: "grid",
       gridTemplateColumns: "1fr",

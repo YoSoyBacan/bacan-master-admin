@@ -1,28 +1,20 @@
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
-
-import CardSpacer from "@saleor/components/CardSpacer";
-import CardTitle from "@saleor/components/CardTitle";
-import { FormSpacer } from "@saleor/components/FormSpacer";
-import Hr from "@saleor/components/Hr";
-import MultiAutocompleteSelectField, {
-  MultiAutocompleteChoiceType
-} from "@saleor/components/MultiAutocompleteSelectField";
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import CardSpacer from '@saleor/components/CardSpacer';
+import CardTitle from '@saleor/components/CardTitle';
+import { FormSpacer } from '@saleor/components/FormSpacer';
+import Hr from '@saleor/components/Hr';
+import MultiAutocompleteSelectField, { MultiAutocompleteChoiceType } from '@saleor/components/MultiAutocompleteSelectField';
 import SingleAutocompleteSelectField, {
-  SingleAutocompleteChoiceType
-} from "@saleor/components/SingleAutocompleteSelectField";
-import { ChangeEvent } from "@saleor/hooks/useForm";
-import { maybe } from "@saleor/misc";
-import { FetchMoreProps, FormErrors } from "@saleor/types";
+  SingleAutocompleteChoiceType,
+} from '@saleor/components/SingleAutocompleteSelectField';
+import { ChangeEvent } from '@saleor/hooks/useForm';
+import { maybe } from '@saleor/misc';
+import { FetchMoreProps, FormErrors } from '@saleor/types';
+import React from 'react';
+import { useIntl } from 'react-intl';
 
 interface ProductType {
   hasVariants: boolean;
@@ -49,10 +41,10 @@ interface ProductOrganizationProps extends WithStyles<typeof styles> {
   categories?: SingleAutocompleteChoiceType[];
   categoryInputDisplayValue: string;
   collections?: MultiAutocompleteChoiceType[];
-  collectionsInputDisplayValue: MultiAutocompleteChoiceType[];
+  collectionsInputDisplayValue?: MultiAutocompleteChoiceType[];
   data: {
     category: string;
-    collections: string[];
+    collections?: string[];
     productType?: string;
   };
   disabled: boolean;
@@ -61,13 +53,13 @@ interface ProductOrganizationProps extends WithStyles<typeof styles> {
   productTypeInputDisplayValue?: string;
   productTypes?: SingleAutocompleteChoiceType[];
   fetchCategories: (query: string) => void;
-  fetchCollections: (query: string) => void;
+  fetchCollections?: (query: string) => void;
   fetchMoreCategories: FetchMoreProps;
-  fetchMoreCollections: FetchMoreProps;
+  fetchMoreCollections?: FetchMoreProps;
   fetchMoreProductTypes?: FetchMoreProps;
   fetchProductTypes?: (data: string) => void;
   onCategoryChange: (event: ChangeEvent) => void;
-  onCollectionChange: (event: ChangeEvent) => void;
+  onCollectionChange?: (event: ChangeEvent) => void;
   onProductTypeChange?: (event: ChangeEvent) => void;
 }
 
@@ -101,7 +93,7 @@ const ProductOrganization = withStyles(styles, { name: "ProductOrganization" })(
       <Card className={classes.card}>
         <CardTitle
           title={intl.formatMessage({
-            defaultMessage: "Organize Product",
+            defaultMessage: "Tipo de Establecimiento",
             description: "section header"
           })}
         />
@@ -113,9 +105,7 @@ const ProductOrganization = withStyles(styles, { name: "ProductOrganization" })(
               helperText={errors.productType}
               name="productType"
               disabled={disabled}
-              label={intl.formatMessage({
-                defaultMessage: "Product Type"
-              })}
+              label={"Tipo de Establecimiento"}
               choices={productTypes}
               value={data.productType}
               onChange={onProductTypeChange}
@@ -126,12 +116,12 @@ const ProductOrganization = withStyles(styles, { name: "ProductOrganization" })(
           ) : (
             <>
               <Typography className={classes.label} variant="caption">
-                <FormattedMessage defaultMessage="Product Type" />
+                Tipo de Producto
               </Typography>
               <Typography>{maybe(() => productType.name, "...")}</Typography>
               <CardSpacer />
               <Typography className={classes.label} variant="caption">
-                <FormattedMessage defaultMessage="Product Type" />
+                Variación
               </Typography>
               <Typography>
                 {maybe(
@@ -159,7 +149,7 @@ const ProductOrganization = withStyles(styles, { name: "ProductOrganization" })(
             helperText={errors.category}
             disabled={disabled}
             label={intl.formatMessage({
-              defaultMessage: "Category"
+              defaultMessage: "Industria"
             })}
             choices={disabled ? [] : categories}
             name="category"
@@ -172,24 +162,27 @@ const ProductOrganization = withStyles(styles, { name: "ProductOrganization" })(
           <FormSpacer />
           <Hr />
           <FormSpacer />
-          <MultiAutocompleteSelectField
-            displayValues={collectionsInputDisplayValue}
-            label={intl.formatMessage({
-              defaultMessage: "Collections"
-            })}
-            choices={disabled ? [] : collections}
-            name="collections"
-            value={data.collections}
-            helperText={intl.formatMessage({
-              defaultMessage:
-                "*Optional. Adding product to collection helps users find it.",
-              description: "field is optional"
-            })}
-            onChange={onCollectionChange}
-            fetchChoices={fetchCollections}
-            data-tc="collections"
-            {...fetchMoreCollections}
-          />
+          {
+            !!collections && 
+            <MultiAutocompleteSelectField
+              displayValues={collectionsInputDisplayValue}
+              label={intl.formatMessage({
+                defaultMessage: "Colecciones"
+              })}
+              choices={disabled ? [] : collections}
+              name="collections"
+              value={data.collections}
+              helperText={intl.formatMessage({
+                defaultMessage:
+                  "*Optional. Adding product to collection helps users find it.",
+                description: "field is optional"
+              })}
+              onChange={onCollectionChange}
+              fetchChoices={fetchCollections}
+              data-tc="collections"
+              {...fetchMoreCollections}
+            />
+          }
         </CardContent>
       </Card>
     );

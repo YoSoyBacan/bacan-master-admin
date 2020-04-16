@@ -11,7 +11,7 @@ export const commonMessages = defineMessages({
     defaultMessage: "Dashboard"
   },
   description: {
-    defaultMessage: "Description"
+    defaultMessage: "Descripción"
   },
   discounts: {
     defaultMessage: "Descuentos"

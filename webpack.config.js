@@ -3,8 +3,12 @@ const path = require("path");
 const webpack = require("webpack");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-require('dotenv').config();
+const dotenv = require('dotenv').config({path: __dirname + '/.env'});
 
+
+const envPlugin = new webpack.DefinePlugin({
+  "process.env": dotenv.parsed
+})
 const resolve = path.resolve.bind(path, __dirname);
 
 const pathsPlugin = new TsconfigPathsPlugin({
@@ -22,7 +26,8 @@ const htmlWebpackPlugin = new HtmlWebpackPlugin({
 });
 const environmentPlugin = new webpack.EnvironmentPlugin([
   "APP_MOUNT_URI",
-  "API_URI"
+  "API_URI",
+  "SERVICE_ACCOUNT_TOKEN"
 ]);
 
 const dashboardBuildPath = "build/dashboard/";
@@ -91,7 +96,7 @@ module.exports = (env, argv) => {
       removeEmptyChunks: false,
       splitChunks: false
     },
-    plugins: [checkerPlugin, environmentPlugin, htmlWebpackPlugin],
+    plugins: [checkerPlugin, environmentPlugin, htmlWebpackPlugin, envPlugin],
     resolve: {
       extensions: [".js", ".jsx", ".ts", ".tsx"],
       plugins: [pathsPlugin]
