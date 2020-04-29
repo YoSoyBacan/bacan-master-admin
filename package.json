@@ -164,12 +164,6 @@
       "^lodash-es(.*)$": "lodash/$1"
     }
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "npm run check-types"
-    }
-  },
   "lint-staged": {
     "*.{ts,tsx}": [
       "tslint --fix",
