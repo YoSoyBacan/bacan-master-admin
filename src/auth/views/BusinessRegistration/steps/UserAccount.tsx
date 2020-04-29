@@ -3,12 +3,14 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import ConfirmButton from '@saleor/components/ConfirmButton';
 import Form from '@saleor/components/Form';
 import { FormSpacer } from '@saleor/components/FormSpacer';
 import { commonMessages } from '@saleor/intl';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
+import * as AdminClient from '../../../../fetch/adminClient';
 
 enum Countries {
   ECUADOR = 'Ecuador',
@@ -25,11 +27,18 @@ export interface FormData {
   country: Countries;
 }
 
+
+
 const styles = (theme: Theme) =>
   createStyles({
     buttonContainer: {
       display: "flex",
-      justifyContent: "flex-end"
+      justifyContent: "space-between",
+      paddingTop: theme.spacing.unit * 2,
+      paddingBottom: theme.spacing.unit * 2
+    },
+    nexButton: {
+      width: 140
     },
     link: {
       color: theme.palette.primary.main,
@@ -55,20 +64,87 @@ const styles = (theme: Theme) =>
   });
 
 export interface UserAccountProps extends WithStyles<typeof styles> {
-
+  handleNext: () => void;
+  setUserId: (id: string) => void;
 }
 
-const UserAccount = withStyles(styles, { name: "LoginCard" })(
+// const FAKE = true;
+const UserAccount = withStyles(styles, { name: "UserAccount" })(
   ({
-    classes
+    handleNext,
+    classes,
+    setUserId
   }: UserAccountProps) => {
 
     const intl = useIntl();
+    const [ loading, setLoading ] = React.useState(false);
+    const [ errors, setErrors ] = React.useState<Array<{field: string, message: string}>>([])
 
+    const setNewError = (field: string, message: string) => {
+      const newErrors = [...errors];
+      newErrors.push({ field, message});
+      setErrors(newErrors);
+    }
+
+    const handleSubmit = async (data: FormData) => {
+      setLoading(true);
+      // if (FAKE === true) {
+      //   handleNext();
+      //   return;
+      // }
+      if (data.password !== data.confirmPassword) {
+        setNewError('password', 'Contraseñas no coinciden, intenta otra vez.');
+        setLoading(false);
+        return;
+      }
+      try {
+        const newUser = await AdminClient.post<{ uid: string }>('user', {
+          firstName: data.firstName,
+          lastName: data.lastName,
+          email: data.email,
+          countryCode: data.country === Countries.ECUADOR ? '593' : '57',
+          type: 'Negocio',
+          authMethod: 'Email',
+          password: data.password,
+          phoneNumber: data.phoneNumber
+        });
+        setUserId(newUser.data.uid);
+        handleNext();
+      } catch(error) {
+        // TODO: Add error to the form state
+        setLoading(false);
+      }
+
+    }
+    // TODO: Add validation to the form to disable the Next button
+    const initialData = {
+      email: "", 
+      password: "", 
+      firstName: "", 
+      lastName: "", 
+      confirmPassword: "", 
+      phoneNumber: "", 
+      country: Countries.ECUADOR
+    }
+
+    const getErrorField = (field: string) => {
+      const errorFound = errors.find(err => err.field === field);
+      const finalResult = {
+        hasError: false,
+        errorText: ''
+      };
+      if (!errorFound) {
+        return finalResult;
+      }
+      finalResult.hasError = true;
+      finalResult.errorText = errorFound.message;
+      return finalResult;
+    };
+    const tranState = loading ? 'loading' : 'default';
     return (
         <>
-        <Form initial={{ email: "", password: "", firstName: "", lastName: "", confirmPassword: "", phoneNumber: "", country: Countries.ECUADOR }}>
-            {({ change: handleChange, data }) => (
+        <Form initial={initialData} onSubmit={handleSubmit} errors={errors}>
+            {({ change: handleChange, data, submit }) => (
             <>
                 <TextField
                 autoFocus
@@ -97,29 +173,31 @@ const UserAccount = withStyles(styles, { name: "LoginCard" })(
                 />
                 <FormSpacer />
                 <TextField
-                autoFocus
-                fullWidth
-                autoComplete="phone"
-                label={'Teléfono / WhatsApp'}
-                name="phoneNumber"
-                onChange={handleChange}
-                value={data.phoneNumber}
-                inputProps={{
-                    "data-tc": "phoneNumber"
-                }}
+                  autoFocus
+                  fullWidth
+                  autoComplete="phone"
+                  label={'Teléfono / WhatsApp'}
+                  name="phoneNumber"
+                  onChange={handleChange}
+                  value={data.phoneNumber}
+                  inputProps={{
+                      "data-tc": "phoneNumber"
+                  }}
+                  error={getErrorField('phoneNumber').hasError}
+                  helperText={getErrorField('phoneNumber').errorText}
                 />
                 <FormSpacer />
                 <TextField
-                autoFocus
-                fullWidth
-                autoComplete="username"
-                label={intl.formatMessage(commonMessages.email)}
-                name="email"
-                onChange={handleChange}
-                value={data.email}
-                inputProps={{
-                    "data-tc": "email"
-                }}
+                  autoFocus
+                  fullWidth
+                  autoComplete="username"
+                  label={intl.formatMessage(commonMessages.email)}
+                  name="email"
+                  onChange={handleChange}
+                  value={data.email}
+                  inputProps={{
+                      "data-tc": "email"
+                  }}
                 />
                 <FormSpacer />
                 <>
@@ -150,6 +228,8 @@ const UserAccount = withStyles(styles, { name: "LoginCard" })(
                 inputProps={{
                     "data-tc": "password"
                 }}
+                error={getErrorField('password').hasError}
+                helperText={getErrorField('password').errorText}
                 />
                 <FormSpacer />
                 <TextField
@@ -163,10 +243,24 @@ const UserAccount = withStyles(styles, { name: "LoginCard" })(
                   inputProps={{
                       "data-tc": "confirmPassword"
                   }}
+                  error={getErrorField('confirmPassword').hasError}
+                  helperText={getErrorField('confirmPassword').errorText}
                 />
+                <div className={classes.buttonContainer}>
+                <div/>
+                  <ConfirmButton
+                    className={classes.nexButton}
+                    transitionState={tranState}
+                    data-tc="submit"
+                    onClick={submit}
+                  >
+                    Regístrate
+                  </ConfirmButton>
+                </div>
             </>
             )}
         </Form>
+
         </>
     );
   }

@@ -1,19 +1,14 @@
-import FilledInput from "@material-ui/core/FilledInput";
-import FormControl from "@material-ui/core/FormControl";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import Select, { SelectProps } from "@material-ui/core/Select";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import React from "react";
-import { FormattedMessage } from "react-intl";
+import FilledInput from '@material-ui/core/FilledInput';
+import FormControl from '@material-ui/core/FormControl';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select, { SelectProps } from '@material-ui/core/Select';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
-import Checkbox from "../Checkbox";
+import Checkbox from '../Checkbox';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -43,6 +38,7 @@ interface MultiSelectFieldProps extends WithStyles<typeof styles> {
   name?: string;
   selectProps?: SelectProps;
   value?: string[];
+  maxSelection?: number;
   onChange(event: any);
 }
 

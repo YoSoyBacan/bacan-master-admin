@@ -1,27 +1,12 @@
-import gql from "graphql-tag";
+import gql from 'graphql-tag';
 
-import { pageInfoFragment, TypedQuery } from "../queries";
-import {
-  AvailableInGridAttributes,
-  AvailableInGridAttributesVariables
-} from "./types/AvailableInGridAttributes";
-import {
-  ProductDetails,
-  ProductDetailsVariables
-} from "./types/ProductDetails";
-import {
-  ProductImageById,
-  ProductImageByIdVariables
-} from "./types/ProductImageById";
-import { ProductList, ProductListVariables } from "./types/ProductList";
-import {
-  ProductVariantCreateData,
-  ProductVariantCreateDataVariables
-} from "./types/ProductVariantCreateData";
-import {
-  ProductVariantDetails,
-  ProductVariantDetailsVariables
-} from "./types/ProductVariantDetails";
+import { pageInfoFragment, TypedQuery } from '../queries';
+import { AvailableInGridAttributes, AvailableInGridAttributesVariables } from './types/AvailableInGridAttributes';
+import { ProductDetails, ProductDetailsVariables } from './types/ProductDetails';
+import { ProductImageById, ProductImageByIdVariables } from './types/ProductImageById';
+import { ProductList, ProductListVariables } from './types/ProductList';
+import { ProductVariantCreateData, ProductVariantCreateDataVariables } from './types/ProductVariantCreateData';
+import { ProductVariantDetails, ProductVariantDetailsVariables } from './types/ProductVariantDetails';
 
 export const fragmentMoney = gql`
   fragment Money on Money {

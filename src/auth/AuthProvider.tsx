@@ -11,7 +11,7 @@ import { TypedTokenAuthMutation, TypedVerifyTokenMutation } from './mutations';
 import { TokenAuth, TokenAuthVariables } from './types/TokenAuth';
 import { User } from './types/User';
 import { VerifyToken, VerifyTokenVariables } from './types/VerifyToken';
-import { getAuthToken, removeAuthToken, setAuthToken } from './utils';
+import { getAuthToken, removeAuthToken, setAuthToken, setAuthTokenType } from './utils';
 
 interface AuthProviderOperationsProps {
   children: (props: {
@@ -123,6 +123,10 @@ class AuthProvider extends React.Component<
   loginByToken = (token: string, user?: User) => {
     if (user) {
       this.setState({ user });
+      setAuthTokenType('USER', true);
+    } else {
+      // Service account
+      setAuthTokenType('SERVICE_ACCOUNT', true);
     }
     setAuthToken(token, this.state.persistToken);
   };

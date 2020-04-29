@@ -6,8 +6,8 @@
     "type": "git",
     "url": "git://github.com/mirumee/saleor-dashboard.git"
   },
-  "author": "Mirumee Software",
-  "license": "BSD-3-Clause",
+  "author": "Yo Soy Bacan",
+  "license": "Private",
   "bugs": {
     "url": "https://github.com/mirumee/saleor-dashboard/issues"
   },
@@ -19,6 +19,7 @@
   "dependencies": {
     "@material-ui/core": "^3.9.4",
     "@material-ui/icons": "^3.0.2",
+    "@material-ui/lab": "^3.0.0-alpha.30",
     "@material-ui/styles": "^3.0.0-alpha.10",
     "apollo": "^2.27.0",
     "apollo-cache-inmemory": "^1.6.5",
@@ -29,6 +30,7 @@
     "apollo-link-context": "^1.0.20",
     "apollo-link-error": "^1.1.13",
     "apollo-upload-client": "^9.1.0",
+    "axios": "^0.19.2",
     "classnames": "^2.2.6",
     "crc-32": "^1.2.0",
     "dotenv": "^8.2.0",
@@ -42,6 +44,7 @@
     "graphql": "^14.6.0",
     "graphql-tag": "^2.10.3",
     "is-url": "^1.2.4",
+    "js-base64": "^2.5.2",
     "jss": "^9.8.7",
     "keycode": "^2.2.0",
     "lodash": "^4.17.14",

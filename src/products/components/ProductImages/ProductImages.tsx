@@ -1,23 +1,18 @@
-import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import classNames from "classnames";
-import { useIntl } from "react-intl";
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import CardTitle from '@saleor/components/CardTitle';
+import ImageTile from '@saleor/components/ImageTile';
+import ImageUpload from '@saleor/components/ImageUpload';
+import { commonMessages } from '@saleor/intl';
+import { ReorderAction } from '@saleor/types';
+import classNames from 'classnames';
+import React from 'react';
+import { useIntl } from 'react-intl';
+import { SortableContainer, SortableElement } from 'react-sortable-hoc';
 
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import CardTitle from "@saleor/components/CardTitle";
-import ImageTile from "@saleor/components/ImageTile";
-import ImageUpload from "@saleor/components/ImageUpload";
-import { commonMessages } from "@saleor/intl";
-import { ReorderAction } from "@saleor/types";
-import React from "react";
-import { SortableContainer, SortableElement } from "react-sortable-hoc";
-import { ProductDetails_product_images } from "../../types/ProductDetails";
+import { ProductDetails_product_images } from '../../types/ProductDetails';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -113,6 +108,7 @@ interface ProductImagesProps extends WithStyles<typeof styles> {
   placeholderImage?: string;
   images: ProductDetails_product_images[];
   loading?: boolean;
+  title?: string;
   onImageDelete: (id: string) => () => void;
   onImageEdit: (id: string) => () => void;
   onImageReorder?: ReorderAction;
@@ -181,18 +177,16 @@ const ProductImages = withStyles(styles, { name: "ProductImages" })(
     onImageEdit,
     onImageDelete,
     onImageReorder,
-    onImageUpload
+    onImageUpload,
+    title
   }: ProductImagesProps) => {
     const intl = useIntl();
     const upload = React.useRef(null);
-
+    const renderTitle = !!title ? title : "Imágenes";
     return (
       <Card className={classes.card}>
         <CardTitle
-          title={intl.formatMessage({
-            defaultMessage: "Images",
-            description: "section header"
-          })}
+          title={renderTitle}
           toolbar={
             <>
               <Button

@@ -45,7 +45,7 @@ export const commonMessages = defineMessages({
     description: "field is optional"
   },
   properties: {
-    defaultMessage: "Properties"
+    defaultMessage: "Propiedades"
   },
   readOnly: {
     defaultMessage: "Saleor runs in read-only mode. Changes not saved."
@@ -107,7 +107,7 @@ export const buttonMessages = defineMessages({
     description: "button"
   },
   remove: {
-    defaultMessage: "Remover",
+    defaultMessage: "Eliminar",
     description: "button"
   },
   save: {
@@ -119,7 +119,7 @@ export const buttonMessages = defineMessages({
     description: "button"
   },
   undo: {
-    defaultMessage: "Undo",
+    defaultMessage: "Deshacer",
     description: "button"
   }
 });
@@ -146,7 +146,7 @@ export const sectionNames = defineMessages({
     description: "customers section name"
   },
   draftOrders: {
-    defaultMessage: "Draft Orders",
+    defaultMessage: "Órdenes Parciales",
     description: "draft orders section name"
   },
   home: {
@@ -170,7 +170,7 @@ export const sectionNames = defineMessages({
     description: "plugins section name"
   },
   productTypes: {
-    defaultMessage: "Product Types",
+    defaultMessage: "Tipos de Productos",
     description: "product types section name"
   },
   products: {

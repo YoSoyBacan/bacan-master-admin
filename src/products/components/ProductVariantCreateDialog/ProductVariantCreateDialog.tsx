@@ -1,22 +1,20 @@
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import { Theme } from "@material-ui/core/styles";
-import { makeStyles } from "@material-ui/styles";
-import React from "react";
-import { FormattedMessage } from "react-intl";
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import { Theme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
+import useModalDialogErrors from '@saleor/hooks/useModalDialogErrors';
+import useModalDialogOpen from '@saleor/hooks/useModalDialogOpen';
+import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
-import useModalDialogErrors from "@saleor/hooks/useModalDialogErrors";
-import useModalDialogOpen from "@saleor/hooks/useModalDialogOpen";
-import { ProductVariantBulkCreateInput } from "../../../types/globalTypes";
-import { createInitialForm, ProductVariantCreateFormData } from "./form";
-import ProductVariantCreateContent, {
-  ProductVariantCreateContentProps
-} from "./ProductVariantCreateContent";
-import reduceProductVariantCreateFormData from "./reducer";
-import { ProductVariantCreateStep } from "./types";
+import { ProductVariantBulkCreateInput } from '../../../types/globalTypes';
+import { createInitialForm, ProductVariantCreateFormData } from './form';
+import ProductVariantCreateContent, { ProductVariantCreateContentProps } from './ProductVariantCreateContent';
+import reduceProductVariantCreateFormData from './reducer';
+import { ProductVariantCreateStep } from './types';
 
 const useStyles = makeStyles((theme: Theme) => ({
   button: {
@@ -149,7 +147,7 @@ const ProductVariantCreateDialog: React.FC<
     <Dialog open={open} maxWidth="md">
       <DialogTitle>
         <FormattedMessage
-          defaultMessage="Assign Attribute"
+          defaultMessage="Elige tus Tarjetas Bacán"
           description="dialog header"
         />
       </DialogTitle>
@@ -166,7 +164,7 @@ const ProductVariantCreateDialog: React.FC<
       </DialogContent>
       <DialogActions>
         <Button className={classes.button} onClick={onClose}>
-          <FormattedMessage defaultMessage="Cancel" description="button" />
+          <FormattedMessage defaultMessage="Cancelar" description="button" />
         </Button>
         <div className={classes.spacer} />
         {step !== "values" && (
@@ -176,7 +174,7 @@ const ProductVariantCreateDialog: React.FC<
             onClick={handlePrevStep}
           >
             <FormattedMessage
-              defaultMessage="Previous"
+              defaultMessage="Atrás"
               description="previous step, button"
             />
           </Button>
@@ -189,7 +187,7 @@ const ProductVariantCreateDialog: React.FC<
             variant="contained"
             onClick={handleNextStep}
           >
-            <FormattedMessage defaultMessage="Next" description="button" />
+            <FormattedMessage defaultMessage="Siguiente" description="button" />
           </Button>
         ) : (
           <Button
@@ -200,7 +198,7 @@ const ProductVariantCreateDialog: React.FC<
             onClick={() => onSubmit(data.variants)}
           >
             <FormattedMessage
-              defaultMessage="Create"
+              defaultMessage="Finalizar"
               description="create multiple variants, button"
             />
           </Button>

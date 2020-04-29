@@ -1,5 +1,7 @@
+import { ProductUrlQueryParams } from '@saleor/products/urls';
+import { parse as parseQs } from 'qs';
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, RouteComponentProps, Switch } from 'react-router-dom';
 
 import Layout from './components/Layout';
 import { User } from './types/User';
@@ -27,13 +29,26 @@ export const UserContext = React.createContext<UserContext>({
   tokenVerifyLoading: false
 });
 
+const BusinessRegistrationView: React.StatelessComponent<RouteComponentProps<any>> = ({
+  location
+}) => {
+  const qs = parseQs(location.search.substr(1));
+  const params: ProductUrlQueryParams = qs;
+
+  return (
+    <BusinessRegistration 
+      params={params}
+    />
+  )
+}
+
 const AuthRouter: React.FC = () => (
   <Layout>
     <Switch>
       <Route path={passwordResetSuccessPath} component={ResetPasswordSuccess} />
       <Route path={passwordResetPath} component={ResetPassword} />
       <Route path={newPasswordPath} component={NewPassword} />
-      <Route path={registerBusinessPath} component={BusinessRegistration}/>
+      <Route path={registerBusinessPath} component={BusinessRegistrationView}/>
       <Route component={LoginView} />
     </Switch>
   </Layout>

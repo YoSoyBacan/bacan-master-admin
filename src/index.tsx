@@ -1,55 +1,55 @@
-import { defaultDataIdFromObject, InMemoryCache } from "apollo-cache-inmemory";
-import { ApolloClient } from "apollo-client";
-import { ApolloLink } from "apollo-link";
-import { BatchHttpLink } from "apollo-link-batch-http";
-import { setContext } from "apollo-link-context";
-import { ErrorResponse, onError } from "apollo-link-error";
-import { createUploadLink } from "apollo-upload-client";
-import React from "react";
-import { ApolloProvider } from "react-apollo";
-import { render } from "react-dom";
-import { useIntl } from "react-intl";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { defaultDataIdFromObject, InMemoryCache } from 'apollo-cache-inmemory';
+import { ApolloClient } from 'apollo-client';
+import { ApolloLink } from 'apollo-link';
+import { BatchHttpLink } from 'apollo-link-batch-http';
+import { setContext } from 'apollo-link-context';
+import { ErrorResponse, onError } from 'apollo-link-error';
+import { createUploadLink } from 'apollo-upload-client';
+import React from 'react';
+import { ApolloProvider } from 'react-apollo';
+import { render } from 'react-dom';
+import { useIntl } from 'react-intl';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import AttributeSection from "./attributes";
-import { attributeSection } from "./attributes/urls";
-import Auth, { getAuthToken, removeAuthToken } from "./auth";
-import AuthProvider from "./auth/AuthProvider";
-import LoginLoading from "./auth/components/LoginLoading/LoginLoading";
-import SectionRoute from "./auth/components/SectionRoute";
-import { hasPermission } from "./auth/misc";
-import CategorySection from "./categories";
-import CollectionSection from "./collections";
-import { AppProgressProvider } from "./components/AppProgress";
-import { DateProvider } from "./components/Date";
-import { LocaleProvider } from "./components/Locale";
-import { MessageManager } from "./components/messages";
-import { ShopProvider } from "./components/Shop";
-import ThemeProvider from "./components/Theme";
-import { WindowTitle } from "./components/WindowTitle";
-import { API_URI, APP_MOUNT_URI } from "./config";
-import ConfigurationSection, { createConfigurationMenu } from "./configuration";
-import { CustomerSection } from "./customers";
-import DiscountSection from "./discounts";
-import HomePage from "./home";
-import { commonMessages } from "./intl";
-import NavigationSection from "./navigation";
-import { navigationSection } from "./navigation/urls";
-import { NotFound } from "./NotFound";
-import OrdersSection from "./orders";
-import PageSection from "./pages";
-import PluginsSection from "./plugins";
-import ProductSection from "./products";
-import ProductTypesSection from "./productTypes";
-import ServiceSection from "./services";
-import { serviceSection } from "./services/urls";
-import ShippingSection from "./shipping";
-import SiteSettingsSection from "./siteSettings";
-import StaffSection from "./staff";
-import TaxesSection from "./taxes";
-import TranslationsSection from "./translations";
-import { PermissionEnum } from "./types/globalTypes";
-import WebhooksSection from "./webhooks";
+import AttributeSection from './attributes';
+import { attributeSection } from './attributes/urls';
+import Auth, { getAuthToken, getAuthTokenType, removeAuthToken } from './auth';
+import AuthProvider from './auth/AuthProvider';
+import LoginLoading from './auth/components/LoginLoading/LoginLoading';
+import SectionRoute from './auth/components/SectionRoute';
+import { hasPermission } from './auth/misc';
+import CategorySection from './categories';
+import CollectionSection from './collections';
+import { AppProgressProvider } from './components/AppProgress';
+import { DateProvider } from './components/Date';
+import { LocaleProvider } from './components/Locale';
+import { MessageManager } from './components/messages';
+import { ShopProvider } from './components/Shop';
+import ThemeProvider from './components/Theme';
+import { WindowTitle } from './components/WindowTitle';
+import { API_URI, APP_MOUNT_URI } from './config';
+import ConfigurationSection, { createConfigurationMenu } from './configuration';
+import { CustomerSection } from './customers';
+import DiscountSection from './discounts';
+import HomePage from './home';
+import { commonMessages } from './intl';
+import NavigationSection from './navigation';
+import { navigationSection } from './navigation/urls';
+import { NotFound } from './NotFound';
+import OrdersSection from './orders';
+import PageSection from './pages';
+import PluginsSection from './plugins';
+import ProductSection from './products';
+import ProductTypesSection from './productTypes';
+import ServiceSection from './services';
+import { serviceSection } from './services/urls';
+import ShippingSection from './shipping';
+import SiteSettingsSection from './siteSettings';
+import StaffSection from './staff';
+import TaxesSection from './taxes';
+import TranslationsSection from './translations';
+import { PermissionEnum } from './types/globalTypes';
+import WebhooksSection from './webhooks';
 
 interface ResponseError extends ErrorResponse {
   networkError?: Error & {
@@ -66,12 +66,14 @@ const invalidTokenLink = onError((error: ResponseError) => {
 
 const authLink = setContext((_, context) => {
   const authToken = getAuthToken();
-
+  const tokenType = getAuthTokenType();
+  const prefix = tokenType === 'SERVICE_ACCOUNT' ? 'bearer' : 'JWT';
   return {
     ...context,
     headers: {
       ...context.headers,
-      Authorization: authToken ? `JWT ${authToken}` : null
+      Authorization: authToken ? `${prefix} ${authToken}` : null,
+      // 'HTTP_AUTHORIZATION': authToken ? `bearer ${authToken}` : null
     }
   };
 });

@@ -27,7 +27,9 @@ const htmlWebpackPlugin = new HtmlWebpackPlugin({
 const environmentPlugin = new webpack.EnvironmentPlugin([
   "APP_MOUNT_URI",
   "API_URI",
-  "SERVICE_ACCOUNT_TOKEN"
+  "SERVICE_ACCOUNT_TOKEN",
+  "ADMIN_URL",
+  "ADMIN_API_KEY"
 ]);
 
 const dashboardBuildPath = "build/dashboard/";

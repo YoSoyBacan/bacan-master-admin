@@ -1,58 +1,24 @@
-import gql from "graphql-tag";
+import gql from 'graphql-tag';
 
-import { TypedMutation } from "../mutations";
-import { ProductCreate, ProductCreateVariables } from "./types/ProductCreate";
-import { ProductDelete, ProductDeleteVariables } from "./types/ProductDelete";
-import {
-  ProductImageCreate,
-  ProductImageCreateVariables
-} from "./types/ProductImageCreate";
-import {
-  ProductImageDelete,
-  ProductImageDeleteVariables
-} from "./types/ProductImageDelete";
-import {
-  ProductImageReorder,
-  ProductImageReorderVariables
-} from "./types/ProductImageReorder";
-import {
-  ProductImageUpdate,
-  ProductImageUpdateVariables
-} from "./types/ProductImageUpdate";
-import { ProductUpdate, ProductUpdateVariables } from "./types/ProductUpdate";
-import {
-  SimpleProductUpdate,
-  SimpleProductUpdateVariables
-} from "./types/SimpleProductUpdate";
-import { VariantCreate, VariantCreateVariables } from "./types/VariantCreate";
-import { VariantDelete, VariantDeleteVariables } from "./types/VariantDelete";
-import {
-  VariantImageAssign,
-  VariantImageAssignVariables
-} from "./types/VariantImageAssign";
-import {
-  VariantImageUnassign,
-  VariantImageUnassignVariables
-} from "./types/VariantImageUnassign";
-import { VariantUpdate, VariantUpdateVariables } from "./types/VariantUpdate";
-
-import { fragmentVariant, productFragmentDetails } from "./queries";
-import {
-  productBulkDelete,
-  productBulkDeleteVariables
-} from "./types/productBulkDelete";
-import {
-  productBulkPublish,
-  productBulkPublishVariables
-} from "./types/productBulkPublish";
-import {
-  ProductVariantBulkCreate,
-  ProductVariantBulkCreateVariables
-} from "./types/ProductVariantBulkCreate";
-import {
-  ProductVariantBulkDelete,
-  ProductVariantBulkDeleteVariables
-} from "./types/ProductVariantBulkDelete";
+import { TypedMutation } from '../mutations';
+import { fragmentVariant, productFragmentDetails } from './queries';
+import { productBulkDelete, productBulkDeleteVariables } from './types/productBulkDelete';
+import { productBulkPublish, productBulkPublishVariables } from './types/productBulkPublish';
+import { ProductCreate, ProductCreateVariables } from './types/ProductCreate';
+import { ProductDelete, ProductDeleteVariables } from './types/ProductDelete';
+import { ProductImageCreate, ProductImageCreateVariables } from './types/ProductImageCreate';
+import { ProductImageDelete, ProductImageDeleteVariables } from './types/ProductImageDelete';
+import { ProductImageReorder, ProductImageReorderVariables } from './types/ProductImageReorder';
+import { ProductImageUpdate, ProductImageUpdateVariables } from './types/ProductImageUpdate';
+import { ProductUpdate, ProductUpdateVariables } from './types/ProductUpdate';
+import { ProductVariantBulkCreate, ProductVariantBulkCreateVariables } from './types/ProductVariantBulkCreate';
+import { ProductVariantBulkDelete, ProductVariantBulkDeleteVariables } from './types/ProductVariantBulkDelete';
+import { SimpleProductUpdate, SimpleProductUpdateVariables } from './types/SimpleProductUpdate';
+import { VariantCreate, VariantCreateVariables } from './types/VariantCreate';
+import { VariantDelete, VariantDeleteVariables } from './types/VariantDelete';
+import { VariantImageAssign, VariantImageAssignVariables } from './types/VariantImageAssign';
+import { VariantImageUnassign, VariantImageUnassignVariables } from './types/VariantImageUnassign';
+import { VariantUpdate, VariantUpdateVariables } from './types/VariantUpdate';
 
 export const productImageCreateMutation = gql`
   ${productFragmentDetails}
@@ -233,6 +199,8 @@ export const productCreateMutation = gql`
     $sku: String
     $stockQuantity: Int
     $seo: SeoInput
+    $paymentPlatformId: String!
+    $adminPlatformId: String!
   ) {
     productCreate(
       input: {
@@ -249,6 +217,8 @@ export const productCreateMutation = gql`
         sku: $sku
         quantity: $stockQuantity
         seo: $seo
+        paymentPlatformId: $paymentPlatformId
+        adminPlatformId: $adminPlatformId
       }
     ) {
       errors {

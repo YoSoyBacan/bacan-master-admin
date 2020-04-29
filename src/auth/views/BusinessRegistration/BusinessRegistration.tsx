@@ -1,14 +1,15 @@
-import Button from '@material-ui/core/Button';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Stepper from '@material-ui/core/Stepper';
 import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import useUser from '@saleor/hooks/useUser';
+import { ProductUrlQueryParams } from '@saleor/products/urls';
 import React from 'react';
 
 import BusinessDetails from './steps/BusinessDetails';
 import BusinessLegal from './steps/BusinessLegal';
+import { BusinessVariants } from './steps/BusinessVariants';
 import UserAccount from './steps/UserAccount';
 
 export interface FormData {
@@ -17,6 +18,7 @@ export interface FormData {
 }
 
 const TOKEN = process.env.SERVICE_ACCOUNT_TOKEN;
+
 const styles = (theme: Theme) =>
   createStyles({
     buttonContainer: {
@@ -40,22 +42,25 @@ const styles = (theme: Theme) =>
   });
 
 export interface BusinessRegistrationProps extends WithStyles<typeof styles> {
-  error: boolean;
-  disableLoginButton: boolean;
-  onPasswordRecovery: () => void;
+  params: ProductUrlQueryParams;
   onSubmit?(event: FormData);
 }
 
 const BusinessRegistration = withStyles(styles, { name: "BusinessRegistration" })(
-  ({ classes }: BusinessRegistrationProps) => {
+  ({ classes, params }: BusinessRegistrationProps) => {
 
     const getSteps = () => {
-        return ['Tu Perfil', 'Tu Empresa', 'Tu Negocio', 'Material Gráfico', 'Tus Tarjetas'];
+        return ['Perfil', 'Empresa', 'Negocio Bacán', 'Tarjetas Bacán'];
     }
 
+    const [ businessId, setBusinessId ] = React.useState('ADMIN-ID');
+    const [ buenPlanBusinessId, setBuenPlanBusinessId ] = React.useState('BUEN-PLAN-ID');
+    const [ userId, setUserId ] = React.useState('');
     const [ activeStep, setActiveStep ] = React.useState(0);
+    const [productId, setProductId] = React.useState('');
+    const [ businessLink, setBusinessLink ] = React.useState('');
     const { loginByToken } = useUser();
-    const handleNext = () => {
+    const handleNext = async () => {
         if (activeStep === 1) {
             loginByToken(TOKEN);
         }
@@ -64,39 +69,29 @@ const BusinessRegistration = withStyles(styles, { name: "BusinessRegistration" }
     const handleBack = () => {
         setActiveStep(prevActiveStep => prevActiveStep - 1);
     }
+
     const getFormComponent = () => {
-        switch(activeStep) {
+        switch(activeStep) {    
             case 0: {
-                return <UserAccount classes={classes}/>;
+                return <UserAccount classes={classes} setUserId={setUserId} handleNext={handleNext} />;
             }
             case 1: {
-                return <BusinessLegal classes={classes}/>
+              return <BusinessLegal classes={classes} userId={userId} setBusinessId={setBusinessId} handleNext={handleNext} setBuenPlanBusinessId={setBuenPlanBusinessId}/>
             }
             case 2: {
-                return <BusinessDetails moveNextPage={handleNext} moveBackPage={handleBack}/>
+              return <BusinessDetails moveNextPage={handleNext} moveBackPage={handleBack} businessId={businessId} buenPlanBusinessId={buenPlanBusinessId} setProductId={setProductId} setBusinessLink={setBusinessLink}/>
+            }
+            case 3: {
+              return <BusinessVariants id={productId} moveNextPage={handleNext} params={params}/>
             }
             default: {
-                return <UserAccount classes={classes}/>;
+                return <UserAccount classes={classes} setUserId={setUserId} handleNext={handleNext}/>;
             }
         }
     }
 
-    const getStepText = () => {
-        switch(activeStep) {
-            case 0: {
-                return 'Regístrate';
-            }
-            case 1: {
-                return 'Siguiente';
-            }
-            default: {
-                return 'Siguiente';
-            }
-        }
-    }
 
     const steps = getSteps();
-
     return (
         <>
         <Typography variant="h3" className={classes.title}>Registra tu Negocio</Typography>
@@ -108,22 +103,6 @@ const BusinessRegistration = withStyles(styles, { name: "BusinessRegistration" }
             ))}
         </Stepper>
         {getFormComponent()}
-        <div className={classes.buttonContainer}>
-            {activeStep !== 0 && <Button onClick={handleBack}>
-                Atrás
-            </Button>}
-            {activeStep === 0 && <div/>}
-            <Button
-                className={classes.nexButton}
-                color="primary"
-                variant="contained"
-                type="submit"
-                data-tc="submit"
-                onClick={handleNext}
-            >
-                {getStepText()}
-            </Button>
-        </div>
         </>
     );
   }

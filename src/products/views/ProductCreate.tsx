@@ -92,6 +92,8 @@ export const ProductUpdate: React.StatelessComponent<
                             descriptionJson: JSON.stringify(
                               formData.description
                             ),
+                            paymentPlatformId: 'TODO: CHANGE ME',
+                            adminPlatformId: 'TODO: CHANGEME',
                             isPublished: formData.isPublished,
                             name: formData.name,
                             productType: formData.productType,

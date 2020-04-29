@@ -1,31 +1,26 @@
-import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import Hidden from "@material-ui/core/Hidden";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableRow from "@material-ui/core/TableRow";
-import Typography from "@material-ui/core/Typography";
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Hidden from '@material-ui/core/Hidden';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableRow from '@material-ui/core/TableRow';
+import Typography from '@material-ui/core/Typography';
+import CardTitle from '@saleor/components/CardTitle';
+import Checkbox from '@saleor/components/Checkbox';
+import Money from '@saleor/components/Money';
+import Skeleton from '@saleor/components/Skeleton';
+import StatusLabel from '@saleor/components/StatusLabel';
+import TableHead from '@saleor/components/TableHead';
+import React from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 
-import CardTitle from "@saleor/components/CardTitle";
-import Checkbox from "@saleor/components/Checkbox";
-import Money from "@saleor/components/Money";
-import Skeleton from "@saleor/components/Skeleton";
-import StatusLabel from "@saleor/components/StatusLabel";
-import TableHead from "@saleor/components/TableHead";
-import { maybe, renderCollection } from "../../../misc";
-import { ListActions } from "../../../types";
-import { ProductDetails_product_variants } from "../../types/ProductDetails";
-import { ProductVariant_costPrice } from "../../types/ProductVariant";
+import { maybe, renderCollection } from '../../../misc';
+import { ListActions } from '../../../types';
+import { ProductDetails_product_variants } from '../../types/ProductDetails';
+import { ProductVariant_costPrice } from '../../types/ProductVariant';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -96,7 +91,7 @@ export const ProductVariants = withStyles(styles, { name: "ProductVariants" })(
       <Card>
         <CardTitle
           title={intl.formatMessage({
-            defaultMessage: "Variants",
+            defaultMessage: "Opciones de Tarjetas Bacán",
             description: "section header"
           })}
           toolbar={
@@ -108,7 +103,7 @@ export const ProductVariants = withStyles(styles, { name: "ProductVariants" })(
                 data-tc="button-add-variant"
               >
                 <FormattedMessage
-                  defaultMessage="Create variant"
+                  defaultMessage="Elegir Tarjetas"
                   description="button"
                 />
               </Button>
@@ -120,7 +115,7 @@ export const ProductVariants = withStyles(styles, { name: "ProductVariants" })(
                 data-tc="button-add-variants"
               >
                 <FormattedMessage
-                  defaultMessage="Create variants"
+                  defaultMessage="Elegir Tarjetas"
                   description="button"
                 />
               </Button>
@@ -146,13 +141,13 @@ export const ProductVariants = withStyles(styles, { name: "ProductVariants" })(
             >
               <TableCell className={classes.colName}>
                 <FormattedMessage
-                  defaultMessage="Name"
+                  defaultMessage="Opción"
                   description="product variant name"
                 />
               </TableCell>
               <TableCell className={classes.colStatus}>
                 <FormattedMessage
-                  defaultMessage="Status"
+                  defaultMessage="Estado"
                   description="product variant status"
                 />
               </TableCell>
@@ -162,7 +157,7 @@ export const ProductVariants = withStyles(styles, { name: "ProductVariants" })(
               <Hidden smDown>
                 <TableCell className={classes.colPrice}>
                   <FormattedMessage
-                    defaultMessage="Price"
+                    defaultMessage="Precio"
                     description="product variant price"
                   />
                 </TableCell>
@@ -206,7 +201,7 @@ export const ProductVariants = withStyles(styles, { name: "ProductVariants" })(
                           label={
                             variant.stockQuantity > 0
                               ? intl.formatMessage({
-                                  defaultMessage: "Available",
+                                  defaultMessage: "Disponible",
                                   description: "product variant status"
                                 })
                               : intl.formatMessage({

@@ -1,6 +1,7 @@
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
 import AppHeader from '@saleor/components/AppHeader';
 import CardSpacer from '@saleor/components/CardSpacer';
-import { ConfirmButtonTransitionState } from '@saleor/components/ConfirmButton';
+import ConfirmButton, { ConfirmButtonTransitionState } from '@saleor/components/ConfirmButton';
 import Container from '@saleor/components/Container';
 import Form from '@saleor/components/Form';
 import Grid from '@saleor/components/Grid';
@@ -18,7 +19,8 @@ import { ContentState, convertToRaw, RawDraftContentState } from 'draft-js';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import { FetchMoreProps, UserError } from '../../../../types';
+import { FetchMoreProps } from '../../../../types';
+import { SalesObjectiveCard } from './SalesObjectiveCard';
 
 
 interface FormData {
@@ -26,14 +28,28 @@ interface FormData {
   category: string;
   description: RawDraftContentState;
   name: string;
+  salesObjective: number;
 }
 
 export interface CreateBusinessSubmitData extends FormData {
   attributes: ProductAttributeInput[];
+  
 }
 
-export interface CreateBusinessProps {
-  errors: UserError[];
+const styles = (theme: Theme) =>
+  createStyles({
+    buttonContainer: {
+      display: "flex",
+      justifyContent: "space-between",
+      paddingTop: theme.spacing.unit * 2,
+      paddingBottom: theme.spacing.unit * 2
+    },
+    nexButton: {
+      width: 140
+    }
+  });
+
+export interface CreateBusinessProps extends WithStyles<typeof styles>{
   categories: SearchCategories_search_edges_node[];
   currency: string;
   disabled: boolean;
@@ -51,20 +67,23 @@ export interface CreateBusinessProps {
   onSubmit?(data: FormData);
 }
 
-export const CreateBusinessComponent: React.StatelessComponent<
+const CreateBusiness: React.StatelessComponent<
   CreateBusinessProps
 > = ({
   disabled,
   categories: categoryChoiceList,
-  errors: userErrors,
   fetchCategories,
   fetchMoreCategories,
   header,
   productTypes: productTypeChoiceList,
   onBack,
-  onSubmit
+  saveButtonBarState,
+  onSubmit,
+  classes
 }: CreateBusinessProps) => {
   const intl = useIntl();
+  const [ errors, setErrors ] = React.useState<Array<{field: string, message: string}>>([]);
+  const [ salesObjective, setSalesObjective] = React.useState(0);
   
   // Form values
   const {
@@ -76,7 +95,8 @@ export const CreateBusinessComponent: React.StatelessComponent<
     basePrice: 0,
     category: "",
     description: {} as any,
-    name: ""
+    name: "",
+    salesObjective: 0
   };
 
   // Display values
@@ -90,20 +110,20 @@ export const CreateBusinessComponent: React.StatelessComponent<
   const handleSubmit = (data: CreateBusinessSubmitData) =>
     onSubmit({
       attributes,
-      ...data
+      ...data,
+      salesObjective,
     });
-
   return (
     <Form
       onSubmit={handleSubmit}
-      errors={userErrors}
+      errors={errors}
       initial={initialData}
-      confirmLeave
     >
       {({
         change,
         data,
-        errors
+        errors,
+        submit
       }) => {
         const handleCategorySelect = createSingleAutocompleteSelectHandler(
           change,
@@ -127,6 +147,11 @@ export const CreateBusinessComponent: React.StatelessComponent<
                   onChange={change}
                 />
                 <CardSpacer />
+                <SalesObjectiveCard 
+                  data={{ salesObjective }}
+                  setSalesObjective={setSalesObjective}
+                  errors={errors}
+                />
               </div>
               <div>
                 <ProductOrganization
@@ -146,11 +171,22 @@ export const CreateBusinessComponent: React.StatelessComponent<
                 <CardSpacer />
               </div>
             </Grid>
+              <div className={classes.buttonContainer}>
+                <div/>
+                  <ConfirmButton
+                    className={classes.nexButton}
+                    transitionState={saveButtonBarState}
+                    data-tc="submit"
+                    onClick={submit}
+                  >
+                    Regístrate
+                  </ConfirmButton>
+              </div>
           </Container>
         );
       }}
     </Form>
   );
 };
-CreateBusinessComponent.displayName = "CreateBusinessComponent";
+const CreateBusinessComponent = withStyles(styles, { name: 'CreateBusinessComponent'})(CreateBusiness);
 export default CreateBusinessComponent;

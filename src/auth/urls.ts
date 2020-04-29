@@ -8,7 +8,7 @@ export const passwordResetSuccessUrl = passwordResetSuccessPath;
 
 export const newPasswordPath = "/new-password/";
 
-export const registerBusinessPath = "/registro-negocio/";
+export const registerBusinessPath = "/registro/";
 
 export interface NewPasswordUrlQueryParams {
   email: string;
