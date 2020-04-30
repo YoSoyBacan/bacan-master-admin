@@ -6,6 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import ConfirmButton from '@saleor/components/ConfirmButton';
 import Form from '@saleor/components/Form';
+import useNotifier from '@saleor/hooks/useNotifier';
 import { FormSpacer } from '@saleor/components/FormSpacer';
 import React, { useEffect } from 'react';
 
@@ -98,8 +99,14 @@ export interface UserAccountProps extends WithStyles<typeof styles> {
 
 const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
   ({ classes, handleNext, userId, setBusinessId, setBuenPlanBusinessId }: UserAccountProps) => {
+    const notify = useNotifier();
     const [ loading, setLoading ] = React.useState(false);
     const [ errors, setErrors ] = React.useState<Array<{field: string, message: string}>>([]);
+    const setNewError = (field: string, message: string) => {
+      const newErrors = [...errors];
+      newErrors.push({ field, message});
+      setErrors(newErrors);
+    }
 
     useEffect(() => {
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -123,13 +130,52 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
       businessPersonId: "",
 
     };
+
+    const getErrorField = (field: string) => {
+      const errorFound = errors.find(err => err.field === field);
+      const finalResult = {
+        hasError: false,
+        errorText: ''
+      };
+      if (!errorFound) {
+        return finalResult;
+      }
+      finalResult.hasError = true;
+      finalResult.errorText = errorFound.message;
+      return finalResult;
+    };
+
+
     const handleSubmit = async (data: FormData) => {
       setLoading(true);
-      // TODO: Form Validation
-      // if (FAKE === true) {
-      //   handleNext();
-      //   return;
-      // }
+
+      const values = Object.values(data);
+      if ( values.includes("") || values.includes(null) ){
+        notify({ text: 'Por favor llena todos los campos requeridos.' });
+        setLoading(false);
+        return;
+      }
+
+      if ( data.businessPhone.length < 7){
+        notify({ text: 'El telefono de tu empresa tiene que ser mayor de 7 digitos' });
+        setLoading(false);
+        return;
+      }
+
+      if ( data.businessPersonId.length > 9 ){
+        notify({ text: 'La cédula del representate legal tiene que se mayor de 9 digitos' });
+        setLoading(false);
+        return;
+      }
+
+      if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(data.businessEmail)){
+        setNewError('businessEmail', 'El formato del e-mail es incorrecto.');
+        setLoading(false);
+        return;
+      }
+
+
+
       try {
         const newBusiness = await AdminClient.post<{_id: string, buenPlanProviderId: string}>('business', {
           ...data,
@@ -161,6 +207,7 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
               <TextField
                 autoFocus
                 fullWidth
+                required
                 label={"Razón Social"}
                 name="legalName"
                 onChange={handleChange}
@@ -173,6 +220,7 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
               <TextField
                 autoFocus
                 fullWidth
+                required
                 label={"RUC/NIT"}
                 name="businessLegalId"
                 onChange={handleChange}
@@ -186,6 +234,7 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
                 label="Fecha de Constitución"
                 name="businessRegisteredAt"
                 type="date"
+                required
                 InputLabelProps={{
                   shrink: true
                 }}
@@ -197,6 +246,7 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
               <TextField
                 autoFocus
                 fullWidth
+                required
                 label={"Número de Empleados"}
                 name="numEmployees"
                 onChange={handleChange}
@@ -209,6 +259,7 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
               <TextField
                 autoFocus
                 fullWidth
+                required
                 label={"Dirección de la Empresa"}
                 name="businessAddress"
                 onChange={handleChange}
@@ -221,6 +272,7 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
               <TextField
                 autoFocus
                 fullWidth
+                required
                 label={"Ciudad de la Empresa"}
                 name="businessCity"
                 onChange={handleChange}
@@ -233,6 +285,7 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
               <TextField
                 autoFocus
                 fullWidth
+                required
                 label={"Teléfono de la Empresa"}
                 name="businessPhone"
                 onChange={handleChange}
@@ -246,11 +299,11 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
                 <InputLabel>Tipo de Personería</InputLabel>
                 <Select
                   fullWidth
+                  required
                   id="pais-select"
                   value={data.entityType}
                   name="entityType"
                   onChange={handleChange}
-                  required
                 >
                   <MenuItem value={EntityType.PERSONA_JURIDICA}>
                     Persona Jurídica
@@ -285,6 +338,7 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
               <TextField
                 autoFocus
                 fullWidth
+                required
                 label={"Nombre de Representante Legal"}
                 name="businessPersonName"
                 onChange={handleChange}
@@ -297,6 +351,7 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
               <TextField
                 autoFocus
                 fullWidth
+                required
                 label={"Cédula Representante Legal"}
                 name="businessPersonId"
                 onChange={handleChange}
@@ -309,6 +364,7 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
               <TextField
                 autoFocus
                 fullWidth
+                required
                 label={"E-mail Representante Legal"}
                 name="businessEmail"
                 onChange={handleChange}
@@ -316,6 +372,8 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
                 inputProps={{
                   "data-tc": "businessEmail",
                 }}
+                error={getErrorField('nextError').hasError}
+                helperText={getErrorField('nextError').errorText}
               />
               <FormSpacer />
               <Typography variant="h5" className={classes.title}>
@@ -326,11 +384,11 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
                 <InputLabel>Nombre de Banco</InputLabel>
                 <Select
                   fullWidth
+                  required
                   id="bank-select"
                   value={data.bankName}
                   name="bankName"
                   onChange={handleChange}
-                  required
                 >
                   <MenuItem value={BankOptions.PRODUBANCO}>Produbanco</MenuItem>
                   <MenuItem value={BankOptions.PICHINCHA}>
@@ -349,14 +407,14 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
               </>
               <FormSpacer />
               <>
-                <InputLabel>Tipo de Cuenta</InputLabel>
+                <InputLabel >Tipo de Cuenta</InputLabel>
                 <Select
                   fullWidth
+                  required
                   id="account-select"
                   value={data.bankAccountType}
                   name="bankAccountType"
                   onChange={handleChange}
-                  required
                 >
                   <MenuItem value={BankAccountType.AHORROS}>Ahorros</MenuItem>
                   <MenuItem value={BankAccountType.CORRIENTE}>
@@ -368,6 +426,7 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
               <TextField
                 autoFocus
                 fullWidth
+                required
                 label={"Beneficiario de Cuenta"}
                 name="bankBeneficiaryName"
                 onChange={handleChange}
@@ -380,6 +439,7 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
               <TextField
                 autoFocus
                 fullWidth
+                required
                 label={"Número de Cuenta"}
                 name="bankAccountNumber"
                 onChange={handleChange}
@@ -396,9 +456,10 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
                     data-tc="submit"
                     onClick={submit}
                   >
-                    Regístrate
+                    Siguiente
                   </ConfirmButton>
               </div>
+              <Typography variant="subtitle2" className={classes.title}>Tienes problemas al registrarte? Contáctanos! <br/> contacto@yosoybacan.com </Typography>
             </>
           )}
         </Form>
