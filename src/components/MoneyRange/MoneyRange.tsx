@@ -1,8 +1,8 @@
-import React from "react";
-import { useIntl } from "react-intl";
+import React from 'react';
+import { useIntl } from 'react-intl';
 
-import { LocaleConsumer } from "../Locale";
-import IMoney from "../Money";
+import { LocaleConsumer } from '../Locale';
+import { IMoney } from '../Money';
 
 export interface MoneyRangeProps {
   from?: IMoney;

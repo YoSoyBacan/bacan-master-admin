@@ -53,8 +53,8 @@ const BusinessRegistration = withStyles(styles, { name: "BusinessRegistration" }
         return ['Perfil', 'Empresa', 'Negocio Bacán', 'Tarjetas Bacán'];
     }
 
-    const [ businessId, setBusinessId ] = React.useState('ADMIN-ID');
-    const [ buenPlanBusinessId, setBuenPlanBusinessId ] = React.useState('BUEN-PLAN-ID');
+    const [ businessId, setBusinessId ] = React.useState('');
+    const [ buenPlanBusinessId, setBuenPlanBusinessId ] = React.useState('');
     const [ userId, setUserId ] = React.useState('');
     const [ activeStep, setActiveStep ] = React.useState(0);
     const [productId, setProductId] = React.useState('');
@@ -82,7 +82,7 @@ const BusinessRegistration = withStyles(styles, { name: "BusinessRegistration" }
               return <BusinessDetails moveNextPage={handleNext} moveBackPage={handleBack} businessId={businessId} buenPlanBusinessId={buenPlanBusinessId} setProductId={setProductId} setBusinessLink={setBusinessLink}/>
             }
             case 3: {
-              return <BusinessVariants id={productId} moveNextPage={handleNext} params={params}/>
+              return <BusinessVariants id={productId} moveNextPage={handleNext} params={params} adminBusinessId={businessId}/>
             }
             default: {
                 return <UserAccount classes={classes} setUserId={setUserId} handleNext={handleNext}/>;

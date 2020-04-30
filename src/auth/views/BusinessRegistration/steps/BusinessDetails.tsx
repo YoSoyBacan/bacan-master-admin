@@ -60,7 +60,7 @@ export const BusinessDetailsStep: React.StatelessComponent<
                     { op: 'add', field: 'shopProviderId', value: businessId}, 
                     { op: 'add', field: 'salesObjective', value: salesObjective}, 
                     { op: 'add', field: 'industry', value: industry },
-                    { op: 'add', field: 'businessLink', value: `${window.location.protocol}//${window.location.host}${generateProductUrl(data.productCreate.product.id, data.productCreate.product.name)}`},
+                    { op: 'add', field: 'businessLink', value: `${process.env.SHOP_URI}${generateProductUrl(data.productCreate.product.id, data.productCreate.product.name)}`},
                   ]
                 };
                 try {
@@ -102,7 +102,6 @@ export const BusinessDetailsStep: React.StatelessComponent<
                     );
                     // TODO[sebastian]: This is only choosing one product type now.
                     const chosenProduct = productTypes.find((product) => product.name === 'Tarjeta de Consumo');
-                    // TODO: Add BuenPlan Business ID and Bacan Admin ID
                     
                     // Create Product on Saleor
                     await productCreate({
@@ -120,7 +119,7 @@ export const BusinessDetailsStep: React.StatelessComponent<
                         descriptionJson: JSON.stringify(
                           formData.description
                         ),
-                        isPublished: false,
+                        isPublished: true,
                         name: formData.name,
                         productType: chosenProduct.id,
                         publicationDate: null,

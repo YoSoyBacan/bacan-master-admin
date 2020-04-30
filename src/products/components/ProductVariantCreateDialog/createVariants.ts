@@ -1,9 +1,6 @@
-import { ProductVariantBulkCreateInput } from "@saleor/types/globalTypes";
-import {
-  AllOrAttribute,
-  Attribute,
-  ProductVariantCreateFormData
-} from "./form";
+import { ProductVariantBulkCreateInput } from '@saleor/types/globalTypes';
+
+import { AllOrAttribute, Attribute, ProductVariantCreateFormData } from './form';
 
 interface CreateVariantAttributeValueInput {
   attributeId: string;

@@ -60,7 +60,7 @@ const useStyles = makeStyles(
     row: {
       borderBottom: `1px solid ${theme.palette.divider}`,
       display: "grid",
-      gridTemplateColumns: "1fr 180px 120px 180px 64px",
+      gridTemplateColumns: "1fr 200px 220px 80px",
       padding: `${theme.spacing.unit}px 0`
     }
   }),
@@ -92,7 +92,6 @@ const CardVariantCreateSummary: React.FC<CardVariantCreateSummaryProps> = props 
     onVariantDelete
   } = props;
   const classes = useStyles(props);
-
   return (
     <>
       <Typography color="textSecondary" variant="h5">
@@ -108,7 +107,7 @@ const CardVariantCreateSummary: React.FC<CardVariantCreateSummaryProps> = props 
               classes.colName
             )}
           >
-            Precio Tarjeta Bacán
+            Valor Tarjeta
           </div>
           <div
             className={classNames(
@@ -117,13 +116,13 @@ const CardVariantCreateSummary: React.FC<CardVariantCreateSummaryProps> = props 
               classes.colName
             )}
           >
-            {`Precio a Pagar -${saleValue}%`}
+            {`Precio (-${saleValue}%)`}
           </div>
           <div
             className={classNames(
               classes.col,
               classes.colHeader,
-              classes.colSku
+              classes.colName
             )}
           >
             Código de Tarjeta
@@ -134,6 +133,7 @@ const CardVariantCreateSummary: React.FC<CardVariantCreateSummaryProps> = props 
             error => error.index === variantIndex
           );
 
+          const price = maybe(() => `${Number(variant.priceOverride).toFixed(2)}`, '0');
           return (
             <div
               className={classNames(classes.row, {
@@ -154,18 +154,9 @@ const CardVariantCreateSummary: React.FC<CardVariantCreateSummaryProps> = props 
                       error => error.field === "priceOverride"
                     )
                   }
-                  helperText={maybe(
-                    () =>
-                      variantErrors.find(
-                        error => error.field === "priceOverride"
-                      ).message
-                  )}
-                  inputProps={{
-                    min: 0,
-                    type: "number"
-                  }}
                   fullWidth
-                  value={variant.priceOverride}
+                  helperText={"Cliente Redime"}
+                  value={`$${price}`}
                   onChange={event =>
                     onVariantDataChange(
                       variantIndex,
@@ -173,6 +164,7 @@ const CardVariantCreateSummary: React.FC<CardVariantCreateSummaryProps> = props 
                       event.target.value
                     )
                   }
+                  disabled
                 />
               </div>
               <div className={classNames(classes.col, classes.colPrice)}>
@@ -186,13 +178,9 @@ const CardVariantCreateSummary: React.FC<CardVariantCreateSummaryProps> = props 
                       error => error.field === "priceOverride"
                     )
                   }
-                  helperText={"Precio que pagará el cliente"}
-                  inputProps={{
-                    min: 0,
-                    type: "number"
-                  }}
+                  helperText={"Cliente Paga"}
                   fullWidth
-                  value={`${(Number(variant.priceOverride) * (1.0 - saleValue)).toFixed(2)}`}
+                  value={maybe(() => `$${(Number(price) * (1 - (saleValue / 100))).toFixed(2)}`, '0')}
                   disabled
                 />
               </div>

@@ -22,7 +22,7 @@ interface PathBody {
   body: Array<{
     op: string;
     field: string;
-    value: string | number | Date
+    value: string | number | Date | string[] | any
   }>
 };
 

@@ -1,32 +1,29 @@
-import DialogContentText from "@material-ui/core/DialogContentText";
-import IconButton from "@material-ui/core/IconButton";
-import DeleteIcon from "@material-ui/icons/Delete";
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import placeholderImg from '@assets/images/placeholder255x255.png';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+import ActionDialog from '@saleor/components/ActionDialog';
+import { WindowTitle } from '@saleor/components/WindowTitle';
+import useBulkActions from '@saleor/hooks/useBulkActions';
+import useNavigator from '@saleor/hooks/useNavigator';
+import useNotifier from '@saleor/hooks/useNotifier';
+import useShop from '@saleor/hooks/useShop';
+import { commonMessages } from '@saleor/intl';
+import ProductVariantCreateDialog from '@saleor/products/components/ProductVariantCreateDialog/ProductVariantCreateDialog';
+import { ProductVariantBulkCreate } from '@saleor/products/types/ProductVariantBulkCreate';
+import React from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 
-import placeholderImg from "@assets/images/placeholder255x255.png";
-import ActionDialog from "@saleor/components/ActionDialog";
-import { WindowTitle } from "@saleor/components/WindowTitle";
-import useBulkActions from "@saleor/hooks/useBulkActions";
-import useNavigator from "@saleor/hooks/useNavigator";
-import useNotifier from "@saleor/hooks/useNotifier";
-import useShop from "@saleor/hooks/useShop";
-import { commonMessages } from "@saleor/intl";
-import ProductVariantCreateDialog from "@saleor/products/components/ProductVariantCreateDialog/ProductVariantCreateDialog";
-import { ProductVariantBulkCreate } from "@saleor/products/types/ProductVariantBulkCreate";
-import { DEFAULT_INITIAL_SEARCH_DATA } from "../../../config";
-import SearchCategories from "../../../containers/SearchCategories";
-import SearchCollections from "../../../containers/SearchCollections";
-import { getMutationState, maybe } from "../../../misc";
-import ProductUpdatePage from "../../components/ProductUpdatePage";
-import ProductUpdateOperations from "../../containers/ProductUpdateOperations";
-import { TypedProductDetailsQuery } from "../../queries";
-import {
-  ProductImageCreate,
-  ProductImageCreateVariables
-} from "../../types/ProductImageCreate";
-import { ProductUpdate as ProductUpdateMutationResult } from "../../types/ProductUpdate";
-import { ProductVariantBulkDelete } from "../../types/ProductVariantBulkDelete";
+import { DEFAULT_INITIAL_SEARCH_DATA } from '../../../config';
+import SearchCategories from '../../../containers/SearchCategories';
+import SearchCollections from '../../../containers/SearchCollections';
+import { getMutationState, maybe } from '../../../misc';
+import ProductUpdatePage from '../../components/ProductUpdatePage';
+import ProductUpdateOperations from '../../containers/ProductUpdateOperations';
+import { TypedProductDetailsQuery } from '../../queries';
+import { ProductImageCreate, ProductImageCreateVariables } from '../../types/ProductImageCreate';
+import { ProductUpdate as ProductUpdateMutationResult } from '../../types/ProductUpdate';
+import { ProductVariantBulkDelete } from '../../types/ProductVariantBulkDelete';
 import {
   productImageUrl,
   productListUrl,
@@ -34,13 +31,9 @@ import {
   ProductUrlDialog,
   ProductUrlQueryParams,
   productVariantAddUrl,
-  productVariantEditUrl
-} from "../../urls";
-import {
-  createImageReorderHandler,
-  createImageUploadHandler,
-  createUpdateHandler
-} from "./handlers";
+  productVariantEditUrl,
+} from '../../urls';
+import { createImageReorderHandler, createImageUploadHandler, createUpdateHandler } from './handlers';
 
 interface ProductUpdateProps {
   id: string;

@@ -103,7 +103,7 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
 
     useEffect(() => {
       window.scrollTo({ top: 0, behavior: "smooth" });
-    });
+    }, []);
     const initialData: FormData = {
       legalName: "",
       businessLegalId: "",
@@ -125,7 +125,6 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
     };
     const handleSubmit = async (data: FormData) => {
       setLoading(true);
-      // TODO: Form Validation
       // if (FAKE === true) {
       //   handleNext();
       //   return;
@@ -396,7 +395,7 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
                     data-tc="submit"
                     onClick={submit}
                   >
-                    Regístrate
+                    Siguiente
                   </ConfirmButton>
               </div>
             </>

@@ -1,51 +1,48 @@
-import { convertFromRaw, RawDraftContentState } from "draft-js";
-import React from "react";
-import { useIntl } from "react-intl";
+import AppHeader from '@saleor/components/AppHeader';
+import CardSpacer from '@saleor/components/CardSpacer';
+import { ConfirmButtonTransitionState } from '@saleor/components/ConfirmButton';
+import Container from '@saleor/components/Container';
+import Form from '@saleor/components/Form';
+import Grid from '@saleor/components/Grid';
+import PageHeader from '@saleor/components/PageHeader';
+import SaveButtonBar from '@saleor/components/SaveButtonBar';
+import SeoForm from '@saleor/components/SeoForm';
+import VisibilityCard from '@saleor/components/VisibilityCard';
+import { SearchCategories_search_edges_node } from '@saleor/containers/SearchCategories/types/SearchCategories';
+import { SearchCollections_search_edges_node } from '@saleor/containers/SearchCollections/types/SearchCollections';
+import useDateLocalize from '@saleor/hooks/useDateLocalize';
+import useFormset from '@saleor/hooks/useFormset';
+import useStateFromProps from '@saleor/hooks/useStateFromProps';
+import { sectionNames } from '@saleor/intl';
+import { maybe } from '@saleor/misc';
+import { FetchMoreProps, ListActions, UserError } from '@saleor/types';
+import createMultiAutocompleteSelectHandler from '@saleor/utils/handlers/multiAutocompleteSelectChangeHandler';
+import createSingleAutocompleteSelectHandler from '@saleor/utils/handlers/singleAutocompleteSelectChangeHandler';
+import { convertFromRaw, RawDraftContentState } from 'draft-js';
+import React from 'react';
+import { useIntl } from 'react-intl';
 
-import AppHeader from "@saleor/components/AppHeader";
-import CardSpacer from "@saleor/components/CardSpacer";
-import { ConfirmButtonTransitionState } from "@saleor/components/ConfirmButton";
-import Container from "@saleor/components/Container";
-import Form from "@saleor/components/Form";
-import Grid from "@saleor/components/Grid";
-import PageHeader from "@saleor/components/PageHeader";
-import SaveButtonBar from "@saleor/components/SaveButtonBar";
-import SeoForm from "@saleor/components/SeoForm";
-import VisibilityCard from "@saleor/components/VisibilityCard";
-import { SearchCategories_search_edges_node } from "@saleor/containers/SearchCategories/types/SearchCategories";
-import { SearchCollections_search_edges_node } from "@saleor/containers/SearchCollections/types/SearchCollections";
-import useDateLocalize from "@saleor/hooks/useDateLocalize";
-import useFormset from "@saleor/hooks/useFormset";
-import useStateFromProps from "@saleor/hooks/useStateFromProps";
-import { sectionNames } from "@saleor/intl";
-import { maybe } from "@saleor/misc";
-import { FetchMoreProps, ListActions, UserError } from "@saleor/types";
-import createMultiAutocompleteSelectHandler from "@saleor/utils/handlers/multiAutocompleteSelectChangeHandler";
-import createSingleAutocompleteSelectHandler from "@saleor/utils/handlers/singleAutocompleteSelectChangeHandler";
 import {
   ProductDetails_product,
   ProductDetails_product_images,
-  ProductDetails_product_variants
-} from "../../types/ProductDetails";
+  ProductDetails_product_variants,
+} from '../../types/ProductDetails';
 import {
   getAttributeInputFromProduct,
   getChoices,
   getProductUpdatePageFormData,
   getSelectedAttributesFromProduct,
   ProductAttributeValueChoices,
-  ProductUpdatePageFormData
-} from "../../utils/data";
-import {
-  createAttributeChangeHandler,
-  createAttributeMultiChangeHandler
-} from "../../utils/handlers";
-import ProductAttributes, { ProductAttributeInput } from "../ProductAttributes";
-import ProductDetailsForm from "../ProductDetailsForm";
-import ProductImages from "../ProductImages";
-import ProductOrganization from "../ProductOrganization";
-import ProductPricing from "../ProductPricing";
-import ProductStock from "../ProductStock";
-import ProductVariants from "../ProductVariants";
+  ProductUpdatePageFormData,
+} from '../../utils/data';
+import { createAttributeChangeHandler, createAttributeMultiChangeHandler } from '../../utils/handlers';
+import ProductAttributes, { ProductAttributeInput } from '../ProductAttributes';
+import ProductDetailsForm from '../ProductDetailsForm';
+import ProductImages from '../ProductImages';
+import ProductOrganization from '../ProductOrganization';
+import ProductPricing from '../ProductPricing';
+import ProductStock from '../ProductStock';
+import ProductVariants from '../ProductVariants';
 
 export interface ProductUpdatePageProps extends ListActions {
   errors: UserError[];

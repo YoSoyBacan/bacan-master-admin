@@ -91,7 +91,7 @@ export const ProductVariants = withStyles(styles, { name: "ProductVariants" })(
       <Card>
         <CardTitle
           title={intl.formatMessage({
-            defaultMessage: "Opciones de Tarjetas Bacán",
+            defaultMessage: "Tarjetas Bacán",
             description: "section header"
           })}
           toolbar={
@@ -122,10 +122,10 @@ export const ProductVariants = withStyles(styles, { name: "ProductVariants" })(
             )
           }
         />
-        {!variants.length && (
+        {!hasVariants && (
           <CardContent>
             <Typography color={hasVariants ? "default" : "textSecondary"}>
-              <FormattedMessage defaultMessage="Use variants for products that come in a variety of versions for example different sizes or colors" />
+              <FormattedMessage defaultMessage="Elige tus Tarjetas Bacán con un descuento exclusivo para tus clientes mas fieles." />
             </Typography>
           </CardContent>
         )}

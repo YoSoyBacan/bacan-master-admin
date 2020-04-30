@@ -116,6 +116,7 @@ class AuthProvider extends React.Component<
     tokenAuthFn({ variables: { email, password } }).then(result => {
       if (result && !result.data.tokenCreate.errors.length) {
         saveCredentials(result.data.tokenCreate.user, password);
+        setAuthTokenType('USER', true);
       }
     });
   };
