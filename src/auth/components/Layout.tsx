@@ -59,7 +59,7 @@ const useStyles = makeStyles(
       [theme.breakpoints.up("lg")]: {
         backgroundColor: theme.palette.primary.main,
         display: "block",
-        paddingTop: '20%'
+        paddingTop: '40%'
       },
       display: "none",
     },
