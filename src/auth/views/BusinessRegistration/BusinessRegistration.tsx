@@ -11,6 +11,7 @@ import BusinessDetails from './steps/BusinessDetails';
 import BusinessLegal from './steps/BusinessLegal';
 import { BusinessVariants } from './steps/BusinessVariants';
 import UserAccount from './steps/UserAccount';
+import RegistrationComplete from './steps/RegistrationComplete';
 
 export interface FormData {
   email: string;
@@ -50,7 +51,7 @@ const BusinessRegistration = withStyles(styles, { name: "BusinessRegistration" }
   ({ classes, params }: BusinessRegistrationProps) => {
 
     const getSteps = () => {
-        return ['Perfil', 'Empresa', 'Negocio Bacán', 'Tarjetas Bacán'];
+        return ['Perfil', 'Empresa', 'Negocio Bacán', 'Tarjetas Bacán', 'Listo!'];
     }
 
     const [ businessId, setBusinessId ] = React.useState('');
@@ -83,6 +84,9 @@ const BusinessRegistration = withStyles(styles, { name: "BusinessRegistration" }
             }
             case 3: {
               return <BusinessVariants id={productId} moveNextPage={handleNext} params={params} adminBusinessId={businessId}/>
+            }
+            case 4: {
+              return <RegistrationComplete classes={classes} businessLink={businessLink}/>;
             }
             default: {
                 return <UserAccount classes={classes} setUserId={setUserId} handleNext={handleNext}/>;

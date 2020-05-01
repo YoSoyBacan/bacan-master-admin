@@ -5,6 +5,8 @@ import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/s
 import TextField from '@material-ui/core/TextField';
 import ConfirmButton from '@saleor/components/ConfirmButton';
 import Form from '@saleor/components/Form';
+import useNotifier from '@saleor/hooks/useNotifier';
+import Typography from '@material-ui/core/Typography';
 import { FormSpacer } from '@saleor/components/FormSpacer';
 import { commonMessages } from '@saleor/intl';
 import React from 'react';
@@ -77,6 +79,7 @@ const UserAccount = withStyles(styles, { name: "UserAccount" })(
   }: UserAccountProps) => {
 
     const intl = useIntl();
+    const notify = useNotifier();
     const [ loading, setLoading ] = React.useState(false);
     const [ errors, setErrors ] = React.useState<Array<{field: string, message: string}>>([])
 
@@ -88,16 +91,27 @@ const UserAccount = withStyles(styles, { name: "UserAccount" })(
 
     const handleSubmit = async (data: FormData) => {
       setLoading(true);
-      // if (FAKE === true) {
-      //   handleNext();
-      //   return;
-      // }
+
+      const values = Object.values(data);
+      if ( values.includes("") || values.includes(null) ){
+        notify({ text: 'Por favor llena todos los campos requeridos.' });
+        setLoading(false);
+        return;
+      }
+
+      if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(data.email)){
+        setNewError('email', 'El formato del e-mail es incorrecto.');
+        setLoading(false);
+        return;
+      }
+      
       if (data.password !== data.confirmPassword) {
         setNewError('password', 'Contraseñas no coinciden, intenta otra vez.');
         setLoading(false);
         return;
-      }
-      try {
+      } 
+
+      try{
         const newUser = await AdminClient.post<{ uid: string }>('user', {
           firstName: data.firstName,
           lastName: data.lastName,
@@ -110,11 +124,12 @@ const UserAccount = withStyles(styles, { name: "UserAccount" })(
         });
         setUserId(newUser.data.uid);
         handleNext();
-      } catch(error) {
-        // TODO: Add error to the form state
-        setLoading(false);
+      } catch (error) {
+        const response = error.response;
+        notify({ text: response.data.message });
       }
 
+      setLoading(false);
     }
     // TODO: Add validation to the form to disable the Next button
     const initialData = {
@@ -140,6 +155,8 @@ const UserAccount = withStyles(styles, { name: "UserAccount" })(
       finalResult.errorText = errorFound.message;
       return finalResult;
     };
+    
+    
     const tranState = loading ? 'loading' : 'default';
     return (
         <>
@@ -153,10 +170,13 @@ const UserAccount = withStyles(styles, { name: "UserAccount" })(
                 label={'Nombre'}
                 name="firstName"
                 onChange={handleChange}
+                required={true}
                 value={data.firstName}
                 inputProps={{
                     "data-tc": "firstName"
                 }}
+                error={getErrorField('nextError').hasError}
+                helperText={getErrorField('nextError').errorText}
                 />
                 <FormSpacer />
                 <TextField
@@ -164,6 +184,7 @@ const UserAccount = withStyles(styles, { name: "UserAccount" })(
                 fullWidth
                 autoComplete="name"
                 label={'Apellido'}
+                required={true}
                 name="lastName"
                 onChange={handleChange}
                 value={data.lastName}
@@ -177,6 +198,7 @@ const UserAccount = withStyles(styles, { name: "UserAccount" })(
                   fullWidth
                   autoComplete="phone"
                   label={'Teléfono / WhatsApp'}
+                  required={true}
                   name="phoneNumber"
                   onChange={handleChange}
                   value={data.phoneNumber}
@@ -194,10 +216,13 @@ const UserAccount = withStyles(styles, { name: "UserAccount" })(
                   label={intl.formatMessage(commonMessages.email)}
                   name="email"
                   onChange={handleChange}
+                  required={true}
                   value={data.email}
                   inputProps={{
                       "data-tc": "email"
                   }}
+                  error={getErrorField('email').hasError}
+                  helperText={getErrorField('email').errorText}
                 />
                 <FormSpacer />
                 <>
@@ -218,6 +243,7 @@ const UserAccount = withStyles(styles, { name: "UserAccount" })(
                 <TextField
                 fullWidth
                 autoComplete="password"
+                required={true}
                 label={intl.formatMessage({
                     defaultMessage: "Contraseña"
                 })}
@@ -235,6 +261,7 @@ const UserAccount = withStyles(styles, { name: "UserAccount" })(
                 <TextField
                   fullWidth
                   autoComplete="password"
+                  required={true}
                   label={"Confirma tu Contraseña"}
                   name="confirmPassword"
                   onChange={handleChange}
@@ -243,8 +270,6 @@ const UserAccount = withStyles(styles, { name: "UserAccount" })(
                   inputProps={{
                       "data-tc": "confirmPassword"
                   }}
-                  error={getErrorField('confirmPassword').hasError}
-                  helperText={getErrorField('confirmPassword').errorText}
                 />
                 <div className={classes.buttonContainer}>
                 <div/>
@@ -254,13 +279,13 @@ const UserAccount = withStyles(styles, { name: "UserAccount" })(
                     data-tc="submit"
                     onClick={submit}
                   >
-                    Regístrate
+                    Siguiente
                   </ConfirmButton>
                 </div>
+                <Typography variant="subtitle2" className={classes.title}>Tienes problemas al registrarte? Contáctanos! <br/> contacto@yosoybacan.com </Typography>
             </>
             )}
         </Form>
-
         </>
     );
   }
