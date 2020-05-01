@@ -48,8 +48,8 @@ const AuthRouter: React.FC = () => (
       <Route path={passwordResetSuccessPath} component={ResetPasswordSuccess} />
       <Route path={passwordResetPath} component={ResetPassword} />
       <Route path={newPasswordPath} component={NewPassword} />
-      <Route path={registerBusinessPath} component={BusinessRegistrationView}/>
-      <Route component={LoginView} />
+      <Route path={registerBusinessPath} component={LoginView} />
+      <Route component={BusinessRegistrationView}/>
     </Switch>
   </Layout>
 );

@@ -19,12 +19,36 @@ enum BankAccountType {
 }
 
 export enum BankOptions {
-  PRODUBANCO = "Produbanco",
-  PICHINCHA = "Banco del Pichincha",
-  GUAYAQUIL = "Banco de Guayaquil",
-  BANCO_PACIFICO = "Banco de Pacifico",
+  PRODUBANCO = 'Produbanco',
+  PICHINCHA = 'Banco del Pichincha',
+  GUAYAQUIL = 'Banco de Guayaquil',
+  BANCO_PACIFICO = 'Banco de Pacifico',
   BANCO_INTERNACIONAL = "Banco Internacional",
+  BANCO_SOLIDARIO = "Banco Solidario",
+  BANCO_DINERS_CLUB = "Banco Diners Club",
+  BANCO_PRO_CREDIT = "Banco ProCredit",
+  BANCO_BOLIVARIANO = "Banco Bolivariano",
+  BIESS = "BIESS",
+  BANCO_GENERAL_RUMINAUI = "Banco General Rumiñahui",
+  BANCO_LOJA = "Banco de Loja",
+  BANCO_MACHALA = "Banco de Machala"
 }
+
+const BankOptionsList = [
+  BankOptions.PRODUBANCO,
+  BankOptions.PICHINCHA,
+  BankOptions.GUAYAQUIL,
+  BankOptions.BANCO_PACIFICO,
+  BankOptions.BANCO_INTERNACIONAL,
+  BankOptions.BANCO_SOLIDARIO,
+  BankOptions.BANCO_DINERS_CLUB,
+  BankOptions.BANCO_PRO_CREDIT,
+  BankOptions.BANCO_BOLIVARIANO,
+  BankOptions.BIESS,
+  BankOptions.BANCO_GENERAL_RUMINAUI,
+  BankOptions.BANCO_LOJA,
+  BankOptions.BANCO_MACHALA
+]
 
 enum EntityType {
   PERSONA_NATURAL = "Persona Natural",
@@ -162,7 +186,7 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
         return;
       }
 
-      if ( data.businessPersonId.length > 9 ){
+      if ( data.businessPersonId.length < 9 ){
         notify({ text: 'La cédula del representate legal tiene que se mayor de 9 digitos' });
         setLoading(false);
         return;
@@ -390,19 +414,13 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
                   name="bankName"
                   onChange={handleChange}
                 >
-                  <MenuItem value={BankOptions.PRODUBANCO}>Produbanco</MenuItem>
-                  <MenuItem value={BankOptions.PICHINCHA}>
-                    Banco del Pichincha
-                  </MenuItem>
-                  <MenuItem value={BankOptions.GUAYAQUIL}>
-                    Banco de Guayaquil
-                  </MenuItem>
-                  <MenuItem value={BankOptions.BANCO_PACIFICO}>
-                    Banco del Pichincha
-                  </MenuItem>
-                  <MenuItem value={BankOptions.BANCO_INTERNACIONAL}>
-                    Banco Internacional
-                  </MenuItem>
+                  {
+                    BankOptionsList.map((bank) => (
+                      <MenuItem value={bank}>
+                        {bank}
+                      </MenuItem>
+                    ))
+                  }
                 </Select>
               </>
               <FormSpacer />
