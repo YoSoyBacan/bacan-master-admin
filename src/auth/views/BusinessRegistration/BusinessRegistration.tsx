@@ -86,7 +86,7 @@ const BusinessRegistration = withStyles(styles, { name: "BusinessRegistration" }
               return <BusinessVariants id={productId} moveNextPage={handleNext} params={params}/>
             }
             case 4: {
-              return <RegistrationComplete classes={classes} />;
+              return <RegistrationComplete classes={classes} businessLink={businessLink}/>;
             }
             default: {
                 return <UserAccount classes={classes} setUserId={setUserId} handleNext={handleNext}/>;
