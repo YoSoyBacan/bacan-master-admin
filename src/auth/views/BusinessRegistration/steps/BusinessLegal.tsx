@@ -197,9 +197,6 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
         setLoading(false);
         return;
       }
-
-
-
       try {
         const newBusiness = await AdminClient.post<{_id: string, buenPlanProviderId: string}>('business', {
           ...data,
