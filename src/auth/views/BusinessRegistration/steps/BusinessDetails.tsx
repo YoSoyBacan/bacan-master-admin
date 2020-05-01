@@ -57,8 +57,8 @@ export const BusinessDetailsStep: React.StatelessComponent<
                 const patchBody = {
                   body: [
                     { op: 'add', field: 'buenPlanProviderId', value: buenPlanBusinessId }, 
-                    { op: 'add', field: 'shopProviderId', value: businessId}, 
-                    { op: 'add', field: 'salesObjective', value: salesObjective}, 
+                    { op: 'add', field: 'shopProviderId', value: data.productCreate.product.id }, 
+                    { op: 'add', field: 'salesObjective', value: salesObjective }, 
                     { op: 'add', field: 'industry', value: industry },
                     { op: 'add', field: 'businessLink', value: `${process.env.SHOP_URI}${generateProductUrl(data.productCreate.product.id, data.productCreate.product.name)}`},
                   ]

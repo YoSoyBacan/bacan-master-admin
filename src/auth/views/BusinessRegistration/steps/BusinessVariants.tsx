@@ -146,8 +146,8 @@ export const BusinessVariants: React.StatelessComponent<BusinessVariantsProps> =
 
                 const patchBody = { 
                   body: [
-                    { op: 'replace', value: imageUrls, field: 'images'}, 
-                    { op: 'replace', value: voucherOptions, field: 'voucherOptions'}
+                    { op: 'add', value: imageUrls, field: 'images'}, 
+                    { op: 'add', value: voucherOptions, field: 'voucherOptions'}
                   ]
                 };
                 setLoadingState(true);
