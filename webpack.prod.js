@@ -3,7 +3,7 @@ const path = require("path");
 const webpack = require("webpack");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const envFile = '/.env'
+const envFile = '/.env.production';
 const dotenv = require('dotenv').config({path: __dirname + envFile});
 
 
