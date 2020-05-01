@@ -53,9 +53,9 @@ const SalesObjectiveCardComponent: React.FC<SalesObjectiveCardProps> = ({ setSal
           onChange={(_: any, value: number) => {
             setSalesObjective(value);
           }}
-          max={100000}
+          max={10000}
           min={0}
-          step={1000}
+          step={100}
         />
       </CardContent>
     </Card>

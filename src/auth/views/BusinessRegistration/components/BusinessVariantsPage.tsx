@@ -121,7 +121,7 @@ const BusinessVariantsPageComp: React.FC<BusinessVariantsPageProps> = ({
                   />
                   <CardSpacer />
                   <Typography variant="subtitle1">
-                    Escribe a tus clientes que hace a tu empresa Bacán. Necesitamos logos en alta resolución y con fondo transparente, fotos de tus puntos de venta y fotos geniales que nos muestren el Equipo Bacán que está detras de todo.
+                    Sube las fotos que quieras de tu negocio incluyendo el logo, tus locales, productos o lo que muestre que hace a tu Negocio Bacán. Necesitamos logos en alta resolución y con fondo transparente, fotos de tus puntos de venta y fotos geniales que nos muestren el Equipo Bacán que está detras de todo.
                   </Typography>
                   <CardSpacer />
                   {hasVariants && <ProductVariants
