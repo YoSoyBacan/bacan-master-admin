@@ -110,7 +110,7 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
 
     useEffect(() => {
       window.scrollTo({ top: 0, behavior: "smooth" });
-    });
+    }, []);
     const initialData: FormData = {
       legalName: "",
       businessLegalId: "",
@@ -173,7 +173,6 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
         setLoading(false);
         return;
       }
-
 
 
       try {

@@ -5,7 +5,6 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import ActionDialog from '@saleor/components/ActionDialog';
 import { WindowTitle } from '@saleor/components/WindowTitle';
 import useBulkActions from '@saleor/hooks/useBulkActions';
-import useNavigator from '@saleor/hooks/useNavigator';
 import useNotifier from '@saleor/hooks/useNotifier';
 import { commonMessages } from '@saleor/intl';
 import { getMutationState, maybe } from '@saleor/misc';
@@ -15,20 +14,18 @@ import { ProductImageCreate, ProductImageCreateVariables } from '@saleor/product
 import { ProductUpdate as ProductUpdateMutationResult } from '@saleor/products/types/ProductUpdate';
 import { ProductVariantBulkCreate } from '@saleor/products/types/ProductVariantBulkCreate';
 import { ProductVariantBulkDelete } from '@saleor/products/types/ProductVariantBulkDelete';
-import { productImageUrl, productUrl, ProductUrlQueryParams, productVariantAddUrl } from '@saleor/products/urls';
-import {
-  createImageReorderHandler,
-  createImageUploadHandler,
-  createUpdateHandler,
-} from '@saleor/products/views/ProductUpdate/handlers';
+import { ProductUrlQueryParams } from '@saleor/products/urls';
+import { createImageReorderHandler, createImageUploadHandler } from '@saleor/products/views/ProductUpdate/handlers';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
+import * as AdminClient from '../../../../fetch/adminClient';
 import { BusinessVariantsPage } from '../components/BusinessVariantsPage';
 import CardVariantCreateDialog from '../components/CardVariantCreateDialog';
 
 interface BusinessVariantsProps {
   id: string;
+  adminBusinessId: string;
   params?: ProductUrlQueryParams;
   moveNextPage: () => void;
 }
@@ -36,19 +33,24 @@ interface BusinessVariantsProps {
 export const BusinessVariants: React.StatelessComponent<BusinessVariantsProps> = ({
   id,
   params,
+  adminBusinessId,
   moveNextPage
 }) => {
   const notify = useNotifier();
   const intl = useIntl();
-  const navigate = useNavigator();
 
   const [ dialogState, setDialogState ] = React.useState<'create-variants' | 'remove-variants' | ''>('');
+  const [ loadingState, setLoadingState ] = React.useState(false);
+  const [ discountValue, selectDiscountValue ] = React.useState(0);
   const { isSelected, listElements, reset, toggle, toggleAll } = useBulkActions(
     params.ids
   );
 
   return (
-    <TypedProductDetailsQuery displayLoader require={["product"]} variables={{ id }}>
+    <TypedProductDetailsQuery 
+      displayLoader 
+      require={["product"]} 
+      variables={{ id }}>
       {({ data, loading, refetch } ) => {
         const handleUpdate = (data: ProductUpdateMutationResult) => {
           if (data.productUpdate.errors.length === 0) {
@@ -83,14 +85,13 @@ export const BusinessVariants: React.StatelessComponent<BusinessVariantsProps> =
             text: intl.formatMessage(commonMessages.savedChanges)
           });
 
-          const handleVariantAdd = () =>
-          navigate(productVariantAddUrl(id));
-
+        const handleVariantAdd = () =>
+          setDialogState('create-variants');
+        
         const handleBulkProductVariantCreate = (
           data: ProductVariantBulkCreate
         ) => {
           if (data.productVariantBulkCreate.errors.length === 0) {
-            navigate(productUrl(id), true);
             refetch();
           }
         };
@@ -99,19 +100,13 @@ export const BusinessVariants: React.StatelessComponent<BusinessVariantsProps> =
           data: ProductVariantBulkDelete
         ) => {
           if (data.productVariantBulkDelete.errors.length === 0) {
-            navigate(productUrl(id), true);
             reset();
             refetch();
           }
         };
 
         const handleVariantCreatorOpen = () =>
-          navigate(
-            productUrl(id, {
-              ...params,
-              action: "create-variants"
-            })
-          );
+          setDialogState('create-variants');
 
         const product = data ? data.product : null;
 
@@ -136,13 +131,30 @@ export const BusinessVariants: React.StatelessComponent<BusinessVariantsProps> =
             }) => {
               const handleImageDelete = (id: string) => () =>
                 deleteProductImage.mutate({ id });
-              const handleImageEdit = (imageId: string) => () =>
-                navigate(productImageUrl(id, imageId));
-              const handleSubmit = createUpdateHandler(
-                product,
-                updateProduct.mutate,
-                updateSimpleProduct.mutate
-              );
+
+              const handleSubmit = async () => {
+                const images = maybe(() => product.images, []);
+                const variants = maybe(() => product.variants, [])
+                const voucherOptions = variants.map((variant) => {
+                  return {
+                    value: variant.priceOverride.amount,
+                    discount: discountValue / 100,
+                    createdAt: Date.now()
+                  }
+                });
+                const imageUrls = images.map((img) => img.url);
+
+                const patchBody = { 
+                  body: [
+                    { op: 'replace', value: imageUrls, field: 'images'}, 
+                    { op: 'replace', value: voucherOptions, field: 'voucherOptions'}
+                  ]
+                };
+                setLoadingState(true);
+                await AdminClient.put(`business/${adminBusinessId}`, patchBody);
+                setLoadingState(false);
+                moveNextPage();
+              }
               const handleImageUpload = createImageUploadHandler(
                 id,
                 createProductImage.mutate
@@ -160,9 +172,11 @@ export const BusinessVariants: React.StatelessComponent<BusinessVariantsProps> =
 
               const formTransitionState = getMutationState(
                   updateProduct.opts.called ||
-                    updateSimpleProduct.opts.called,
+                    updateSimpleProduct.opts.called ||
+                    bulkProductVariantCreate.opts.called,
                   updateProduct.opts.loading ||
-                    updateSimpleProduct.opts.loading,
+                    updateSimpleProduct.opts.loading ||
+                    bulkProductVariantCreate.opts.loading || loadingState,
                   maybe(
                     () => updateProduct.opts.data.productUpdate.errors
                   ),
@@ -202,22 +216,19 @@ export const BusinessVariants: React.StatelessComponent<BusinessVariantsProps> =
                     product={product}
                     variants={maybe(() => product.variants)}
                     onImageReorder={handleImageReorder}
-                    onSubmit={handleSubmit}
+                    onSubmit={() => {
+                      handleSubmit();
+                    }}
                     onVariantAdd={handleVariantAdd}
                     onVariantsAdd={handleVariantCreatorOpen}
                     onImageUpload={handleImageUpload}
-                    onImageEdit={handleImageEdit}
+                    onImageEdit={() => null}
                     onImageDelete={handleImageDelete}
                     toolbar={
                       <IconButton
                         color="primary"
                         onClick={() =>
-                          navigate(
-                            productUrl(id, {
-                              action: "remove-variants",
-                              ids: listElements
-                            })
-                          )
+                          setDialogState('remove-variants')
                         }
                       >
                         <DeleteIcon />
@@ -267,6 +278,8 @@ export const BusinessVariants: React.StatelessComponent<BusinessVariantsProps> =
                           .productVariantBulkCreate.bulkProductErrors,
                       []
                     )}
+                    saveButtonBarState={formTransitionState}
+                    onSelectDiscountValue={selectDiscountValue}
                     productId={id}
                     open={dialogState === "create-variants"}
                     attributes={maybe(

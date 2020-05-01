@@ -1,6 +1,6 @@
 import { ProductVariantBulkCreateInput } from '@saleor/types/globalTypes';
 
-import { Attribute, CardVariantCreateFormData } from './form';
+import { AllOrAttribute, Attribute, CardVariantCreateFormData } from './form';
 
 const QUANTITY_STOCK = 100000;
 
@@ -10,14 +10,27 @@ interface CreateVariantAttributeValueInput {
 }
 type CreateVariantInput = CreateVariantAttributeValueInput[];
 
+function getAttributeValuePrice(
+  attributes: CreateVariantInput,
+  price: AllOrAttribute
+): string {
+  const attribute = attributes.find(
+    attribute => attribute.attributeId === price.attribute
+  );
 
+  const attributeValue = price.values.find(
+    attributeValue => attribute.attributeValueSlug === attributeValue.slug
+  );
+
+  return attributeValue.value;
+}
 function createVariant(
   data: CardVariantCreateFormData,
   attributes: CreateVariantInput
 ): ProductVariantBulkCreateInput {
-  const priceOverride = data.price
-    ? data.price
-    : 0;
+  const priceOverride = data.price && data.price.value
+    ? data.price.value
+    : getAttributeValuePrice(attributes, data.price);
 
   return {
     attributes: attributes.map(attribute => ({
@@ -26,7 +39,7 @@ function createVariant(
     })),
     priceOverride,
     quantity: QUANTITY_STOCK,
-    sku: ""
+    sku: `TB-${Math.random().toString(36).substr(2, 15).toUpperCase()}`
   };
 }
 
@@ -71,8 +84,7 @@ export function createVariants(
   data: CardVariantCreateFormData
 ): ProductVariantBulkCreateInput[] {
   if (
-    (!data.price) ||
-    (!data.sku)
+    (!data.price)
   ) {
     return [];
   }

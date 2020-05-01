@@ -44,9 +44,9 @@ const CardVariantCreateValues: React.FC<
   const { id, values } = attribute;
   return (
     <>
-      <TypedSaleList>
+      <TypedSaleList displayLoader variables={{ first: 20 }}>
         {({ data: saleListData}) => {
-          const sales = maybe(() => saleListData.sales.edges.map(edge => edge.node));
+          const sales = maybe(() => saleListData.sales.edges.map(edge => edge.node), []);
           return (
             <React.Fragment>
               <Typography color="textSecondary" variant="h5">
@@ -79,7 +79,7 @@ const CardVariantCreateValues: React.FC<
               </div>
               <Hr className={classes.hr} />
               <Typography color="textSecondary" variant="h5">
-                Descuento Seleccionado
+                Descuento
               </Typography>
               <Hr className={classes.hr} />
               <div className={classes.valueContainer}>

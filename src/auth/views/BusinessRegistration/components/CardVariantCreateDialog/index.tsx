@@ -5,7 +5,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { Theme } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/styles';
-import { TypedSaleCataloguesAdd } from '@saleor/discounts/mutations';
+import ConfirmButton, { ConfirmButtonTransitionState } from '@saleor/components/ConfirmButton';
+import { TypedSaleCataloguesAddLean } from '@saleor/discounts/mutations';
 import { SaleCataloguesAdd } from '@saleor/discounts/types/SaleCataloguesAdd';
 import useModalDialogErrors from '@saleor/hooks/useModalDialogErrors';
 import useModalDialogOpen from '@saleor/hooks/useModalDialogOpen';
@@ -55,6 +56,8 @@ export interface CardVariantCreateDialogProps
   open: boolean;
   onClose: () => void;
   onSubmit: (data: ProductVariantBulkCreateInput[]) => void;
+  onSelectDiscountValue: (discValue: number) => void;
+  saveButtonBarState: ConfirmButtonTransitionState;
 }
 
 const CardVariantCreateDialog: React.FC<
@@ -67,6 +70,8 @@ const CardVariantCreateDialog: React.FC<
     onClose,
     onSubmit,
     productId,
+    saveButtonBarState,
+    onSelectDiscountValue,
     ...contentProps
   } = props;
   const classes = useStyles(props);
@@ -113,10 +118,14 @@ const CardVariantCreateDialog: React.FC<
   const handleCatalogueAdd = (catalogAddData: SaleCataloguesAdd) => {
     if (catalogAddData.saleCataloguesAdd.errors.length === 0) {
       onSubmit(data.variants)
+      onSelectDiscountValue(Number(data.sale.value));
     }
   }
+  if (saveButtonBarState === 'success') {
+    onClose();
+  }
   return (
-    <TypedSaleCataloguesAdd onCompleted={handleCatalogueAdd}>
+    <TypedSaleCataloguesAddLean onCompleted={handleCatalogueAdd}>
       {(saleCataloguesAdd) => {
 
         return (
@@ -166,11 +175,11 @@ const CardVariantCreateDialog: React.FC<
                 <FormattedMessage defaultMessage="Siguiente" description="button" />
               </Button>
             ) : (
-              <Button
+              <ConfirmButton
                 className={classes.button}
-                color="primary"
                 disabled={!canHitNext(step, data)}
-                variant="contained"
+                data-tc="submit"
+                transitionState={saveButtonBarState}
                 onClick={() => saleCataloguesAdd({
                   variables: {
                     id: data.sale.id,
@@ -180,17 +189,14 @@ const CardVariantCreateDialog: React.FC<
                   }
                 })}
               >
-                <FormattedMessage
-                  defaultMessage="Finalizar"
-                  description="create multiple variants, button"
-                />
-              </Button>
+                Finalizar
+              </ConfirmButton>
             )}
           </DialogActions>
         </Dialog>
         )
       }}
-    </TypedSaleCataloguesAdd>
+    </TypedSaleCataloguesAddLean>
   );
 };
 

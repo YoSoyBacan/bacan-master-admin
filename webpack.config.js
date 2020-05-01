@@ -3,7 +3,8 @@ const path = require("path");
 const webpack = require("webpack");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const dotenv = require('dotenv').config({path: __dirname + '/.env'});
+const envFile = process.env.NODE_ENV === 'production' ? '/.env.production' : '/.env'
+const dotenv = require('dotenv').config({path: __dirname + envFile});
 
 
 const envPlugin = new webpack.DefinePlugin({
@@ -29,7 +30,8 @@ const environmentPlugin = new webpack.EnvironmentPlugin([
   "API_URI",
   "SERVICE_ACCOUNT_TOKEN",
   "ADMIN_URL",
-  "ADMIN_API_KEY"
+  "ADMIN_API_KEY",
+  "SHOP_URI"
 ]);
 
 const dashboardBuildPath = "build/dashboard/";

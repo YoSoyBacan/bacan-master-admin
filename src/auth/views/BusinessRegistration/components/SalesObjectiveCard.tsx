@@ -50,7 +50,7 @@ const SalesObjectiveCardComponent: React.FC<SalesObjectiveCardProps> = ({ setSal
         </Typography>
         <Slider 
           value={data.salesObjective}
-          onChange={(event: any, value: number) => {
+          onChange={(_: any, value: number) => {
             setSalesObjective(value);
           }}
           max={100000}

@@ -1,42 +1,19 @@
-import gql from "graphql-tag";
+import gql from 'graphql-tag';
 
-import { TypedMutation } from "../mutations";
-import {
-  saleDetailsFragment,
-  saleFragment,
-  voucherDetailsFragment,
-  voucherFragment
-} from "./queries";
-import {
-  SaleBulkDelete,
-  SaleBulkDeleteVariables
-} from "./types/SaleBulkDelete";
-import {
-  SaleCataloguesAdd,
-  SaleCataloguesAddVariables
-} from "./types/SaleCataloguesAdd";
-import {
-  SaleCataloguesRemove,
-  SaleCataloguesRemoveVariables
-} from "./types/SaleCataloguesRemove";
-import { SaleCreate, SaleCreateVariables } from "./types/SaleCreate";
-import { SaleDelete, SaleDeleteVariables } from "./types/SaleDelete";
-import { SaleUpdate, SaleUpdateVariables } from "./types/SaleUpdate";
-import {
-  VoucherBulkDelete,
-  VoucherBulkDeleteVariables
-} from "./types/VoucherBulkDelete";
-import {
-  VoucherCataloguesAdd,
-  VoucherCataloguesAddVariables
-} from "./types/VoucherCataloguesAdd";
-import {
-  VoucherCataloguesRemove,
-  VoucherCataloguesRemoveVariables
-} from "./types/VoucherCataloguesRemove";
-import { VoucherCreate, VoucherCreateVariables } from "./types/VoucherCreate";
-import { VoucherDelete, VoucherDeleteVariables } from "./types/VoucherDelete";
-import { VoucherUpdate, VoucherUpdateVariables } from "./types/VoucherUpdate";
+import { TypedMutation } from '../mutations';
+import { saleDetailsFragment, saleFragment, voucherDetailsFragment, voucherFragment } from './queries';
+import { SaleBulkDelete, SaleBulkDeleteVariables } from './types/SaleBulkDelete';
+import { SaleCataloguesAdd, SaleCataloguesAddVariables } from './types/SaleCataloguesAdd';
+import { SaleCataloguesRemove, SaleCataloguesRemoveVariables } from './types/SaleCataloguesRemove';
+import { SaleCreate, SaleCreateVariables } from './types/SaleCreate';
+import { SaleDelete, SaleDeleteVariables } from './types/SaleDelete';
+import { SaleUpdate, SaleUpdateVariables } from './types/SaleUpdate';
+import { VoucherBulkDelete, VoucherBulkDeleteVariables } from './types/VoucherBulkDelete';
+import { VoucherCataloguesAdd, VoucherCataloguesAddVariables } from './types/VoucherCataloguesAdd';
+import { VoucherCataloguesRemove, VoucherCataloguesRemoveVariables } from './types/VoucherCataloguesRemove';
+import { VoucherCreate, VoucherCreateVariables } from './types/VoucherCreate';
+import { VoucherDelete, VoucherDeleteVariables } from './types/VoucherDelete';
+import { VoucherUpdate, VoucherUpdateVariables } from './types/VoucherUpdate';
 
 const saleUpdate = gql`
   ${saleFragment}
@@ -77,10 +54,36 @@ const saleCataloguesAdd = gql`
     }
   }
 `;
+
+const saleCataloguesAddLean = gql`
+${saleFragment}
+mutation SaleCataloguesAdd(
+  $input: CatalogueInput!
+  $id: ID!
+) {
+  saleCataloguesAdd(id: $id, input: $input) {
+    errors {
+      field
+      message
+    }
+    sale {
+      ...SaleFragment
+    }
+  }
+}
+`;
+
+
 export const TypedSaleCataloguesAdd = TypedMutation<
   SaleCataloguesAdd,
   SaleCataloguesAddVariables
 >(saleCataloguesAdd);
+
+export const TypedSaleCataloguesAddLean = TypedMutation<
+  SaleCataloguesAdd,
+  SaleCataloguesAddVariables
+>(saleCataloguesAddLean);
+
 
 const saleCataloguesRemove = gql`
   ${saleDetailsFragment}

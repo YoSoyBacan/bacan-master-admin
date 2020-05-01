@@ -1,4 +1,5 @@
 import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 import AppHeader from '@saleor/components/AppHeader';
 import CardSpacer from '@saleor/components/CardSpacer';
 import ConfirmButton, { ConfirmButtonTransitionState } from '@saleor/components/ConfirmButton';
@@ -7,6 +8,7 @@ import Form from '@saleor/components/Form';
 import Grid from '@saleor/components/Grid';
 import PageHeader from '@saleor/components/PageHeader';
 import { sectionNames } from '@saleor/intl';
+import { maybe } from '@saleor/misc';
 import ProductImages from '@saleor/products/components/ProductImages';
 import ProductVariants from '@saleor/products/components/ProductVariants';
 import {
@@ -75,16 +77,20 @@ const BusinessVariantsPageComp: React.FC<BusinessVariantsPageProps> = ({
   selected,
   toggle,
   toggleAll,
-  toolbar
+  toolbar,
 }) => {
   const intl = useIntl();
-  const initialData = getProductUpdatePageFormData(product, variants);
+  const initialData = { 
+    ...getProductUpdatePageFormData(product, variants), 
+    discountValue: 0.1
+  };
 
   const handleSubmit = (data: ProductUpdatePageFormData) => {
     onSubmit({
       ...data
     });
   }
+  const hasVariants = maybe(() => product.productType.hasVariants, false);
 
   return (
     <Form
@@ -93,7 +99,6 @@ const BusinessVariantsPageComp: React.FC<BusinessVariantsPageProps> = ({
       initial={initialData}
     >
       {({
-        hasChanged,
         submit,
       }) => {
         return (
@@ -112,20 +117,14 @@ const BusinessVariantsPageComp: React.FC<BusinessVariantsPageProps> = ({
                     onImageReorder={onImageReorder}
                     onImageEdit={onImageEdit}
                     onImageUpload={onImageUpload}
-                    title={"Logos y Marca"}
+                    title={"Logos, Locales y Colaboradores"}
                   />
                   <CardSpacer />
-                  <ProductImages
-                    images={images}
-                    placeholderImage={placeholderImage}
-                    onImageDelete={onImageDelete}
-                    onImageReorder={onImageReorder}
-                    onImageEdit={onImageEdit}
-                    onImageUpload={onImageUpload}
-                    title={"Local y Colaboradores"}
-                  />
+                  <Typography variant="subtitle1">
+                    Escribe a tus clientes que hace a tu empresa Bacán. Necesitamos logos en alta resolución y con fondo transparente, fotos de tus puntos de venta y fotos geniales que nos muestren el Equipo Bacán que está detras de todo.
+                  </Typography>
                   <CardSpacer />
-                  <ProductVariants
+                  {hasVariants && <ProductVariants
                     disabled={disabled}
                     variants={variants}
                     fallbackPrice={product ? product.basePrice : undefined}
@@ -137,7 +136,7 @@ const BusinessVariantsPageComp: React.FC<BusinessVariantsPageProps> = ({
                     selected={selected}
                     toggle={toggle}
                     toggleAll={toggleAll}
-                  />
+                  /> }
                 </div>
               </Grid>
               <div className={classes.buttonContainer}>
@@ -147,9 +146,9 @@ const BusinessVariantsPageComp: React.FC<BusinessVariantsPageProps> = ({
                     transitionState={saveButtonBarState}
                     data-tc="submit"
                     onClick={submit}
-                    disabled={disabled || !hasChanged}
+                    disabled={disabled}
                   >
-                    Finalizar
+                    Siguiente
                   </ConfirmButton>
               </div>
             </Container>

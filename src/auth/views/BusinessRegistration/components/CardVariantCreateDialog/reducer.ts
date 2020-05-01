@@ -1,10 +1,11 @@
 //#region
 import { add, remove, removeAtIndex, toggle, updateAtIndex } from '@saleor/utils/lists';
 
+import { createVariants } from './createVariants';
 import { CardVariantCreateFormData } from './form';
 
 export type ProductVariantCreateReducerActionType =
-  | "applyPriceToAttribute"
+  | "changeApplyPriceToAttributeId"
   | "changeVariantData"
   | "deleteVariant"
   | "reload"
@@ -33,6 +34,10 @@ function selectValue(
   const attribute = prevState.attributes.find(
     attribute => attribute.id === attributeId
   );
+  
+
+  // This reducer will be called once every time a Voucher Option is clicked
+
   const values = toggle(valueSlug, attribute.values, (a, b) => a === b);
   const updatedAttributes = add(
     {
@@ -42,27 +47,30 @@ function selectValue(
     remove(attribute, prevState.attributes, (a, b) => a.id === b.id)
   );
 
-  const priceValues =
-    prevState.price.attribute === attributeId
-      ? toggle(
+  const priceValues = toggle(
           {
             slug: valueSlug,
             value: valueSlug
           },
           prevState.price.values,
           (a, b) => a.slug === b.slug
-        )
-      : prevState.price.values;
+        );
 
 
-  return {
+  const data = {
     ...prevState,
     attributes: updatedAttributes,
     price: {
       ...prevState.price,
+      attribute: attributeId,
       values: priceValues
     }
   };
+  const completeData = {
+    ...data,
+    variants: createVariants(data)
+  }
+  return completeData;
 }
 
 
@@ -112,6 +120,7 @@ function selectSale(
     }
   }
 };
+
 
 function reduceProductVariantCreateFormData(
   prevState: CardVariantCreateFormData,

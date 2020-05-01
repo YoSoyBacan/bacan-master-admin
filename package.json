@@ -171,7 +171,7 @@
     ]
   },
   "scripts": {
-    "build": "webpack -p",
+    "build": "NODE_ENV=production && webpack -p",
     "extract-json-messages": "rimraf build/locale && babel src 'src/**/*.{ts,tsx}' -o build/dashboard.bundle.js",
     "extract-pot-messages": "rip json2pot \"build/locale/**/*.json\" -c description -o locale/messages.pot",
     "extract-messages": "npm run extract-json-messages && npm run extract-pot-messages",

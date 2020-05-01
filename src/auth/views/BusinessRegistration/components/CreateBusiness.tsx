@@ -82,7 +82,7 @@ const CreateBusiness: React.StatelessComponent<
   classes
 }: CreateBusinessProps) => {
   const intl = useIntl();
-  const [ errors, setErrors ] = React.useState<Array<{field: string, message: string}>>([]);
+  const [ errors ] = React.useState<Array<{field: string, message: string}>>([]);
   const [ salesObjective, setSalesObjective] = React.useState(0);
   
   // Form values
