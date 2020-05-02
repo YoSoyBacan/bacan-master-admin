@@ -98,9 +98,9 @@ const UserAccount = withStyles(styles, { name: "UserAccount" })(
 
     const handleSubmit = async (data: FormData) => {
       setLoading(true);
-
       const values = Object.values(data);
-      if ( values.includes("") || values.includes(null) ){
+      console.log('submit!', values);
+      if ( values.includes("") || values.includes(null) || values.length === 0){
         notify({ text: 'Por favor llena todos los campos requeridos.' });
         setLoading(false);
         return;

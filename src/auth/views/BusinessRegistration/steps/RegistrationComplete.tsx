@@ -1,9 +1,8 @@
-import registration from '@assets/images/registration.svg';
 import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import React from 'react';
-import SVG from 'react-inlinesvg';
-import Container from "../../../../components/Container";
+
+import Container from '../../../../components/Container';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -21,7 +20,6 @@ export interface RegistrationCompleteProps extends WithStyles<typeof styles> {
   businessLink: string;
 }
 
-// const FAKE = true;
 const RegistrationComplete = withStyles(styles, { name: "RegistrationComplete" })(
   ({classes, businessLink}: RegistrationCompleteProps) => {
     return (
@@ -40,10 +38,6 @@ const RegistrationComplete = withStyles(styles, { name: "RegistrationComplete" }
                 <br/>
                 <br/> ¡Es muy fácil! Solo corre la voz y verás que más gente apoyará tu negocio.
             </Typography>
-              <SVG
-                className={classes.svg}
-                src={registration} 
-              />
           </Container>
         </>
     );

@@ -66,7 +66,8 @@ const useStyles = makeStyles(
         width: "100%",
         backgroundColor: theme.palette.primary.main,
         height: "6rem",
-        overflow: "hidden"
+        overflow: "hidden",
+        zIndex: 9999
       },
       display: "none",
     },

@@ -179,7 +179,7 @@ const CreateBusiness: React.StatelessComponent<
                     data-tc="submit"
                     onClick={submit}
                   >
-                    Regístrate
+                    Siguiente
                   </ConfirmButton>
               </div>
           </Container>
