@@ -22,7 +22,7 @@ const useStyles = makeStyles(
       display: "flex",
       flexDirection: "column",
       height: "100vh",
-      overflowY: "scroll",
+      overflowY: "auto",
       justifyContent: "center",
       padding: theme.spacing.unit * 6,
       width: "100%"
@@ -55,8 +55,8 @@ const useStyles = makeStyles(
       display: "grid",
       gridTemplateColumns: "1fr",
       height: "100vh",
-      overflow: "hidden",
-      width: "100vw"
+      width: "100vw",
+      overflow: "auto"
     },
     navBar: {
       [theme.breakpoints.down("md")]: {
@@ -102,14 +102,14 @@ const Layout: React.FC = props => {
   const classes = useStyles(props);
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} id="root-content">
       <div className={classes.sidebar}>
         <SVG className={classes.sidebarArt} src={backgroundArt} />
       </div>
       <div className={classes.navBar}>
         <SVG className={classes.logoArt} src={backgroundArt}/>
       </div>
-      <div className={classes.mainPanel}>
+      <div className={classes.mainPanel} id="content-panel">
         <div className={classes.mainPanelContent}>
           {children}
         </div>

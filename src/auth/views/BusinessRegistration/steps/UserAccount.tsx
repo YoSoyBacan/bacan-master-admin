@@ -11,7 +11,7 @@ import Form from '@saleor/components/Form';
 import { FormSpacer } from '@saleor/components/FormSpacer';
 import useNotifier from '@saleor/hooks/useNotifier';
 import { commonMessages } from '@saleor/intl';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useIntl } from 'react-intl';
 
 import * as AdminClient from '../../../../fetch/adminClient';
@@ -95,7 +95,11 @@ const UserAccount = withStyles(styles, { name: "UserAccount" })(
       newErrors.push({ field, message});
       setErrors(newErrors);
     }
-
+    useEffect(() => {
+      setTimeout(() => {
+        document.querySelector("#content-panel").scrollTo({ top: 0, behavior: 'smooth'});
+      }, 100);
+    }, []);
     const handleSubmit = async (data: FormData) => {
       setLoading(true);
       const values = Object.values(data);

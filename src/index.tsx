@@ -9,7 +9,7 @@ import React from 'react';
 import { ApolloProvider } from 'react-apollo';
 import { render } from 'react-dom';
 import { useIntl } from 'react-intl';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 
 import AttributeSection from './attributes';
 import { attributeSection } from './attributes/urls';
@@ -18,6 +18,7 @@ import AuthProvider from './auth/AuthProvider';
 import LoginLoading from './auth/components/LoginLoading/LoginLoading';
 import SectionRoute from './auth/components/SectionRoute';
 import { hasPermission } from './auth/misc';
+import { loginAdminPath } from './auth/urls';
 import CategorySection from './categories';
 import CollectionSection from './collections';
 import { AppProgressProvider } from './components/AppProgress';
@@ -43,11 +44,9 @@ import ProductSection from './products';
 import ProductTypesSection from './productTypes';
 import ServiceSection from './services';
 import { serviceSection } from './services/urls';
-import ShippingSection from './shipping';
 import SiteSettingsSection from './siteSettings';
 import StaffSection from './staff';
 import TaxesSection from './taxes';
-import TranslationsSection from './translations';
 import { PermissionEnum } from './types/globalTypes';
 import WebhooksSection from './webhooks';
 
@@ -151,7 +150,7 @@ const Routes: React.FC = () => {
         }) =>
           isAuthenticated && !tokenAuthLoading && !tokenVerifyLoading ? (
             <Switch>
-              <SectionRoute exact path="/" component={HomePage} />
+              <SectionRoute exact path="/home" component={HomePage} />
               <SectionRoute
                 permissions={[PermissionEnum.MANAGE_PRODUCTS]}
                 path="/categories"
@@ -212,16 +211,16 @@ const Routes: React.FC = () => {
                 path="/taxes"
                 component={TaxesSection}
               />
-              <SectionRoute
+              {/* <SectionRoute
                 permissions={[PermissionEnum.MANAGE_SHIPPING]}
                 path="/shipping"
                 component={ShippingSection}
-              />
-              <SectionRoute
+              /> */}
+              {/* <SectionRoute
                 permissions={[PermissionEnum.MANAGE_TRANSLATIONS]}
                 path="/translations"
                 component={TranslationsSection}
-              />
+              /> */}
               <SectionRoute
                 permissions={[PermissionEnum.MANAGE_WEBHOOKS]}
                 path="/webhooks"
@@ -251,6 +250,7 @@ const Routes: React.FC = () => {
                   component={ConfigurationSection}
                 />
               )}
+              <Redirect path={loginAdminPath} to={"/home"}/>
               <Route component={NotFound} />
             </Switch>
           ) : hasToken && tokenVerifyLoading ? (

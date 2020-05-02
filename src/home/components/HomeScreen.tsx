@@ -1,12 +1,11 @@
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
-
-import CardTitle from "@saleor/components/CardTitle";
-import Container from "@saleor/components/Container";
-import PageHeader from "@saleor/components/PageHeader";
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+import CardTitle from '@saleor/components/CardTitle';
+import Container from '@saleor/components/Container';
+import PageHeader from '@saleor/components/PageHeader';
+import React from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 interface HomeScreenProps {
   user: {
@@ -24,7 +23,7 @@ export const HomeScreen: React.StatelessComponent<HomeScreenProps> = ({
       <PageHeader
         title={intl.formatMessage(
           {
-            defaultMessage: "Hello there, {userName}",
+            defaultMessage: "Hola, {userName}",
             description: "header",
             id: "homeScreenHeader"
           },
