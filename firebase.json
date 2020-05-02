@@ -1,7 +1,7 @@
 {
   "hosting": {
     "site": "bacan-internal-admin",
-    "public": "build/dashboard",
+    "public": "dashboard",
     "ignore": [
       "firebase.json",
       "**/.*",
