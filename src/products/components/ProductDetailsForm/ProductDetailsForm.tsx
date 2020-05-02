@@ -16,8 +16,8 @@ interface ProductDetailsFormProps {
   };
   errors: { [key: string]: string };
   initialDescription: RawDraftContentState;
-  onChange(event: any);
   disabled?: boolean;
+  onChange(event: any);
 }
 
 export const ProductDetailsForm: React.FC<ProductDetailsFormProps> = ({

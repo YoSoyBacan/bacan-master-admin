@@ -133,7 +133,6 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
     }
 
     useEffect(() => {
-      console.log('Scrolling')
       window.scrollTo(0, 0);
     }, []);
     const initialData: FormData = {
