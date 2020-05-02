@@ -126,6 +126,7 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
     const notify = useNotifier();
     const [ loading, setLoading ] = React.useState(false);
     const [ errors, setErrors ] = React.useState<Array<{field: string, message: string}>>([]);
+    let checkedLegalId = false;
     const setNewError = (field: string, message: string) => {
       const newErrors = [...errors];
       newErrors.push({ field, message});
@@ -135,6 +136,7 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
     useEffect(() => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }, []);
+  
     const initialData: FormData = {
       legalName: "",
       businessLegalId: "",
@@ -152,7 +154,6 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
       businessEmail: "",
       businessPersonName: "",
       businessPersonId: "",
-
     };
 
     const getErrorField = (field: string) => {
@@ -169,6 +170,58 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
       return finalResult;
     };
 
+    const checkLegalId = (id: string, type: EntityType) => {
+      let result = false;
+      let pares = 0;
+      let impares = 0;
+      let mod = 10;
+
+      if (type == EntityType.PERSONA_JURIDICA){
+        let coeficientes = [4, 3, 2, 7, 6, 5, 4, 3, 2]
+        if (id.charAt(2) != "9"){
+          result = false;
+          return result;
+        }
+
+        mod = 11;
+        for (var i = 0; i < 9; i++) {
+          let digito = Number(id.charAt(i));
+          digito *= coeficientes[i];
+          
+          if (i % 2 == 0) { //impar 
+            impares += digito;
+          } else { //par
+            pares += digito;
+          }
+        }
+
+      } else if (type == EntityType.PERSONA_NATURAL){
+        for (var i = 0; i < 9; i++) {
+          let digito = Number(id.charAt(i));
+  
+          if (i % 2 == 0) { //impar 
+            digito *= 2;
+            if (digito > 9){
+              digito -= 9;
+            }
+            impares += digito;
+          } else { //par
+            pares += digito;
+          }
+        }
+      } 
+
+      let decimoDigito = Number(id.charAt(9));
+      let total = pares + impares;
+      total %= mod;
+      if (total != 0) {
+        total = mod - total;
+      } 
+
+      total == decimoDigito ? result = true : result = false;
+
+      return result;
+    }
 
     const handleSubmit = async (data: FormData) => {
       setLoading(true);
@@ -191,13 +244,25 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
         setLoading(false);
         return;
       }
-
+  
       if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(data.businessEmail)){
         setNewError('businessEmail', 'El formato del e-mail es incorrecto.');
         setLoading(false);
         return;
       }
-      try {
+
+      data.businessLegalId = data.businessLegalId.replace(/-*\/*/g, '');
+      let validLegalId = checkLegalId(data.businessLegalId, data.entityType);
+      if (!validLegalId && !checkedLegalId){
+        notify({ text: `No pudimos verificar el RUC como ${data.entityType}, por favor chequea que este bien antes de continuar` });
+        setLoading(false);
+        checkedLegalId = true;
+        return;
+      } else if (validLegalId) {
+        notify({ text: 'RUC verificado' });
+      } 
+
+      try {        
         const newBusiness = await AdminClient.post<{_id: string, buenPlanProviderId: string}>('business', {
           ...data,
           owner: userId
