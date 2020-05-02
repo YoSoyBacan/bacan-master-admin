@@ -141,6 +141,14 @@ export const BusinessVariants: React.StatelessComponent<BusinessVariantsProps> =
               const handleSubmit = async () => {
                 const images = maybe(() => product.images, []);
                 const variants = maybe(() => product.variants, [])
+                if (images.length === 0) {
+                  notify({ text: 'Por favor carga por lo menos una imagen de tu Negocio Bacán'});
+                  return;
+                }
+                if (variants.length === 0) {
+                  notify({ text: 'Por favor selecciona por lo menos una opción de Tarjeta Bacán'});
+                  return;
+                }
                 const voucherOptions = variants.map((variant) => {
                   return {
                     value: variant.priceOverride.amount,
