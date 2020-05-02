@@ -188,15 +188,10 @@ const CardVariantCreateSummary: React.FC<CardVariantCreateSummaryProps> = props 
                 <TextField
                   className={classes.input}
                   error={!!variantErrors.find(error => error.field === "sku")}
-                  helperText={maybe(
-                    () =>
-                      variantErrors.find(error => error.field === "sku").message
-                  )}
+                  helperText={"SKU"}
                   fullWidth
                   value={variant.sku}
-                  onChange={event =>
-                    onVariantDataChange(variantIndex, "sku", event.target.value)
-                  }
+                  disabled
                 />
               </div>
               <div className={classes.col}>

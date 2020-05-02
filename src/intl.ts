@@ -69,7 +69,7 @@ export const commonMessages = defineMessages({
     defaultMessage: "Resumen"
   },
   uploadImage: {
-    defaultMessage: "Carga Imágenes",
+    defaultMessage: "Subir Imágenes",
     description: "button"
   },
   yes: {

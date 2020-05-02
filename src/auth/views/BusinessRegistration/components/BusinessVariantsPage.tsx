@@ -117,11 +117,14 @@ const BusinessVariantsPageComp: React.FC<BusinessVariantsPageProps> = ({
                     onImageReorder={onImageReorder}
                     onImageEdit={onImageEdit}
                     onImageUpload={onImageUpload}
-                    title={"Logos, Locales y Colaboradores"}
+                    title={"Imágenes"}
                   />
                   <CardSpacer />
                   <Typography variant="subtitle1">
-                    Sube las fotos que quieras de tu negocio incluyendo el logo, tus locales, productos o lo que muestre que hace a tu Negocio Bacán. Necesitamos logos en alta resolución y con fondo transparente, fotos de tus puntos de venta y fotos geniales que nos muestren el Equipo Bacán que está detras de todo.
+                   Tu logo y las fotos que subas te ayudarán a promocionar tu negocio en la plataforma. 
+                   Procura subir fotos de alta calidad y tu logo en formato png. 
+                   Te sugerimos subir fotos de tus locales, productos y del equipo que hace tu Negocio Bacán. 
+                   Necesitamos logos en alta resolución y con fondo transparente, fotos de tus puntos de venta y fotos geniales que nos muestren el Equipo Bacán que está detras de todo.
                   </Typography>
                   <CardSpacer />
                   {hasVariants && <ProductVariants

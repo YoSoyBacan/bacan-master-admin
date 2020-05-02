@@ -4,7 +4,9 @@ import Select from '@material-ui/core/Select';
 import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
+import CardSpacer from '@saleor/components/CardSpacer';
 import ConfirmButton from '@saleor/components/ConfirmButton';
+import Container from '@saleor/components/Container';
 import Form from '@saleor/components/Form';
 import { FormSpacer } from '@saleor/components/FormSpacer';
 import useNotifier from '@saleor/hooks/useNotifier';
@@ -13,6 +15,7 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 
 import * as AdminClient from '../../../../fetch/adminClient';
+import { WelcomeCard } from '../components/WelcomeCard';
 
 enum Countries {
   ECUADOR = 'Ecuador',
@@ -49,6 +52,10 @@ const styles = (theme: Theme) =>
     },
     loginButton: {
       width: 140
+    },
+    formTitle: {
+      fontSize: "2rem",
+      fontWeight: 600
     },
     title: {
         flex: 1,
@@ -160,132 +167,144 @@ const UserAccount = withStyles(styles, { name: "UserAccount" })(
     const tranState = loading ? 'loading' : 'default';
     return (
         <>
-        <Form initial={initialData} onSubmit={handleSubmit} errors={errors}>
-            {({ change: handleChange, data, submit }) => (
-            <>
-                <TextField
-                autoFocus
-                fullWidth
-                autoComplete="name"
-                label={'Nombre'}
-                name="firstName"
-                onChange={handleChange}
-                required={true}
-                value={data.firstName}
-                inputProps={{
-                    "data-tc": "firstName"
-                }}
-                error={getErrorField('nextError').hasError}
-                helperText={getErrorField('nextError').errorText}
-                />
-                <FormSpacer />
-                <TextField
-                autoFocus
-                fullWidth
-                autoComplete="name"
-                label={'Apellido'}
-                required={true}
-                name="lastName"
-                onChange={handleChange}
-                value={data.lastName}
-                inputProps={{
-                    "data-tc": "lastName"
-                }}
-                />
-                <FormSpacer />
-                <TextField
+        <Container>
+          <WelcomeCard/>
+          <CardSpacer/>
+          <Typography className={classes.formTitle}>
+            Tu Cuenta
+          </Typography>
+          <CardSpacer/>
+          <Typography variant="subtitle2">
+            Te permite acceder al Administrador de tu Negocio Bacán. Puedes ver tus ventas, clientes y Tarjetas Bacán.
+          </Typography>
+          <CardSpacer/>
+          <Form initial={initialData} onSubmit={handleSubmit} errors={errors}>
+              {({ change: handleChange, data, submit }) => (
+              <>
+                  <TextField
                   autoFocus
                   fullWidth
-                  autoComplete="phone"
-                  label={'Teléfono / WhatsApp'}
-                  required={true}
-                  name="phoneNumber"
+                  autoComplete="name"
+                  label={'Nombres'}
+                  name="firstName"
                   onChange={handleChange}
-                  value={data.phoneNumber}
+                  required={true}
+                  value={data.firstName}
                   inputProps={{
-                      "data-tc": "phoneNumber"
+                      "data-tc": "firstName"
                   }}
-                  error={getErrorField('phoneNumber').hasError}
-                  helperText={getErrorField('phoneNumber').errorText}
-                />
-                <FormSpacer />
-                <TextField
+                  error={getErrorField('nextError').hasError}
+                  helperText={getErrorField('nextError').errorText}
+                  />
+                  <FormSpacer />
+                  <TextField
                   autoFocus
                   fullWidth
-                  autoComplete="username"
-                  label={intl.formatMessage(commonMessages.email)}
-                  name="email"
-                  onChange={handleChange}
+                  autoComplete="name"
+                  label={'Apellidos'}
                   required={true}
-                  value={data.email}
-                  inputProps={{
-                      "data-tc": "email"
-                  }}
-                  error={getErrorField('email').hasError}
-                  helperText={getErrorField('email').errorText}
-                />
-                <FormSpacer />
-                <>
-                  <InputLabel>País</InputLabel>
-                  <Select
-                  fullWidth
-                  id="pais-select"
-                  value={data.country}
-                  name="country"
+                  name="lastName"
                   onChange={handleChange}
-                  required
-                  >
-                    <MenuItem value={Countries.ECUADOR}>Ecuador</MenuItem>
-                    <MenuItem value={Countries.COLOMBIA}>Colombia</MenuItem>
-                  </Select>
-                </>
-                <FormSpacer />
-                <TextField
-                fullWidth
-                autoComplete="password"
-                required={true}
-                label={intl.formatMessage({
-                    defaultMessage: "Contraseña"
-                })}
-                name="password"
-                onChange={handleChange}
-                type="password"
-                value={data.password}
-                inputProps={{
-                    "data-tc": "password"
-                }}
-                error={getErrorField('password').hasError}
-                helperText={getErrorField('password').errorText}
-                />
-                <FormSpacer />
-                <TextField
+                  value={data.lastName}
+                  inputProps={{
+                      "data-tc": "lastName"
+                  }}
+                  />
+                  <FormSpacer />
+                  <TextField
+                    autoFocus
+                    fullWidth
+                    autoComplete="phone"
+                    label={'Teléfono / WhatsApp'}
+                    required={true}
+                    name="phoneNumber"
+                    onChange={handleChange}
+                    value={data.phoneNumber}
+                    inputProps={{
+                        "data-tc": "phoneNumber"
+                    }}
+                    error={getErrorField('phoneNumber').hasError}
+                    helperText={getErrorField('phoneNumber').errorText}
+                  />
+                  <FormSpacer />
+                  <TextField
+                    autoFocus
+                    fullWidth
+                    autoComplete="username"
+                    label={intl.formatMessage(commonMessages.email)}
+                    name="email"
+                    onChange={handleChange}
+                    required={true}
+                    value={data.email}
+                    inputProps={{
+                        "data-tc": "email"
+                    }}
+                    error={getErrorField('email').hasError}
+                    helperText={getErrorField('email').errorText}
+                  />
+                  <FormSpacer />
+                  <>
+                    <InputLabel>País</InputLabel>
+                    <Select
+                    fullWidth
+                    id="pais-select"
+                    value={data.country}
+                    name="country"
+                    onChange={handleChange}
+                    required
+                    >
+                      <MenuItem value={Countries.ECUADOR}>Ecuador</MenuItem>
+                      <MenuItem value={Countries.COLOMBIA}>Colombia</MenuItem>
+                    </Select>
+                  </>
+                  <FormSpacer />
+                  <TextField
                   fullWidth
                   autoComplete="password"
                   required={true}
-                  label={"Confirma tu Contraseña"}
-                  name="confirmPassword"
+                  label={intl.formatMessage({
+                      defaultMessage: "Contraseña"
+                  })}
+                  name="password"
                   onChange={handleChange}
                   type="password"
-                  value={data.confirmPassword}
+                  value={data.password}
                   inputProps={{
-                      "data-tc": "confirmPassword"
+                      "data-tc": "password"
                   }}
-                />
-                <div className={classes.buttonContainer}>
-                <div/>
-                  <ConfirmButton
-                    className={classes.nexButton}
-                    transitionState={tranState}
-                    data-tc="submit"
-                    onClick={submit}
-                  >
-                    Siguiente
-                  </ConfirmButton>
-                </div>
-                <Typography variant="subtitle2" className={classes.title}>Tienes problemas al registrarte? Contáctanos! <br/> contacto@yosoybacan.com </Typography>
-            </>
-            )}
-        </Form>
+                  error={getErrorField('password').hasError}
+                  helperText={getErrorField('password').errorText}
+                  />
+                  <FormSpacer />
+                  <TextField
+                    fullWidth
+                    autoComplete="password"
+                    required={true}
+                    label={"Confirma tu Contraseña"}
+                    name="confirmPassword"
+                    onChange={handleChange}
+                    type="password"
+                    value={data.confirmPassword}
+                    inputProps={{
+                        "data-tc": "confirmPassword"
+                    }}
+                  />
+                  <div className={classes.buttonContainer}>
+                  <div/>
+                    <ConfirmButton
+                      className={classes.nexButton}
+                      transitionState={tranState}
+                      data-tc="submit"
+                      onClick={submit}
+                    >
+                      Siguiente
+                    </ConfirmButton>
+                  </div>
+                  <Typography variant="subtitle2" className={classes.title}>Tienes problemas al registrarte? Contáctanos! <br/> contacto@yosoybacan.com </Typography>
+              </>
+              )}
+          </Form>
+        </Container>
         </>
     );
   }

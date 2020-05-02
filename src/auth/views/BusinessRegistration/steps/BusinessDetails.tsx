@@ -95,12 +95,27 @@ export const BusinessDetailsStep: React.StatelessComponent<
                   const handleSubmit = async(
                     formData: CreateBusinessSubmitData
                   ) => {
+
+                    // Validation
+
+                    if (!formData.category) {
+                      notify({ text: 'Selecciona una industria para crear tu Negocio Bacán' });
+                      return;
+                    }
+
+                    if (!formData.name) {
+                      notify({ text: 'Escribe el Nombre Comercial de tu Negocio Bacán' });
+                      return;
+                    }
+                    if (!formData.salesObjective) {
+                      notify({ text: 'Selecciona tu objetivo de ventas mensuales.' });
+                      return;
+                    }
                     const productTypes = maybe(() =>
                       searchProductTypesOpts.data.search.edges.map(
                         edge => edge.node
                       )
                     );
-                    // TODO[sebastian]: This is only choosing one product type now.
                     const chosenProduct = productTypes.find((product) => product.name === 'Tarjeta de Consumo');
                     
                     // Create Product on Saleor
@@ -124,7 +139,7 @@ export const BusinessDetailsStep: React.StatelessComponent<
                         productType: chosenProduct.id,
                         publicationDate: null,
                         sku: Math.random().toString(36).substr(2, 15),
-                        stockQuantity: SAMPLE_STOCK_QUANTITY
+                        stockQuantity: SAMPLE_STOCK_QUANTITY,
                       }
                     });
 

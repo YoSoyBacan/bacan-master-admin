@@ -14,13 +14,10 @@ interface ProductDetailsFormProps {
     description: RawDraftContentState;
     name: string;
   };
-  disabled?: boolean;
   errors: { [key: string]: string };
-  // Draftail isn't controlled - it needs only initial input
-  // because it's autosaving on its own.
-  // Ref https://github.com/mirumee/saleor/issues/4470
   initialDescription: RawDraftContentState;
   onChange(event: any);
+  disabled?: boolean;
 }
 
 export const ProductDetailsForm: React.FC<ProductDetailsFormProps> = ({
@@ -40,7 +37,7 @@ export const ProductDetailsForm: React.FC<ProductDetailsFormProps> = ({
       <CardContent>
         <TextField
           error={!!errors.name}
-          helperText={errors.name}
+          helperText={errors.name || 'Este nombre lo van a ver tus clientes en la plataforma.'}
           disabled={disabled}
           fullWidth
           label={intl.formatMessage({
@@ -55,7 +52,7 @@ export const ProductDetailsForm: React.FC<ProductDetailsFormProps> = ({
         <RichTextEditor
           disabled={disabled}
           error={!!errors.descriptionJson}
-          helperText={errors.descriptionJson}
+          helperText={errors.descriptionJson || "Escribe una pequeña reseña de tu negocio para que los clientes sepan de que se trata. Te recomendamos hacerlo muy visual con las herramientas de edición y menos de 300 caractéres."}
           initial={initialDescription}
           label={intl.formatMessage(commonMessages.description)}
           name="description"

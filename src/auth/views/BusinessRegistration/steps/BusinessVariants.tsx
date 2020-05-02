@@ -16,6 +16,7 @@ import { ProductVariantBulkCreate } from '@saleor/products/types/ProductVariantB
 import { ProductVariantBulkDelete } from '@saleor/products/types/ProductVariantBulkDelete';
 import { ProductUrlQueryParams } from '@saleor/products/urls';
 import { createImageReorderHandler, createImageUploadHandler } from '@saleor/products/views/ProductUpdate/handlers';
+import { ProductVariantBulkCreateInput } from '@saleor/types/globalTypes';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
@@ -138,6 +139,7 @@ export const BusinessVariants: React.StatelessComponent<BusinessVariantsProps> =
                 const voucherOptions = variants.map((variant) => {
                   return {
                     value: variant.priceOverride.amount,
+                    variantId: variant.id,
                     discount: discountValue / 100,
                     createdAt: Date.now()
                   }
@@ -154,6 +156,25 @@ export const BusinessVariants: React.StatelessComponent<BusinessVariantsProps> =
                 await AdminClient.put(`business/${adminBusinessId}`, patchBody);
                 setLoadingState(false);
                 moveNextPage();
+              };
+
+              const handleCreateVariants = (inputs: ProductVariantBulkCreateInput[]) => {
+
+                if (!inputs || inputs.length === 0) {
+                  notify({ text: 'Por favor crea tus Tarjetas Bacán para continuar'});
+                  return;
+                }
+                const images = maybe(() => product.images, []);
+
+                if (images.length === 0) {
+                  notify({ text: 'Por favor carga por lo menos una imagen de tu negocio'});
+                  return;
+                }
+
+                bulkProductVariantCreate.mutate({
+                  id,
+                  inputs
+                });
               }
               const handleImageUpload = createImageUploadHandler(
                 id,
@@ -203,6 +224,7 @@ export const BusinessVariants: React.StatelessComponent<BusinessVariantsProps> =
                       .productVariantBulkDelete.errors
                 )
               );
+
               return (
                 <>
                   <WindowTitle title={maybe(() => data.product.name)} />
@@ -287,12 +309,7 @@ export const BusinessVariants: React.StatelessComponent<BusinessVariantsProps> =
                       []
                     )}
                     onClose={() => setDialogState('')}
-                    onSubmit={inputs =>
-                      bulkProductVariantCreate.mutate({
-                        id,
-                        inputs
-                      })
-                    } 
+                    onSubmit={handleCreateVariants}
                   />
                 </>
               )

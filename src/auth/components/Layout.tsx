@@ -37,6 +37,9 @@ const useStyles = makeStyles(
       "@media (min-width: 1440px)": {
         width: 850
       },
+      [theme.breakpoints.down("md")]: {
+        marginTop: "10rem"
+      },
       height: "100%",
       margin: "auto",
       paddingTop: "10%",
@@ -54,6 +57,24 @@ const useStyles = makeStyles(
       height: "100vh",
       overflow: "hidden",
       width: "100vw"
+    },
+    navBar: {
+      [theme.breakpoints.down("md")]: {
+        display: "block",
+        position: "fixed",
+        top: 0,
+        width: "100%",
+        backgroundColor: theme.palette.primary.main,
+        height: "6rem",
+        overflow: "hidden"
+      },
+      display: "none",
+    },
+    logoArt: {
+      "& svg": {
+        width: "100%",
+        height: "100%",
+      }
     },
     sidebar: {
       [theme.breakpoints.up("lg")]: {
@@ -83,6 +104,9 @@ const Layout: React.FC = props => {
     <div className={classes.root}>
       <div className={classes.sidebar}>
         <SVG className={classes.sidebarArt} src={backgroundArt} />
+      </div>
+      <div className={classes.navBar}>
+        <SVG className={classes.logoArt} src={backgroundArt}/>
       </div>
       <div className={classes.mainPanel}>
         <div className={classes.mainPanelContent}>

@@ -74,7 +74,7 @@ const BusinessRegistration = withStyles(styles, { name: "BusinessRegistration" }
     const getFormComponent = () => {
         switch(activeStep) {    
             case 0: {
-                return <UserAccount classes={classes} setUserId={setUserId} handleNext={handleNext} />;
+              return <UserAccount classes={classes} setUserId={setUserId} handleNext={handleNext} />;
             }
             case 1: {
               return <BusinessLegal classes={classes} userId={userId} setBusinessId={setBusinessId} handleNext={handleNext} setBuenPlanBusinessId={setBuenPlanBusinessId}/>

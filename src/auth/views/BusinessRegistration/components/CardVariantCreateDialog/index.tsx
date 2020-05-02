@@ -10,6 +10,7 @@ import { TypedSaleCataloguesAddLean } from '@saleor/discounts/mutations';
 import { SaleCataloguesAdd } from '@saleor/discounts/types/SaleCataloguesAdd';
 import useModalDialogErrors from '@saleor/hooks/useModalDialogErrors';
 import useModalDialogOpen from '@saleor/hooks/useModalDialogOpen';
+import useNotifier from '@saleor/hooks/useNotifier';
 import { ProductVariantBulkCreateInput } from '@saleor/types/globalTypes';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
@@ -76,6 +77,7 @@ const CardVariantCreateDialog: React.FC<
   } = props;
   const classes = useStyles(props);
   const [step, setStep] = React.useState<CardVariantCreateStep>("values");
+  const notify = useNotifier();
 
   function handleNextStep() {
     switch (step) {
@@ -128,6 +130,25 @@ const CardVariantCreateDialog: React.FC<
     <TypedSaleCataloguesAddLean onCompleted={handleCatalogueAdd}>
       {(saleCataloguesAdd) => {
 
+        const handleSubmit = () => {
+          if (!data.sale || !data.sale.id) {
+            notify( { text: 'Por favor, selecciona un descuento para tus Tarjetas Bacán'});
+            return;
+          }
+          if (!data.variants || data.variants.length === 0) {
+            notify( { text: 'Por favor, selecciona por lo menos un valor de Tarjeta Bacán'});
+            return;
+          }
+          saleCataloguesAdd({
+            variables: {
+              id: data.sale.id,
+              input: {
+                products: [productId]
+              }
+            }
+          });
+          return;
+        }
         return (
           <Dialog open={open} maxWidth="md">
           <DialogTitle>
@@ -180,14 +201,7 @@ const CardVariantCreateDialog: React.FC<
                 disabled={!canHitNext(step, data)}
                 data-tc="submit"
                 transitionState={saveButtonBarState}
-                onClick={() => saleCataloguesAdd({
-                  variables: {
-                    id: data.sale.id,
-                    input: {
-                      products: [productId]
-                    }
-                  }
-                })}
+                onClick={handleSubmit}
               >
                 Finalizar
               </ConfirmButton>

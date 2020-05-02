@@ -236,6 +236,7 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
                 inputProps={{
                   "data-tc": "legalName",
                 }}
+                helperText={"Nombre legal de tu empresa en el SRI."}
               />
               <FormSpacer />
               <TextField
@@ -346,7 +347,7 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
                     value: "false",
                   },
                 ]}
-                label="Obligado a Llevar Contabilidad"
+                label="Estás obligado a Llevar Contabilidad?"
                 name="hasAccounting"
                 onChange={handleChange}
                 value={data.hasAccounting}
@@ -399,6 +400,10 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
               <FormSpacer />
               <Typography variant="h5" className={classes.title}>
                 Información de Banco
+              </Typography>
+              
+              <Typography variant="subtitle2">
+                Necesitamos esta información para depositar las ventas de tus Tarjetas Bacán.
               </Typography>
               <FormSpacer />
               <>

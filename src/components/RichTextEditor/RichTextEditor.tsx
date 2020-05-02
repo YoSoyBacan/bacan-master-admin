@@ -195,11 +195,18 @@ function handleSave(
   name: string,
   onChange: (event: ChangeEvent) => void
 ) {
-  if (value && !isEqual(value, initial)) {
+  if (!!value && !isEqual(value, initial)) {
     onChange({
       target: {
         name,
         value
+      }
+    });
+  } else if (!value) {
+    onChange({
+      target: {
+        name,
+        value: initial
       }
     });
   }
