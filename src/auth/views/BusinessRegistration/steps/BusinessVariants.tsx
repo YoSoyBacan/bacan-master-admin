@@ -17,7 +17,7 @@ import { ProductVariantBulkDelete } from '@saleor/products/types/ProductVariantB
 import { ProductUrlQueryParams } from '@saleor/products/urls';
 import { createImageReorderHandler, createImageUploadHandler } from '@saleor/products/views/ProductUpdate/handlers';
 import { ProductVariantBulkCreateInput } from '@saleor/types/globalTypes';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import * as AdminClient from '../../../../fetch/adminClient';
@@ -46,6 +46,11 @@ export const BusinessVariants: React.StatelessComponent<BusinessVariantsProps> =
   const { isSelected, listElements, reset, toggle, toggleAll } = useBulkActions(
     params.ids
   );
+  useEffect(() => {
+    setTimeout(() => {
+      document.querySelector("#content-panel").scrollTo({ top: 0, behavior: 'smooth'});
+    }, 100);
+  }, []);
 
   return (
     <TypedProductDetailsQuery 
@@ -136,6 +141,14 @@ export const BusinessVariants: React.StatelessComponent<BusinessVariantsProps> =
               const handleSubmit = async () => {
                 const images = maybe(() => product.images, []);
                 const variants = maybe(() => product.variants, [])
+                if (images.length === 0) {
+                  notify({ text: 'Por favor carga por lo menos una imagen de tu Negocio Bacán'});
+                  return;
+                }
+                if (variants.length === 0) {
+                  notify({ text: 'Por favor selecciona por lo menos una opción de Tarjeta Bacán'});
+                  return;
+                }
                 const voucherOptions = variants.map((variant) => {
                   return {
                     value: variant.priceOverride.amount,

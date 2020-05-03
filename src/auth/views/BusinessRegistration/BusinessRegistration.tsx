@@ -3,6 +3,7 @@ import StepLabel from '@material-ui/core/StepLabel';
 import Stepper from '@material-ui/core/Stepper';
 import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import useNavigator from '@saleor/hooks/useNavigator';
 import useUser from '@saleor/hooks/useUser';
 import { ProductUrlQueryParams } from '@saleor/products/urls';
 import React from 'react';
@@ -49,6 +50,7 @@ export interface BusinessRegistrationProps extends WithStyles<typeof styles> {
 
 const BusinessRegistration = withStyles(styles, { name: "BusinessRegistration" })(
   ({ classes, params }: BusinessRegistrationProps) => {
+    const navigate = useNavigator();
 
     const getSteps = () => {
         return ['Perfil', 'Empresa', 'Negocio Bacán', 'Tarjetas Bacán', 'Listo!'];
@@ -61,6 +63,14 @@ const BusinessRegistration = withStyles(styles, { name: "BusinessRegistration" }
     const [productId, setProductId] = React.useState('');
     const [ businessLink, setBusinessLink ] = React.useState('');
     const { loginByToken } = useUser();
+    
+    // For admin.yosoybacan.com go to login
+    React.useEffect(() => {
+      const { host } = window.location;
+      if (host === 'admin.yosoybacan.com') {
+        navigate('/login/');
+      }
+    }, []);
     const handleNext = async () => {
         if (activeStep === 1) {
             loginByToken(TOKEN);

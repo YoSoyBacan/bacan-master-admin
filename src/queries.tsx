@@ -1,16 +1,16 @@
-import { ApolloQueryResult } from "apollo-client";
-import { DocumentNode } from "graphql";
-import gql from "graphql-tag";
-import React from "react";
-import { Query, QueryResult } from "react-apollo";
-import { useIntl } from "react-intl";
+import { ApolloQueryResult } from 'apollo-client';
+import { DocumentNode } from 'graphql';
+import gql from 'graphql-tag';
+import React from 'react';
+import { Query, QueryResult } from 'react-apollo';
+import { useIntl } from 'react-intl';
 
-import AppProgress from "./components/AppProgress";
-import ErrorPage from "./components/ErrorPage/ErrorPage";
-import useNavigator from "./hooks/useNavigator";
-import useNotifier from "./hooks/useNotifier";
-import { commonMessages } from "./intl";
-import { maybe, RequireAtLeastOne } from "./misc";
+import AppProgress from './components/AppProgress';
+import ErrorPage from './components/ErrorPage/ErrorPage';
+import useNavigator from './hooks/useNavigator';
+import useNotifier from './hooks/useNotifier';
+import { commonMessages } from './intl';
+import { maybe, RequireAtLeastOne } from './misc';
 
 export interface LoadMore<TData, TVariables> {
   loadMore: (
@@ -129,7 +129,7 @@ export function TypedQuery<TData, TVariables>(
                   true
                 )
               ) {
-                childrenOrNotFound = <ErrorPage onBack={() => navigate("/")} />;
+                childrenOrNotFound = <ErrorPage onBack={() => navigate("/home")} />;
               }
 
               if (displayLoader) {

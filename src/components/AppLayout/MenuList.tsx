@@ -1,28 +1,20 @@
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import classNames from "classnames";
-import React from "react";
-import SVG from "react-inlinesvg";
-import { FormattedMessage, useIntl } from "react-intl";
-import { matchPath } from "react-router";
+import configureIcon from '@assets/images/menu-configure-icon.svg';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import useTheme from '@saleor/hooks/useTheme';
+import { sectionNames } from '@saleor/intl';
+import classNames from 'classnames';
+import React from 'react';
+import SVG from 'react-inlinesvg';
+import { FormattedMessage, useIntl } from 'react-intl';
+import { matchPath } from 'react-router';
 
-import configureIcon from "@assets/images/menu-configure-icon.svg";
-import useTheme from "@saleor/hooks/useTheme";
-import { sectionNames } from "@saleor/intl";
-import { User } from "../../auth/types/User";
-import {
-  configurationMenuUrl,
-  createConfigurationMenu
-} from "../../configuration";
-import { createHref } from "../../misc";
-import { orderDraftListUrl, orderListUrl } from "../../orders/urls";
-import MenuNested from "./MenuNested";
-import { IMenuItem } from "./menuStructure";
+import { User } from '../../auth/types/User';
+import { configurationMenuUrl, createConfigurationMenu } from '../../configuration';
+import { createHref } from '../../misc';
+import { orderDraftListUrl, orderListUrl } from '../../orders/urls';
+import MenuNested from './MenuNested';
+import { IMenuItem } from './menuStructure';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -233,7 +225,7 @@ const MenuList = withStyles(styles, { name: "MenuList" })(
             menuItem.url.split("?")[0] === orderListUrl().split("?")[0]
               ? false
               : !!matchPath(location.split("?")[0], {
-                  exact: menuItem.url.split("?")[0] === "/",
+                  exact: menuItem.url.split("?")[0] === "/home",
                   path: menuItem.url.split("?")[0]
                 });
 

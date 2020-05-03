@@ -11,6 +11,7 @@ import Menu from '@material-ui/core/MenuList';
 import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
 import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import { loginAdminPath } from '@saleor/auth/urls';
 import AppProgressProvider from '@saleor/components/AppProgress';
 import { createConfigurationMenu } from '@saleor/configuration';
 import useLocalStorage from '@saleor/hooks/useLocalStorage';
@@ -308,6 +309,7 @@ const AppLayout = withStyles(styles, {
       const handleLogout = () => {
         setMenuState(false);
         logout();
+        navigate(loginAdminPath);
       };
 
       const handleViewerProfile = () => {

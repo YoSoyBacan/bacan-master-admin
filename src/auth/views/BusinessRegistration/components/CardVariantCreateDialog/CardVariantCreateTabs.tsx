@@ -47,6 +47,10 @@ function getSteps(): Step[] {
       value: "values"
     },
     {
+      label: "Descuentos",
+      value: "discount"
+    },
+    {
       label: "Resumen",
       value: "summary"
     }

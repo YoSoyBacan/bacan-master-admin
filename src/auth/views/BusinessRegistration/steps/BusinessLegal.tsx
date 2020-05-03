@@ -134,7 +134,9 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
     }
 
     useEffect(() => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      setTimeout(() => {
+        document.querySelector("#content-panel").scrollTo({ top: 0, behavior: 'smooth'});
+      }, 100);
     }, []);
   
     const initialData: FormData = {

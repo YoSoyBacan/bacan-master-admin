@@ -5,7 +5,7 @@ import useNotifier from '@saleor/hooks/useNotifier';
 import useShop from '@saleor/hooks/useShop';
 import { TypedProductCreateMutation } from '@saleor/products/mutations';
 import { ProductCreate } from '@saleor/products/types/ProductCreate';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useIntl } from 'react-intl';
 
 import { DEFAULT_INITIAL_SEARCH_DATA } from '../../../../config';
@@ -35,6 +35,11 @@ export const BusinessDetailsStep: React.StatelessComponent<
 
   const [salesObjective, setSalesObjective ] = React.useState(0);
   const [industry, setIndustry ] = React.useState('');
+  useEffect(() => {
+    setTimeout(() => {
+      document.querySelector("#content-panel").scrollTo({ top: 0, behavior: 'smooth'});
+    }, 100);
+  }, []);
   return (
     <SearchCategories variables={DEFAULT_INITIAL_SEARCH_DATA}>
       {({

@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
-import NotFoundPage from "./components/NotFoundPage";
-import useNavigator from "./hooks/useNavigator";
+import NotFoundPage from './components/NotFoundPage';
+import useNavigator from './hooks/useNavigator';
 
 export const NotFound: React.StatelessComponent = () => {
   const navigate = useNavigator();
 
-  return <NotFoundPage onBack={() => navigate("/")} />;
+  return <NotFoundPage onBack={() => navigate("/login")} />;
 };
 export default NotFound;

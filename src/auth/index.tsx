@@ -5,7 +5,7 @@ import { Route, RouteComponentProps, Switch } from 'react-router-dom';
 
 import Layout from './components/Layout';
 import { User } from './types/User';
-import { newPasswordPath, passwordResetPath, passwordResetSuccessPath, registerBusinessPath } from './urls';
+import { loginAdminPath, newPasswordPath, passwordResetPath, passwordResetSuccessPath } from './urls';
 import { BusinessRegistration } from './views/BusinessRegistration';
 import LoginView from './views/Login';
 import NewPassword from './views/NewPassword';
@@ -26,7 +26,8 @@ export const UserContext = React.createContext<UserContext>({
   loginByToken: undefined,
   logout: undefined,
   tokenAuthLoading: false,
-  tokenVerifyLoading: false
+  tokenVerifyLoading: false,
+  user: undefined
 });
 
 const BusinessRegistrationView: React.StatelessComponent<RouteComponentProps<any>> = ({
@@ -48,7 +49,7 @@ const AuthRouter: React.FC = () => (
       <Route path={passwordResetSuccessPath} component={ResetPasswordSuccess} />
       <Route path={passwordResetPath} component={ResetPassword} />
       <Route path={newPasswordPath} component={NewPassword} />
-      <Route path={registerBusinessPath} component={LoginView} />
+      <Route path={loginAdminPath} component={LoginView} />
       <Route component={BusinessRegistrationView}/>
     </Switch>
   </Layout>

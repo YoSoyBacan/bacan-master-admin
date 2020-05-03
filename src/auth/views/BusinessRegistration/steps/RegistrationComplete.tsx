@@ -5,6 +5,7 @@ import React from 'react';
 const styles = (theme: Theme) =>
   createStyles({
     title: {
+      
         flex: 1,
         textAlign: "center"
       },
@@ -17,7 +18,6 @@ export interface RegistrationCompleteProps extends WithStyles<typeof styles> {
   businessLink: string;
 }
 
-// const FAKE = true;
 const RegistrationComplete = withStyles(styles, { name: "RegistrationComplete" })(
   ({classes, businessLink}: RegistrationCompleteProps) => {
     return (
