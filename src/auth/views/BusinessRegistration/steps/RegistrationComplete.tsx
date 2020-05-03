@@ -1,8 +1,8 @@
-import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import { createStyles, WithStyles, withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import React from 'react';
 
-const styles = (theme: Theme) =>
+const styles = () =>
   createStyles({
     title: {
       
