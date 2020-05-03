@@ -256,7 +256,7 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
       data.businessLegalId = data.businessLegalId.replace(/-*\/*/g, '');
       const validLegalId = checkLegalId(data.businessLegalId, data.entityType);
       if (!validLegalId && !checkedLegalId){
-        notify({ text: `No pudimos verificar el RUC como ${data.entityType}, por favor chequea que este bien antes de continuar` });
+        notify({ text: `RUC inválido como ${data.entityType}, por favor revisa que esté bien antes de continuar`,  });
         setLoading(false);
         checkedLegalId = true;
         return;
