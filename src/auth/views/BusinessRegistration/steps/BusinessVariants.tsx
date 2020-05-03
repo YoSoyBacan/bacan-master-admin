@@ -177,12 +177,6 @@ export const BusinessVariants: React.StatelessComponent<BusinessVariantsProps> =
                   notify({ text: 'Por favor crea tus Tarjetas Bacán para continuar'});
                   return;
                 }
-                const images = maybe(() => product.images, []);
-
-                if (images.length === 0) {
-                  notify({ text: 'Por favor carga por lo menos una imagen de tu negocio'});
-                  return;
-                }
 
                 bulkProductVariantCreate.mutate({
                   id,

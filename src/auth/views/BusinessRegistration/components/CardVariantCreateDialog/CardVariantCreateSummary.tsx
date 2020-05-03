@@ -53,7 +53,8 @@ const useStyles = makeStyles(
     },
     input: {
       "& input": {
-        padding: "16px 12px 17px"
+        padding: "16px 12px 17px",
+        color: "black"
       },
       marginTop: theme.spacing.unit / 2
     },

@@ -10,7 +10,6 @@ import { FormSpacer } from '@saleor/components/FormSpacer';
 import useNotifier from '@saleor/hooks/useNotifier';
 import React, { useEffect } from 'react';
 
-import RadioGroupField from '../../../../components/RadioGroupField';
 import * as AdminClient from '../../../../fetch/adminClient';
 
 enum BankAccountType {
@@ -79,6 +78,58 @@ export interface FormData {
   businessPersonId: string;
 }
 
+const checkLegalId = (id: string, type: EntityType) => {
+  let result = false;
+  let pares = 0;
+  let impares = 0;
+  let mod = 10;
+
+  if (type === EntityType.PERSONA_JURIDICA){
+    const coeficientes = [4, 3, 2, 7, 6, 5, 4, 3, 2]
+    if (id.charAt(2) !== "9"){
+      result = false;
+      return result;
+    }
+
+    mod = 11;
+    for (let i = 0; i < 9; i++) {
+      let digito = Number(id.charAt(i));
+      digito *= coeficientes[i];
+      
+      if (i % 2 === 0) {
+        impares += digito;
+      } else {
+        pares += digito;
+      }
+    }
+
+  } else if (type === EntityType.PERSONA_NATURAL){
+    for (let i = 0; i < 9; i++) {
+      let digito = Number(id.charAt(i));
+
+      if (i % 2 === 0) { 
+        digito *= 2;
+        if (digito > 9){
+          digito -= 9;
+        }
+        impares += digito;
+      } else {
+        pares += digito;
+      }
+    }
+  } 
+
+  const decimoDigito = Number(id.charAt(9));
+  let total = pares + impares;
+  total %= mod;
+  if (total !== 0) {
+    total = mod - total;
+  } 
+
+  total === decimoDigito ? result = true : result = false;
+
+  return result;
+}
 const styles = (theme: Theme) =>
   createStyles({
     buttonContainer: {
@@ -172,58 +223,6 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
       return finalResult;
     };
 
-    const checkLegalId = (id: string, type: EntityType) => {
-      let result = false;
-      let pares = 0;
-      let impares = 0;
-      let mod = 10;
-
-      if (type === EntityType.PERSONA_JURIDICA){
-        const coeficientes = [4, 3, 2, 7, 6, 5, 4, 3, 2]
-        if (id.charAt(2) !== "9"){
-          result = false;
-          return result;
-        }
-
-        mod = 11;
-        for (let i = 0; i < 9; i++) {
-          let digito = Number(id.charAt(i));
-          digito *= coeficientes[i];
-          
-          if (i % 2 === 0) {
-            impares += digito;
-          } else {
-            pares += digito;
-          }
-        }
-
-      } else if (type === EntityType.PERSONA_NATURAL){
-        for (let i = 0; i < 9; i++) {
-          let digito = Number(id.charAt(i));
-  
-          if (i % 2 === 0) { 
-            digito *= 2;
-            if (digito > 9){
-              digito -= 9;
-            }
-            impares += digito;
-          } else {
-            pares += digito;
-          }
-        }
-      } 
-
-      const decimoDigito = Number(id.charAt(9));
-      let total = pares + impares;
-      total %= mod;
-      if (total !== 0) {
-        total = mod - total;
-      } 
-
-      total === decimoDigito ? result = true : result = false;
-
-      return result;
-    }
 
     const handleSubmit = async (data: FormData) => {
       setLoading(true);
@@ -323,6 +322,7 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
                 label="Fecha de Constitución"
                 name="businessRegisteredAt"
                 type="date"
+                placeholder="AAAA-MM-DD"
                 required
                 InputLabelProps={{
                   shrink: true
@@ -403,22 +403,24 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
                 </Select>
               </>
               <FormSpacer />
-              <RadioGroupField
-                choices={[
-                  {
-                    label: "Si",
-                    value: "true",
-                  },
-                  {
-                    label: "No",
-                    value: "false",
-                  },
-                ]}
-                label="¿ Tienes Facturación Electrónica ?"
-                name="hasAccounting"
-                onChange={handleChange}
-                value={data.hasAccounting}
-              />
+              <>
+                <InputLabel>¿ Tienes Facturación Electrónica ?</InputLabel>
+                <Select
+                  fullWidth
+                  required
+                  id="accounting-bool"
+                  value={data.hasAccounting}
+                  name="hasAccounting"
+                  onChange={handleChange}
+                >
+                  <MenuItem value={"true"}>
+                    Si
+                  </MenuItem>
+                  <MenuItem value={"false"}>
+                    No
+                  </MenuItem>
+                </Select>
+              </>
               <FormSpacer />
               <Typography variant="h5" className={classes.title}>
                 Información de Representante Legal
