@@ -4,8 +4,8 @@ import Select from '@material-ui/core/Select';
 import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
-import Checkbox from "@saleor/components/Checkbox";
 import CardSpacer from '@saleor/components/CardSpacer';
+import Checkbox from '@saleor/components/Checkbox';
 import ConfirmButton from '@saleor/components/ConfirmButton';
 import Container from '@saleor/components/Container';
 import Form from '@saleor/components/Form';
@@ -61,7 +61,14 @@ const styles = (theme: Theme) =>
     title: {
         flex: 1,
         paddingBottom: theme.spacing.unit * 2
-      },
+    },
+    checkboxContainer: {
+      display: 'flex',
+      paddingTop: '5%'
+    },
+    termsTitle: {
+      paddingTop: '1%'
+    },
     panel: {
       "& span": {
         color: theme.palette.error.contrastText
@@ -99,7 +106,7 @@ const UserAccount = withStyles(styles, { name: "UserAccount" })(
     }
 
     const handleCheckBox = (checked) => {
-      if (checked == true){
+      if (checked === true){
           setTerms(false);
       } else {
           setTerms(true);
@@ -310,15 +317,18 @@ const UserAccount = withStyles(styles, { name: "UserAccount" })(
                         "data-tc": "confirmPassword"
                     }}
                   />
-                  <div/>
-                  <Checkbox
-                    checked={acceptedTerms}
-                    disableClickPropagation
-                    onChange={() => handleCheckBox(acceptedTerms)}
-                  /> 
-                  <Typography variant="subtitle1" >
-                      Acepto <a href="https://drive.google.com/file/d/1YXpxE5IAbwFyRKkVbhRWUOAYH5JJFGtM/view?usp=sharing" target="_blank"> Terminos y Condiciones </a>
-                  </Typography>
+                  <FormSpacer />
+                  <div className={classes.checkboxContainer}>
+                    <Checkbox
+                      checked={acceptedTerms}
+                      disableClickPropagation
+                      onChange={() => handleCheckBox(acceptedTerms)}
+                    /> 
+                    <Typography variant="subtitle1" className={classes.termsTitle}>
+                        Acepto <a href="https://drive.google.com/file/d/1YXpxE5IAbwFyRKkVbhRWUOAYH5JJFGtM/view?usp=sharing" target="_blank"> Terminos y Condiciones </a>
+                    </Typography>
+                  </div>
+                  <FormSpacer />
                   <div className={classes.buttonContainer}>
                   <div/>
                     <ConfirmButton
