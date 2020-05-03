@@ -14,12 +14,16 @@ import { CardVariantCreateFormData } from './form';
 const useStyles = makeStyles((theme: Theme) => ({
   hr: {
     marginBottom: theme.spacing.unit,
-    marginTop: theme.spacing.unit / 2
+    marginTop: theme.spacing.unit / 2,
+    paddingBottom: theme.spacing.unit
+  },
+  title: {
+    paddingBottom: theme.spacing.unit * 2
   },
   valueContainer: {
     display: "grid",
     gridColumnGap: theme.spacing.unit * 3 + "px",
-    gridTemplateColumns: "repeat(3, 1fr)",
+    gridTemplateColumns: "repeat(2, 1fr)",
     marginBottom: theme.spacing.unit * 3
   }
 }));
@@ -40,7 +44,7 @@ const CardVariantSelectDiscount: React.FC<CardVariantSelectDiscountProps> = (pro
           const sales = maybe(() => saleListData.sales.edges.map(edge => edge.node), []);
           return (
             <React.Fragment>
-              <Typography color="textSecondary" variant="h5">
+              <Typography color="textSecondary" variant="h5" className={classes.title}>
                 Descuento
               </Typography>
               <Hr className={classes.hr} />

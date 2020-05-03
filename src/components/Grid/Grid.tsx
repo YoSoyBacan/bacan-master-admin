@@ -17,7 +17,7 @@ export interface GridProps extends WithStyles<typeof styles> {
 const styles = (theme: Theme) =>
   createStyles({
     default: {
-      gridTemplateColumns: "9fr 4fr"
+      gridTemplateColumns: "9fr 4fr",
     },
     inverted: {
       gridTemplateColumns: "4fr 9fr"
@@ -26,13 +26,17 @@ const styles = (theme: Theme) =>
       display: "grid",
       gridColumnGap: theme.spacing.unit * 3 + "px",
       gridRowGap: theme.spacing.unit * 3 + "px",
-      [theme.breakpoints.down("sm")]: {
+      [theme.breakpoints.down("lg")]: {
         gridRowGap: theme.spacing.unit + "px",
         gridTemplateColumns: "1fr"
       }
     },
     uniform: {
-      gridTemplateColumns: "1fr 1fr"
+      gridTemplateColumns: "1fr 1fr",
+      [theme.breakpoints.down("md")]: {
+        gridRowGap: theme.spacing.unit + "px",
+        gridTemplateColumns: "1fr"
+      }
     }
   });
 

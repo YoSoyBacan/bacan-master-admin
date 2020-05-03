@@ -41,6 +41,8 @@ function canHitNext(
   switch (step) {
     case "values":
       return data.attributes.every(attribute => attribute.values.length > 0);
+    case "discount":
+      return !!data.sale && !!data.sale.id;
     case "summary":
       return data.variants.every(variant => variant.sku !== "");
     default:
