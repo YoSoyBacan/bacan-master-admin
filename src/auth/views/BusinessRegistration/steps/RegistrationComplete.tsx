@@ -1,8 +1,8 @@
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import CardSpacer from '@saleor/components/CardSpacer';
 import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import CardSpacer from '@saleor/components/CardSpacer';
 import CardTitle from '@saleor/components/CardTitle';
 import Grid from '@saleor/components/Grid';
 import React, { useEffect } from 'react';
