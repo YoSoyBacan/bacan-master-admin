@@ -139,18 +139,18 @@ const CreateBusiness: React.StatelessComponent<
             <PageHeader title={header} />
             <Grid>
               <div>
+                <SalesObjectiveCard 
+                  data={{ salesObjective }}
+                  setSalesObjective={setSalesObjective}
+                  errors={errors}
+                />
+                <CardSpacer />
                 <ProductDetailsForm
                   data={data}
                   disabled={disabled}
                   errors={errors}
                   initialDescription={initialDescription}
                   onChange={change}
-                />
-                <CardSpacer />
-                <SalesObjectiveCard 
-                  data={{ salesObjective }}
-                  setSalesObjective={setSalesObjective}
-                  errors={errors}
                 />
               </div>
               <div>
