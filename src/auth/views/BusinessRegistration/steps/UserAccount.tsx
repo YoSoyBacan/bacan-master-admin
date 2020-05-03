@@ -140,7 +140,7 @@ const UserAccount = withStyles(styles, { name: "UserAccount" })(
         return;
       } 
 
-      if (acceptedTerms != true){
+      if (acceptedTerms !== true){
         notify({ text: 'Por favor acepte terminos y condiciones.' });
         setLoading(false);
         return;

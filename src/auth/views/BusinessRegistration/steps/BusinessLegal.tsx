@@ -178,49 +178,49 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
       let impares = 0;
       let mod = 10;
 
-      if (type == EntityType.PERSONA_JURIDICA){
-        let coeficientes = [4, 3, 2, 7, 6, 5, 4, 3, 2]
-        if (id.charAt(2) != "9"){
+      if (type === EntityType.PERSONA_JURIDICA){
+        const coeficientes = [4, 3, 2, 7, 6, 5, 4, 3, 2]
+        if (id.charAt(2) !== "9"){
           result = false;
           return result;
         }
 
         mod = 11;
-        for (var i = 0; i < 9; i++) {
+        for (let i = 0; i < 9; i++) {
           let digito = Number(id.charAt(i));
           digito *= coeficientes[i];
           
-          if (i % 2 == 0) { //impar 
+          if (i % 2 === 0) {
             impares += digito;
-          } else { //par
+          } else {
             pares += digito;
           }
         }
 
-      } else if (type == EntityType.PERSONA_NATURAL){
-        for (var i = 0; i < 9; i++) {
+      } else if (type === EntityType.PERSONA_NATURAL){
+        for (let i = 0; i < 9; i++) {
           let digito = Number(id.charAt(i));
   
-          if (i % 2 == 0) { //impar 
+          if (i % 2 === 0) { 
             digito *= 2;
             if (digito > 9){
               digito -= 9;
             }
             impares += digito;
-          } else { //par
+          } else {
             pares += digito;
           }
         }
       } 
 
-      let decimoDigito = Number(id.charAt(9));
+      const decimoDigito = Number(id.charAt(9));
       let total = pares + impares;
       total %= mod;
-      if (total != 0) {
+      if (total !== 0) {
         total = mod - total;
       } 
 
-      total == decimoDigito ? result = true : result = false;
+      total === decimoDigito ? result = true : result = false;
 
       return result;
     }
@@ -254,7 +254,7 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
       }
 
       data.businessLegalId = data.businessLegalId.replace(/-*\/*/g, '');
-      let validLegalId = checkLegalId(data.businessLegalId, data.entityType);
+      const validLegalId = checkLegalId(data.businessLegalId, data.entityType);
       if (!validLegalId && !checkedLegalId){
         notify({ text: `No pudimos verificar el RUC como ${data.entityType}, por favor chequea que este bien antes de continuar` });
         setLoading(false);
