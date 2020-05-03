@@ -4,6 +4,7 @@ import Select from '@material-ui/core/Select';
 import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
+import Checkbox from "@saleor/components/Checkbox";
 import CardSpacer from '@saleor/components/CardSpacer';
 import ConfirmButton from '@saleor/components/ConfirmButton';
 import Container from '@saleor/components/Container';
@@ -88,6 +89,7 @@ const UserAccount = withStyles(styles, { name: "UserAccount" })(
     const intl = useIntl();
     const notify = useNotifier();
     const [ loading, setLoading ] = React.useState(false);
+    const [ acceptedTerms, setTerms ] = React.useState(false);
     const [ errors, setErrors ] = React.useState<Array<{field: string, message: string}>>([])
 
     const setNewError = (field: string, message: string) => {
@@ -95,6 +97,14 @@ const UserAccount = withStyles(styles, { name: "UserAccount" })(
       newErrors.push({ field, message});
       setErrors(newErrors);
     }
+
+    const handleCheckBox = (checked) => {
+      if (checked == true){
+          setTerms(false);
+      } else {
+          setTerms(true);
+      }
+  }
 
     const handleSubmit = async (data: FormData) => {
       setLoading(true);
@@ -117,6 +127,12 @@ const UserAccount = withStyles(styles, { name: "UserAccount" })(
         setLoading(false);
         return;
       } 
+
+      if (acceptedTerms != true){
+        notify({ text: 'Por favor acepte terminos y condiciones.' });
+        setLoading(false);
+        return;
+      }
 
       try{
         const newUser = await AdminClient.post<{ uid: string }>('user', {
@@ -289,6 +305,15 @@ const UserAccount = withStyles(styles, { name: "UserAccount" })(
                         "data-tc": "confirmPassword"
                     }}
                   />
+                  <div/>
+                  <Checkbox
+                    checked={acceptedTerms}
+                    disableClickPropagation
+                    onChange={() => handleCheckBox(acceptedTerms)}
+                  /> 
+                  <Typography variant="subtitle1" >
+                      Acepto <a href="https://drive.google.com/file/d/1YXpxE5IAbwFyRKkVbhRWUOAYH5JJFGtM/view?usp=sharing" target="_blank"> Terminos y Condiciones </a>
+                  </Typography>
                   <div className={classes.buttonContainer}>
                   <div/>
                     <ConfirmButton
