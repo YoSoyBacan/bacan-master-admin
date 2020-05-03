@@ -414,7 +414,7 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
                     value: "false",
                   },
                 ]}
-                label="Estás obligado a Llevar Contabilidad?"
+                label="¿ Tienes Facturación Electrónica ?"
                 name="hasAccounting"
                 onChange={handleChange}
                 value={data.hasAccounting}

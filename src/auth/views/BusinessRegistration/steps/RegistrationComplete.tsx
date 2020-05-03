@@ -19,6 +19,10 @@ const styles = (theme: Theme) =>
     sectionTitle: {
       paddingBottom: theme.spacing.unit * 1,
       fontWeight: 600
+    },
+    sectionSubtitle: {
+      paddingBottom: theme.spacing.unit * 1,
+      fontWeight: 400
     }
   });
 
@@ -39,14 +43,14 @@ const RegistrationComplete = withStyles(styles, { name: "RegistrationComplete" }
             <Grid variant="uniform">
             <Card>
               <CardTitle 
-                title="¿ Qué viene ahora?"
+                title="Información Bacán"
               />
               <CardContent>
-                <Typography variant="subtitle1">&#128526; Espera la Siguiente Información: </Typography>
+                <Typography variant="subtitle1" className={classes.sectionTitle}>Más Información en tu E-mail &#128526; : </Typography>
                 <Typography variant="body1" className={classes.subtitle}>
-                  <br/> &emsp; &emsp;¿ Cómo funcionan los pagos a tu cuenta bancaria de tus ventas
+                  <br/> ¿ Cómo funcionan los pagos a tu cuenta bancaria de tus ventas ?
 
-                  <br/> <br/> &emsp; &emsp;¿ Cómo podrás redimir las tarjetas de tus compradores
+                  <br/> <br/> ¿ Cómo podrás redimir las tarjetas de tus compradores ?
                   <br/><br/>También te mandaremos un video explicativo de como funcionará todo. &#128249;
                 </Typography>
                 <Typography variant="caption"> Esto lo enviaremos en el transcurso de 1 semana. </Typography>
@@ -54,23 +58,21 @@ const RegistrationComplete = withStyles(styles, { name: "RegistrationComplete" }
             </Card>
             <Card>
               <CardTitle 
-                title="¿ Cómo empiezo a vender ?"
+                title="Tu Link Bacán"
               />
               <CardContent>
-                <Typography variant="h5" className={classes.sectionTitle}>Tu Link Único</Typography>
-                <Typography variant="subtitle1" className={classes.sectionTitle}><strong>{businessLink}</strong></Typography>
+                <Typography variant="subtitle1" className={classes.sectionTitle}>&emsp;&emsp;&emsp;&emsp;<strong>{businessLink}</strong></Typography>
                 <CardSpacer/>
-                <Typography variant="subtitle1">&#128076; Te recomendamos: </Typography>
+                <Typography variant="subtitle1">Te recomendamos &#128076;: </Typography>
                 <Typography variant="body1">
-                    &emsp;&emsp;Pegar el link en tu biografía de Instragram. 
-                    <br/><br/>
-                    &emsp;&emsp;Compartir el link en las descripciones de tus imágenes.
-                    <br/><br/>
-                    &emsp;&emsp;Comparte el link en tu muro de Facebook.
-                    <br/><br/>
-                    &emsp;&emsp;Envia el link a tus contactos en Whatsapp.
-                    <br/><br/>
+                  <ul>
+                    <li>Pega el link en tu biografía de Instragram.</li>
+                    <li>Comparte el link en las descripciones de tus imágenes.</li>
+                    <li>Comparte el link en tu muro de Facebook.</li>
+                    <li>Envia el link a tus contactos en Whatsapp</li>
+                  </ul>
                 </Typography>
+                <CardSpacer/>
                 <Typography variant="caption" className={classes.sectionTitle}>Recuerda, la Tienda Bacán va estar lista el Martes 5 de Mayo, 2020</Typography>
               </CardContent>
             </Card>
@@ -81,8 +83,18 @@ const RegistrationComplete = withStyles(styles, { name: "RegistrationComplete" }
               <CardContent>
                 <Typography variant="body1">
                   El lanzamiento de la tienda Bacán y tu administrador personal <a href="https://www.negocio.yosoybacan.com">negocio.yosoybacan.com</a> séra esta semana &#10024;
-                  <br/> <br/> &#10071;Atento a tu email&#10071;
-                  <br/><br/> En tu administrador podrás ver la informacíon de tus ventas, clientes, tarjetas y podrás hacer los cambios que quieras. 
+                </Typography>
+                <CardSpacer/>
+                <Typography variant="body1">
+                  &#10071;Atento a tu email&#10071;
+                </Typography>
+                <CardSpacer/>
+                <Typography variant="body1">
+                  Espera nuestro e-mail con información de como usar tu Administrador Bacán y cuando ya esté al aire.
+                </Typography>
+                <CardSpacer/>
+                <Typography variant="body1">
+                  En tu perfil podrás ver la informacíon de tus ventas, clientes, tarjetas y podrás hacer los cambios que quieras para personalizar tu negocio.
                 </Typography>
               </CardContent>
             </Card>
@@ -91,15 +103,18 @@ const RegistrationComplete = withStyles(styles, { name: "RegistrationComplete" }
                 title="Comparte"
               />
               <CardContent>
-                <Typography variant="subtitle1">Bacán Crece Cuando Todos Crecen</Typography>
+                <Typography variant="subtitle1" className={classes.sectionSubtitle}>Bacán Crece Cuando Todos Crecen</Typography>
                 <br/>
                 <br/>
                 <Typography variant="body1">
-                  Comparte este proyecto con tus familiares, amigos o conocidos que necesitan un canal de ventas online.
+                  Compartir tu link Bacán es la mejor manera de atraer a tus clientes a tu tienda de Tarjetas Bacan.
                   <br/><br/>
-                  Entre más Negocios Bacán tengamos, más clientes van a entrar a la plataforma y vas a vender muchos más .
                 </Typography>
-
+                <CardSpacer/>
+                <Typography variant="body1">
+                  Comparte este proyecto con tus familiares, amigos o conocidos que necesitas un canal de ventas on-line.
+                </Typography>
+                <CardSpacer/>
                 <Typography variant="subtitle2">
                   <br/>&#128165;¡Es muy fácil! Solo corre la voz y verás que más gente apoyará tu negocio! &#128165;
                 </Typography>
