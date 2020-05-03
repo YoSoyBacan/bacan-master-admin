@@ -363,7 +363,7 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
                 autoFocus
                 fullWidth
                 required
-                label={"Nombre de Representante Legal"}
+                label={"Nombre y Apellido de Representante Legal"}
                 name="businessPersonName"
                 onChange={handleChange}
                 value={data.businessPersonName}

@@ -53,17 +53,17 @@ const CardVariantCreateValues: React.FC<
             >
               {change => (
                 <ControlledCheckbox 
-                checked={isSelected(
-                  value.slug,
-                  data.attributes.find(
-                    dataAttribute => attribute.id === dataAttribute.id
-                  ).values,
-                  (a, b) => a === b
-                )}
-                name={`value:${value.slug}`}
-                label={`$${value.name}`}
-                onChange={change}
-              />
+                  checked={isSelected(
+                    value.slug,
+                    data.attributes.find(
+                      dataAttribute => attribute.id === dataAttribute.id
+                    ).values,
+                    (a, b) => a === b
+                  )}
+                  name={`value:${value.slug}`}
+                  label={`$${value.name}`}
+                  onChange={change}
+                />
               )}
           </Debounce>
           ))
