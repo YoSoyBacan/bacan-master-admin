@@ -81,8 +81,11 @@ const CardVariantCreateDialog: React.FC<
 
   function handleNextStep() {
     switch (step) {
-      case "values":
+      case "discount":
         setStep("summary");
+        break;
+      case "values":
+        setStep("discount");
         break;
     }
   }

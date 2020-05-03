@@ -10,6 +10,7 @@ import React from 'react';
 import CardVariantCreateSummary from './CardVariantCreateSummary';
 import CardVariantCreateTabs from './CardVariantCreateTabs';
 import CardVariantCreateValues from './CardVariantCreateValues';
+import CardVariantCreteDiscount from './CardVariantSelectDiscount';
 import { CardVariantCreateFormData } from './form';
 import { CardVariantCreateReducerAction } from './reducer';
 import { CardVariantCreateStep } from './types';
@@ -68,6 +69,14 @@ const CardVariantCreateContent: React.FC<CardVariantCreateContentProps> = ({
                   valueId
                 })
               )}
+
+            />
+          )
+        }
+        {
+          step === "discount" && (
+            <CardVariantCreteDiscount
+              data={data}
               onSaleSelect={(attributeId, valueId, value) => (
                 dispatchFormDataAction({
                   attributeId,
@@ -79,6 +88,7 @@ const CardVariantCreateContent: React.FC<CardVariantCreateContentProps> = ({
             />
           )
         }
+        
         {step === "summary" && (
           <CardVariantCreateSummary
             saleValue={data.sale.value}

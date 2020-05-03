@@ -1,1 +1,1 @@
-export type CardVariantCreateStep = "values" | "summary";
+export type CardVariantCreateStep = "values" | "summary" | "discount";
