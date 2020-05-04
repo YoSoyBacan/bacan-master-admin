@@ -65,7 +65,7 @@ export const BusinessDetailsStep: React.StatelessComponent<
                     { op: 'add', field: 'shopProviderId', value: data.productCreate.product.id }, 
                     { op: 'add', field: 'salesObjective', value: salesObjective }, 
                     { op: 'add', field: 'industry', value: industry },
-                    { op: 'add', field: 'businessLink', value: `${process.env.SHOP_URI}${generateProductUrl(data.productCreate.product.id, data.productCreate.product.name)}`},
+                    { op: 'add', field: 'businessLink', value: `${process.env.SHOP_URI}${generateProductUrl(data.productCreate.product.id, data.productCreate.product.name)}?utm_source=business&utm_medium=referral`},
                   ]
                 };
                 try {
