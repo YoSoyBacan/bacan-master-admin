@@ -38,7 +38,7 @@ const styles = (theme: Theme) =>
     root: {
       background: theme.palette.background.default,
       borderTop: "1px solid transparent",
-      boxShadow: `0 -5px 5px 0 ${theme.overrides.MuiCard.root.borderColor}`,
+      boxShadow: `0 -5px 5px 0 ${theme.palette.divider}`,
       transition: `box-shadow ${theme.transitions.duration.shortest}ms`
     },
     spacer: {
@@ -46,8 +46,8 @@ const styles = (theme: Theme) =>
     },
     stop: {
       "&$root": {
-        borderTopColor: theme.overrides.MuiCard.root.borderColor,
-        boxShadow: `0 0 0 0 ${theme.overrides.MuiCard.root.borderColor}`
+        borderTopColor: theme.palette.divider,
+        boxShadow: `0 0 0 0 ${theme.palette.divider}`
       }
     }
   });

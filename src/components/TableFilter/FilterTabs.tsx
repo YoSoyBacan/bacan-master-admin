@@ -5,7 +5,7 @@ import React from 'react';
 const styles = (theme: Theme) =>
   createStyles({
     tabsRoot: {
-      borderBottom: `1px solid ${theme.overrides.MuiCard.root.borderColor}`,
+      borderBottom: `1px solid ${theme.palette.divider}`,
       paddingLeft: `${theme.spacing() * 3}px`
     }
   });

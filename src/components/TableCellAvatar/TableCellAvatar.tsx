@@ -13,7 +13,7 @@ const styles = (theme: Theme) =>
   createStyles({
     avatar: {
       background: "none",
-      border: `1px solid ${theme.overrides.MuiCard.root.borderColor}`,
+      border: `1px solid ${theme.palette.divider}`,
       borderRadius: 2,
       color: "#bdbdbd",
       display: "inline-flex",

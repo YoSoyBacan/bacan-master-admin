@@ -19,7 +19,7 @@ const styles = (theme: Theme) =>
         }
       },
       background: theme.palette.background.paper,
-      border: `1px solid ${theme.overrides.MuiCard.root.borderColor}`,
+      border: `1px solid ${theme.palette.divider}`,
       borderRadius: theme.spacing(),
       height: 148,
       overflow: "hidden",

@@ -11,7 +11,7 @@ import React from 'react';
 const styles = (theme: Theme) =>
   createStyles({
     card: {
-      border: `1px solid ${theme.overrides.MuiCard.root.borderColor}`
+      border: `1px solid ${theme.palette.divider}`
     },
     container: {
       position: "relative"

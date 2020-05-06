@@ -62,7 +62,7 @@ const styles = (theme: Theme) =>
       "& .rst__node": {
         "&:first-of-type": {
           "& $row": {
-            borderTop: `1px ${theme.overrides.MuiCard.root.borderColor} solid`
+            borderTop: `1px ${theme.palette.divider} solid`
           }
         }
       }
@@ -70,7 +70,7 @@ const styles = (theme: Theme) =>
     row: {
       alignItems: "center",
       background: theme.palette.background.paper,
-      borderBottom: `1px ${theme.overrides.MuiCard.root.borderColor} solid`,
+      borderBottom: `1px ${theme.palette.divider} solid`,
       borderRadius: 0,
       display: "flex",
       flexDirection: "row",
