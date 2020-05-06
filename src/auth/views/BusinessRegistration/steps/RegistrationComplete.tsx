@@ -7,6 +7,8 @@ import CardTitle from '@saleor/components/CardTitle';
 import Grid from '@saleor/components/Grid';
 import React, { useEffect } from 'react';
 
+import { Firebase } from '../../../../analytics';
+
 const styles = (theme: Theme) =>
   createStyles({
     title: {
@@ -28,11 +30,21 @@ const styles = (theme: Theme) =>
 
 export interface RegistrationCompleteProps extends WithStyles<typeof styles> {
   businessLink: string;
+  userId: string;
+  adminBusinessId: string;
+  productId: string;
 }
 
 const RegistrationComplete = withStyles(styles, { name: "RegistrationComplete" })(
-  ({classes, businessLink}: RegistrationCompleteProps) => {
+  ({classes, businessLink, userId, adminBusinessId, productId }: RegistrationCompleteProps) => {
     useEffect(() => {
+      Firebase.analytics().logEvent('reg_complete', {
+        content_type: 'action',
+        content_id: 'reg_complete',
+        user_id: userId,
+        admin_busines_id: adminBusinessId,
+        business_id: productId
+      });
       setTimeout(() => {
         document.querySelector("#content-panel").scrollTo({ top: 0, behavior: 'smooth'});
       }, 100);

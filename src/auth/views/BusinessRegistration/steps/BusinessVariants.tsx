@@ -20,6 +20,7 @@ import { ProductVariantBulkCreateInput } from '@saleor/types/globalTypes';
 import React, { useEffect } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
+import { Firebase } from '../../../../analytics';
 import * as AdminClient from '../../../../fetch/adminClient';
 import { BusinessVariantsPage } from '../components/BusinessVariantsPage';
 import CardVariantCreateDialog from '../components/CardVariantCreateDialog';
@@ -27,6 +28,7 @@ import CardVariantCreateDialog from '../components/CardVariantCreateDialog';
 interface BusinessVariantsProps {
   id: string;
   adminBusinessId: string;
+  userId: string;
   params?: ProductUrlQueryParams;
   moveNextPage: () => void;
 }
@@ -34,6 +36,7 @@ interface BusinessVariantsProps {
 export const BusinessVariants: React.StatelessComponent<BusinessVariantsProps> = ({
   id,
   params,
+  userId,
   adminBusinessId,
   moveNextPage
 }) => {
@@ -47,6 +50,13 @@ export const BusinessVariants: React.StatelessComponent<BusinessVariantsProps> =
     params.ids
   );
   useEffect(() => {
+    Firebase.analytics().logEvent('reg_business_variants', {
+      content_type: 'action',
+      content_id: 'business_variant',
+      user_id: userId,
+      business_id: id,
+      admin_business_id: adminBusinessId,
+    });
     setTimeout(() => {
       document.querySelector("#content-panel").scrollTo({ top: 0, behavior: 'smooth'});
     }, 100);

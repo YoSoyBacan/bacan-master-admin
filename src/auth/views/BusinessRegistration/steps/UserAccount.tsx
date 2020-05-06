@@ -15,6 +15,7 @@ import { commonMessages } from '@saleor/intl';
 import React, { useEffect } from 'react';
 import { useIntl } from 'react-intl';
 
+import { Firebase } from '../../../../analytics';
 import * as AdminClient from '../../../../fetch/adminClient';
 import { WelcomeCard } from '../components/WelcomeCard';
 
@@ -114,6 +115,10 @@ const UserAccount = withStyles(styles, { name: "UserAccount" })(
   }
 
     useEffect(() => {
+      Firebase.analytics().logEvent('reg_sign_up', {
+        content_type: 'action',
+        content_id: 'user_page'
+      });
       setTimeout(() => {
         document.querySelector("#content-panel").scrollTo({ top: 0, behavior: 'smooth'});
       }, 100);

@@ -8,6 +8,7 @@ import { ProductCreate } from '@saleor/products/types/ProductCreate';
 import React, { useEffect } from 'react';
 import { useIntl } from 'react-intl';
 
+import { Firebase } from '../../../../analytics';
 import { DEFAULT_INITIAL_SEARCH_DATA } from '../../../../config';
 import { generateProductUrl } from '../../../../core/utils';
 import * as AdminClient from '../../../../fetch/adminClient';
@@ -22,13 +23,14 @@ interface BusinessDetailsProps {
   moveBackPage: () => void;
   businessId: string;
   buenPlanBusinessId: string;
+  userId: string;
   setProductId: (id: string) => void;
   setBusinessLink: (link: string) => void;
 }
 
 export const BusinessDetailsStep: React.StatelessComponent<
   BusinessDetailsProps
-> = ({ moveNextPage, moveBackPage, businessId, buenPlanBusinessId, setBusinessLink, setProductId }) => {
+> = ({ moveNextPage, moveBackPage, userId, businessId, buenPlanBusinessId, setBusinessLink, setProductId }) => {
   const notify = useNotifier();
   const shop = useShop();
   const intl = useIntl();
@@ -36,6 +38,13 @@ export const BusinessDetailsStep: React.StatelessComponent<
   const [salesObjective, setSalesObjective ] = React.useState(0);
   const [industry, setIndustry ] = React.useState('');
   useEffect(() => {
+    Firebase.analytics().logEvent('reg_business_details', {
+      content_type: 'action',
+      content_id: 'business_details',
+      user_id: userId,
+      admin_business_id: businessId,
+      provider_business_id: buenPlanBusinessId
+    });
     setTimeout(() => {
       document.querySelector("#content-panel").scrollTo({ top: 0, behavior: 'smooth'});
     }, 100);

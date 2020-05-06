@@ -10,6 +10,7 @@ import { FormSpacer } from '@saleor/components/FormSpacer';
 import useNotifier from '@saleor/hooks/useNotifier';
 import React, { useEffect } from 'react';
 
+import { Firebase } from '../../../../analytics';
 import * as AdminClient from '../../../../fetch/adminClient';
 
 enum BankAccountType {
@@ -185,6 +186,11 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
     }
 
     useEffect(() => {
+      Firebase.analytics().logEvent('reg_business_legal', {
+        content_type: 'action',
+        content_id: 'business_legal',
+        user_id: userId
+      });
       setTimeout(() => {
         document.querySelector("#content-panel").scrollTo({ top: 0, behavior: 'smooth'});
       }, 100);

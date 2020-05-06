@@ -8,6 +8,7 @@ import useUser from '@saleor/hooks/useUser';
 import { ProductUrlQueryParams } from '@saleor/products/urls';
 import React from 'react';
 
+import { Firebase } from '../../../analytics';
 import BusinessDetails from './steps/BusinessDetails';
 import BusinessLegal from './steps/BusinessLegal';
 import { BusinessVariants } from './steps/BusinessVariants';
@@ -67,6 +68,7 @@ const BusinessRegistration = withStyles(styles, { name: "BusinessRegistration" }
     // For admin.yosoybacan.com go to login
     React.useEffect(() => {
       const { host } = window.location;
+      Firebase.analytics();
       if (host === 'admin.yosoybacan.com') {
         navigate('/login/');
       }
@@ -90,13 +92,13 @@ const BusinessRegistration = withStyles(styles, { name: "BusinessRegistration" }
               return <BusinessLegal classes={classes} userId={userId} setBusinessId={setBusinessId} handleNext={handleNext} setBuenPlanBusinessId={setBuenPlanBusinessId}/>
             }
             case 2: {
-              return <BusinessDetails moveNextPage={handleNext} moveBackPage={handleBack} businessId={businessId} buenPlanBusinessId={buenPlanBusinessId} setProductId={setProductId} setBusinessLink={setBusinessLink}/>
+              return <BusinessDetails moveNextPage={handleNext} moveBackPage={handleBack} businessId={businessId} buenPlanBusinessId={buenPlanBusinessId} setProductId={setProductId} setBusinessLink={setBusinessLink} userId={userId}/>
             }
             case 3: {
-              return <BusinessVariants id={productId} moveNextPage={handleNext} params={params} adminBusinessId={businessId}/>
+              return <BusinessVariants id={productId} moveNextPage={handleNext} params={params} adminBusinessId={businessId} userId={userId}/>
             }
             case 4: {
-              return <RegistrationComplete classes={classes} businessLink={businessLink}/>;
+              return <RegistrationComplete classes={classes} businessLink={businessLink} userId={userId} adminBusinessId={businessId} productId={productId} />;
             }
             default: {
                 return <UserAccount classes={classes} setUserId={setUserId} handleNext={handleNext}/>;
