@@ -14,7 +14,8 @@
       "lodash-es",
       "@assets",
       "@locale",
-      "@saleor"
+      "@saleor",
+      "firebase"
     ]
   }
 }
