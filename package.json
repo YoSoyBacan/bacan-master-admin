@@ -4,12 +4,12 @@
   "main": "src/index.tsx",
   "repository": {
     "type": "git",
-    "url": "git://github.com/mirumee/saleor-dashboard.git"
+    "url": "https://github.com/YoSoyBacan/bacan-master-admin"
   },
   "author": "Yo Soy Bacan",
   "license": "Private",
   "bugs": {
-    "url": "https://github.com/mirumee/saleor-dashboard/issues"
+    "url": "https://github.com/YoSoyBacan/bacan-master-admin/issues"
   },
   "homepage": "https://admin.yosoybacan.com/",
   "engines": {

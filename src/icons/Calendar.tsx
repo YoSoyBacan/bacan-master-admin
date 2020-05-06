@@ -1,5 +1,5 @@
-import createSvgIcon from "@material-ui/icons/utils/createSvgIcon";
-import React from "react";
+import createSvgIcon from '@material-ui/icons/utils/createSvgIcon';
+import React from 'react';
 
 export const Calendar = createSvgIcon(
   <>
@@ -22,7 +22,7 @@ export const Calendar = createSvgIcon(
         <stop offset="1" stopColor="#3EE7CD" />
       </linearGradient>
     </defs>
-  </>
+  </>,
+  "Calendar"
 );
-Calendar.displayName = "Calendar";
 export default Calendar;
