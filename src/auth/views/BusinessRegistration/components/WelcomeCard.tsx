@@ -14,12 +14,12 @@ const styles = (theme: Theme) =>
     illustrationContainer: {
       display: "flex",
       justifyContent: "space-between",
-      paddingTop: theme.spacing.unit * 2,
-      paddingBottom: theme.spacing.unit * 2
+      paddingTop: theme.spacing() * 2,
+      paddingBottom: theme.spacing() * 2
     },
     text: {
       flex: 1,
-      paddingBottom: theme.spacing.unit * 2,
+      paddingBottom: theme.spacing() * 2,
     },
     title: {
       fontSize: "1rem",
@@ -28,8 +28,8 @@ const styles = (theme: Theme) =>
     formTitle: {
       fontSize: "2rem",
       fontWeight: 600,
-      padding: theme.spacing.unit * 1,
-      paddingLeft: theme.spacing.unit * 2,
+      padding: theme.spacing() * 1,
+      paddingLeft: theme.spacing() * 2,
       [theme.breakpoints.down("sm")]: {
         fontSize: "1.5rem",
         fontWeight: 600,

@@ -1,30 +1,20 @@
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableFooter from "@material-ui/core/TableFooter";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Typography from "@material-ui/core/Typography";
-import classNames from "classnames";
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableFooter from '@material-ui/core/TableFooter';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Typography from '@material-ui/core/Typography';
+import Skeleton from '@saleor/components/Skeleton';
+import TablePagination from '@saleor/components/TablePagination';
+import { getUserInitials, getUserName, maybe, renderCollection } from '@saleor/misc';
+import { ListProps } from '@saleor/types';
+import classNames from 'classnames';
+import React from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 
-import Skeleton from "@saleor/components/Skeleton";
-import TablePagination from "@saleor/components/TablePagination";
-import {
-  getUserInitials,
-  getUserName,
-  maybe,
-  renderCollection
-} from "@saleor/misc";
-import { ListProps } from "@saleor/types";
-import { StaffList_staffUsers_edges_node } from "../../types/StaffList";
+import { StaffList_staffUsers_edges_node } from '../../types/StaffList';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -35,7 +25,7 @@ const styles = (theme: Theme) =>
       float: "left",
       height: 47,
       justifyContent: "center",
-      marginRight: theme.spacing.unit * 1 + "px",
+      marginRight: theme.spacing() * 1 + "px",
       overflow: "hidden",
       width: 47
     },

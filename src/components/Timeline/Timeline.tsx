@@ -1,17 +1,12 @@
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
-import CardContent from "@material-ui/core/CardContent";
-import deepPurple from "@material-ui/core/colors/deepPurple";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import PersonIcon from "@material-ui/icons/Person";
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import CardContent from '@material-ui/core/CardContent';
+import deepPurple from '@material-ui/core/colors/deepPurple';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import PersonIcon from '@material-ui/icons/Person';
+import React from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -21,10 +16,10 @@ const styles = (theme: Theme) =>
         width: "100%"
       },
       alignSelf: "flex-start",
-      marginRight: theme.spacing.unit * 3.5
+      marginRight: theme.spacing() * 3.5
     },
     cardActionsExpanded: {
-      maxHeight: theme.spacing.unit * 6
+      maxHeight: theme.spacing() * 6
     },
     input: {
       "& > div": {
@@ -41,10 +36,10 @@ const styles = (theme: Theme) =>
       background: theme.palette.background.paper
     },
     noteRoot: {
-      left: -theme.spacing.unit * 8.5 - 1,
-      marginBottom: theme.spacing.unit * 3,
+      left: -theme.spacing() * 8.5 - 1,
+      marginBottom: theme.spacing() * 3,
       position: "relative",
-      width: `calc(100% + ${theme.spacing.unit * 8.5}px)`
+      width: `calc(100% + ${theme.spacing() * 8.5}px)`
     },
     noteTitle: {
       "&:last-child": {
@@ -54,14 +49,14 @@ const styles = (theme: Theme) =>
       alignItems: "center",
       background: theme.palette.background.default,
       display: "flex",
-      paddingLeft: theme.spacing.unit * 3
+      paddingLeft: theme.spacing() * 3
     },
     root: {
-      borderColor: theme.overrides.MuiCard.root.borderColor,
+      borderColor: theme.palette.divider,
       borderStyle: "solid",
       borderWidth: "0 0 0 2px",
       marginLeft: 20,
-      paddingLeft: theme.spacing.unit * 3
+      paddingLeft: theme.spacing() * 3
     }
   });
 

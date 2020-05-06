@@ -1,20 +1,15 @@
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import classNames from "classnames";
-import React from "react";
-import { FormattedMessage } from "react-intl";
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import { buttonMessages } from '@saleor/intl';
+import classNames from 'classnames';
+import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
-import { buttonMessages } from "@saleor/intl";
-import { ProductImage } from "../../types/ProductImage";
+import { ProductImage } from '../../types/ProductImage';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -27,18 +22,18 @@ const styles = (theme: Theme) =>
     imageContainer: {
       background: "#ffffff",
       border: "1px solid #eaeaea",
-      borderRadius: theme.spacing.unit,
+      borderRadius: theme.spacing(),
       cursor: "pointer",
-      height: theme.spacing.unit * 21.5,
+      height: theme.spacing() * 21.5,
       overflow: "hidden",
-      padding: theme.spacing.unit * 2,
+      padding: theme.spacing() * 2,
       position: "relative",
       transitionDuration: theme.transitions.duration.standard + "ms"
     },
     root: {
       display: "grid",
-      gridColumnGap: `${theme.spacing.unit * 2}px`,
-      gridRowGap: `${theme.spacing.unit * 2}px`,
+      gridColumnGap: `${theme.spacing() * 2}px`,
+      gridRowGap: `${theme.spacing() * 2}px`,
       gridTemplateColumns: "repeat(3, 1fr)",
       maxWidth: "100%",
       width: theme.breakpoints.values.lg,

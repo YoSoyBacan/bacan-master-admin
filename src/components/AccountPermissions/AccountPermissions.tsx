@@ -1,24 +1,18 @@
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
-
-import CardTitle from "@saleor/components/CardTitle";
-import { ControlledCheckbox } from "@saleor/components/ControlledCheckbox";
-import { ShopInfo_shop_permissions } from "@saleor/components/Shop/types/ShopInfo";
-import Skeleton from "@saleor/components/Skeleton";
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import CardTitle from '@saleor/components/CardTitle';
+import { ControlledCheckbox } from '@saleor/components/ControlledCheckbox';
+import { ShopInfo_shop_permissions } from '@saleor/components/Shop/types/ShopInfo';
+import Skeleton from '@saleor/components/Skeleton';
+import React from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 const styles = (theme: Theme) =>
   createStyles({
     checkboxContainer: {
-      marginTop: theme.spacing.unit
+      marginTop: theme.spacing()
     },
     hr: {
       backgroundColor: theme.overrides.MuiCard.root.borderColor,

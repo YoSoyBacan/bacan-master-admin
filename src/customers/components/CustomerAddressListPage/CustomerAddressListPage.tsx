@@ -1,22 +1,16 @@
-import Button from "@material-ui/core/Button";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
+import Button from '@material-ui/core/Button';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import AppHeader from '@saleor/components/AppHeader';
+import Container from '@saleor/components/Container';
+import PageHeader from '@saleor/components/PageHeader';
+import React from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
-
-import AppHeader from "@saleor/components/AppHeader";
-import Container from "@saleor/components/Container";
-import PageHeader from "@saleor/components/PageHeader";
-import { maybe, renderCollection } from "../../../misc";
-import { AddressTypeEnum } from "../../../types/globalTypes";
-import { CustomerAddresses_user } from "../../types/CustomerAddresses";
-import CustomerAddress from "../CustomerAddress/CustomerAddress";
+import { maybe, renderCollection } from '../../../misc';
+import { AddressTypeEnum } from '../../../types/globalTypes';
+import { CustomerAddresses_user } from '../../types/CustomerAddresses';
+import CustomerAddress from '../CustomerAddress/CustomerAddress';
 
 export interface CustomerAddressListPageProps {
   customer: CustomerAddresses_user;
@@ -31,21 +25,21 @@ export interface CustomerAddressListPageProps {
 const styles = (theme: Theme) =>
   createStyles({
     addButton: {
-      marginTop: theme.spacing.unit * 2
+      marginTop: theme.spacing() * 2
     },
     description: {
-      marginTop: theme.spacing.unit
+      marginTop: theme.spacing()
     },
     empty: {
-      margin: `${theme.spacing.unit * 13}px auto 0`,
+      margin: `${theme.spacing() * 13}px auto 0`,
       textAlign: "center",
       width: 600
     },
     root: {
-      columnGap: theme.spacing.unit * 3 + "px",
+      columnGap: theme.spacing() * 3 + "px",
       display: "grid",
       gridTemplateColumns: "repeat(3, 1fr)",
-      rowGap: theme.spacing.unit * 3 + "px"
+      rowGap: theme.spacing() * 3 + "px"
     }
   });
 

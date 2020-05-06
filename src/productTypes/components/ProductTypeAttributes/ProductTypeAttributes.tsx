@@ -1,34 +1,26 @@
-import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
-import IconButton from "@material-ui/core/IconButton";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import TableCell from "@material-ui/core/TableCell";
-import TableRow from "@material-ui/core/TableRow";
-import DeleteIcon from "@material-ui/icons/Delete";
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import IconButton from '@material-ui/core/IconButton';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableCell from '@material-ui/core/TableCell';
+import TableRow from '@material-ui/core/TableRow';
+import DeleteIcon from '@material-ui/icons/Delete';
+import CardTitle from '@saleor/components/CardTitle';
+import Checkbox from '@saleor/components/Checkbox';
+import Skeleton from '@saleor/components/Skeleton';
+import { SortableTableBody, SortableTableRow } from '@saleor/components/SortableTable';
+import TableHead from '@saleor/components/TableHead';
+import { maybe, renderCollection, stopPropagation } from '@saleor/misc';
+import { ListActions, ReorderAction } from '@saleor/types';
+import { AttributeTypeEnum } from '@saleor/types/globalTypes';
+import React from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 
-import CardTitle from "@saleor/components/CardTitle";
-import Checkbox from "@saleor/components/Checkbox";
-import Skeleton from "@saleor/components/Skeleton";
-import {
-  SortableTableBody,
-  SortableTableRow
-} from "@saleor/components/SortableTable";
-import TableHead from "@saleor/components/TableHead";
-import { maybe, renderCollection, stopPropagation } from "@saleor/misc";
-import { ListActions, ReorderAction } from "@saleor/types";
-import { AttributeTypeEnum } from "@saleor/types/globalTypes";
 import {
   ProductTypeDetails_productType_productAttributes,
-  ProductTypeDetails_productType_variantAttributes
-} from "../../types/ProductTypeDetails";
+  ProductTypeDetails_productType_variantAttributes,
+} from '../../types/ProductTypeDetails';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -40,7 +32,7 @@ const styles = (theme: Theme) =>
       "&:last-child": {
         paddingRight: 0
       },
-      width: 48 + theme.spacing.unit * 1.5
+      width: 48 + theme.spacing() * 1.5
     },
     link: {
       cursor: "pointer"

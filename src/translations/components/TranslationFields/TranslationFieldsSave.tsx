@@ -1,17 +1,9 @@
-import Button from "@material-ui/core/Button";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import React from "react";
-import { FormattedMessage } from "react-intl";
-
-import ConfirmButton, {
-  ConfirmButtonTransitionState
-} from "@saleor/components/ConfirmButton";
-import { buttonMessages } from "@saleor/intl";
+import Button from '@material-ui/core/Button';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import ConfirmButton, { ConfirmButtonTransitionState } from '@saleor/components/ConfirmButton';
+import { buttonMessages } from '@saleor/intl';
+import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
 interface TranslationFieldsSaveProps {
   saveButtonState: ConfirmButtonTransitionState;
@@ -22,12 +14,12 @@ interface TranslationFieldsSaveProps {
 const styles = (theme: Theme) =>
   createStyles({
     confirmButton: {
-      marginLeft: theme.spacing.unit
+      marginLeft: theme.spacing()
     },
     root: {
       display: "flex",
       flexDirection: "row-reverse",
-      marginTop: theme.spacing.unit
+      marginTop: theme.spacing()
     }
   });
 

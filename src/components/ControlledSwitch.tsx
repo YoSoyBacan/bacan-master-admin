@@ -1,12 +1,12 @@
-import { createStyles, Theme, withStyles, WithStyles } from "@material-ui/core";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Switch from "@material-ui/core/Switch";
-import React from "react";
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Switch from '@material-ui/core/Switch';
+import React from 'react';
 
 const styles = (theme: Theme) =>
   createStyles({
     label: {
-      marginLeft: theme.spacing.unit * 3.5
+      marginLeft: theme.spacing() * 3.5
     },
     labelText: {
       fontSize: 14

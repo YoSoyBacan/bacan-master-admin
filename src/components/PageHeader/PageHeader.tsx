@@ -1,14 +1,9 @@
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import React from "react";
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import React from 'react';
 
-import ExtendedPageHeader from "../ExtendedPageHeader";
-import Skeleton from "../Skeleton";
+import ExtendedPageHeader from '../ExtendedPageHeader';
+import Skeleton from '../Skeleton';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -18,7 +13,7 @@ const styles = (theme: Theme) =>
     title: {
       flex: 1,
       fontSize: 24,
-      paddingBottom: theme.spacing.unit * 2
+      paddingBottom: theme.spacing() * 2
     }
   });
 

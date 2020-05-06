@@ -1,28 +1,30 @@
-import { Theme } from "@material-ui/core/styles";
-import { makeStyles } from "@material-ui/styles";
-import React from "react";
+import { Theme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
+import { ProductDetails_product_productType_variantAttributes } from '@saleor/products/types/ProductDetails';
+import {
+  ProductVariantBulkCreate_productVariantBulkCreate_bulkProductErrors,
+} from '@saleor/products/types/ProductVariantBulkCreate';
+import { isSelected } from '@saleor/utils/lists';
+import React from 'react';
 
-import { ProductDetails_product_productType_variantAttributes } from "@saleor/products/types/ProductDetails";
-import { ProductVariantBulkCreate_productVariantBulkCreate_bulkProductErrors } from "@saleor/products/types/ProductVariantBulkCreate";
-import { isSelected } from "@saleor/utils/lists";
-import { ProductVariantCreateFormData } from "./form";
-import ProductVariantCreatePrices from "./ProductVariantCreatePrices";
-import ProductVariantCreateSummary from "./ProductVariantCreateSummary";
-import ProductVariantCreateTabs from "./ProductVariantCreateTabs";
-import ProductVariantCreateValues from "./ProductVariantCreateValues";
-import { ProductVariantCreateReducerAction } from "./reducer";
-import { ProductVariantCreateStep } from "./types";
+import { ProductVariantCreateFormData } from './form';
+import ProductVariantCreatePrices from './ProductVariantCreatePrices';
+import ProductVariantCreateSummary from './ProductVariantCreateSummary';
+import ProductVariantCreateTabs from './ProductVariantCreateTabs';
+import ProductVariantCreateValues from './ProductVariantCreateValues';
+import { ProductVariantCreateReducerAction } from './reducer';
+import { ProductVariantCreateStep } from './types';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     maxHeight: 400,
     overflowX: "hidden",
     overflowY: "scroll",
-    paddingLeft: theme.spacing.unit * 3,
-    paddingRight: theme.spacing.unit * 2,
+    paddingLeft: theme.spacing() * 3,
+    paddingRight: theme.spacing() * 2,
     position: "relative",
-    right: theme.spacing.unit * 3,
-    width: `calc(100% + ${theme.spacing.unit * 3}px)`
+    right: theme.spacing() * 3,
+    width: `calc(100% + ${theme.spacing() * 3}px)`
   }
 }));
 

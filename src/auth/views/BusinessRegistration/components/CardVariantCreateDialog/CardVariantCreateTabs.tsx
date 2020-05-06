@@ -21,11 +21,11 @@ const useStyles = makeStyles(
       borderBottom: `1px solid ${theme.palette.divider}`,
       display: "flex",
       justifyContent: "space-between",
-      marginBottom: theme.spacing.unit * 3
+      marginBottom: theme.spacing() * 3
     },
     tab: {
       flex: 1,
-      paddingBottom: theme.spacing.unit,
+      paddingBottom: theme.spacing(),
       userSelect: "none"
     },
     tabActive: {

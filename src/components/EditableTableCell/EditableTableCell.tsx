@@ -1,18 +1,12 @@
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import TableCell from "@material-ui/core/TableCell";
-import TextField, { TextFieldProps } from "@material-ui/core/TextField";
-import Typography from "@material-ui/core/Typography";
-import classNames from "classnames";
-import React from "react";
-
-import useForm from "@saleor/hooks/useForm";
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import TableCell from '@material-ui/core/TableCell';
+import TextField, { TextFieldProps } from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
+import useForm from '@saleor/hooks/useForm';
+import classNames from 'classnames';
+import React from 'react';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -33,10 +27,10 @@ const styles = (theme: Theme) =>
     },
     root: {
       left: 0,
-      minWidth: theme.spacing.unit * 20,
+      minWidth: theme.spacing() * 20,
       position: "absolute",
       top: 0,
-      width: `calc(100% + ${4 * theme.spacing.unit}px)`,
+      width: `calc(100% + ${4 * theme.spacing()}px)`,
       zIndex: 2
     },
     text: {

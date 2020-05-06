@@ -1,11 +1,6 @@
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import classNames from "classnames";
-import React from "react";
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import classNames from 'classnames';
+import React from 'react';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -16,9 +11,9 @@ const styles = (theme: Theme) =>
         maxWidth: theme.breakpoints.width("lg")
       },
       [theme.breakpoints.up("sm")]: {
-        padding: `0 ${theme.spacing.unit * 3}px`
+        padding: `0 ${theme.spacing() * 3}px`
       },
-      padding: `0 ${theme.spacing.unit}px`
+      padding: `0 ${theme.spacing()}px`
     }
   });
 

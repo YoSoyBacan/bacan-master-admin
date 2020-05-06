@@ -1,28 +1,22 @@
-import Card from "@material-ui/core/Card";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableRow from "@material-ui/core/TableRow";
-import Typography from "@material-ui/core/Typography";
-import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
-import React from "react";
-import { FormattedMessage } from "react-intl";
-
-import RequirePermissions from "@saleor/components/RequirePermissions";
-import Skeleton from "@saleor/components/Skeleton";
-import { UserPermissionProps } from "@saleor/types";
-import { PermissionEnum } from "@saleor/types/globalTypes";
+import Card from '@material-ui/core/Card';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableRow from '@material-ui/core/TableRow';
+import Typography from '@material-ui/core/Typography';
+import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
+import RequirePermissions from '@saleor/components/RequirePermissions';
+import Skeleton from '@saleor/components/Skeleton';
+import { UserPermissionProps } from '@saleor/types';
+import { PermissionEnum } from '@saleor/types/globalTypes';
+import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
 const styles = (theme: Theme) =>
   createStyles({
     arrowIcon: {
-      width: theme.spacing.unit * 4
+      width: theme.spacing() * 4
     },
     tableRow: {
       cursor: "pointer"

@@ -1,19 +1,14 @@
-import Button from "@material-ui/core/Button";
-import ClickAwayListener from "@material-ui/core/ClickAwayListener";
-import Grow from "@material-ui/core/Grow";
-import IconButton from "@material-ui/core/IconButton";
-import Paper from "@material-ui/core/Paper";
-import Popper from "@material-ui/core/Popper";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import DeleteIcon from "@material-ui/icons/Delete";
-import { ContentState } from "draft-js";
-import React from "react";
-import { FormattedMessage } from "react-intl";
+import Button from '@material-ui/core/Button';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import Grow from '@material-ui/core/Grow';
+import IconButton from '@material-ui/core/IconButton';
+import Paper from '@material-ui/core/Paper';
+import Popper from '@material-ui/core/Popper';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import DeleteIcon from '@material-ui/icons/Delete';
+import { ContentState } from 'draft-js';
+import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
 interface ImageEntityProps {
   children: React.ReactNode;
@@ -40,7 +35,7 @@ const styles = (theme: Theme) =>
       alignItems: "center",
       display: "flex",
       minHeight: 72,
-      padding: theme.spacing.unit * 1.5
+      padding: theme.spacing() * 1.5
     }
   });
 

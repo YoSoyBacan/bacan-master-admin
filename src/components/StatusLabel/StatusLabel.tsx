@@ -1,13 +1,8 @@
-import yellow from "@material-ui/core/colors/yellow";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import Typography, { TypographyProps } from "@material-ui/core/Typography";
-import classNames from "classnames";
-import React from "react";
+import yellow from '@material-ui/core/colors/yellow';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import Typography, { TypographyProps } from '@material-ui/core/Typography';
+import classNames from 'classnames';
+import React from 'react';
 
 const styles = (theme: Theme) => {
   const dot = {
@@ -15,7 +10,7 @@ const styles = (theme: Theme) => {
     content: "''",
     display: "block",
     height: 8,
-    left: -theme.spacing.unit * 2,
+    left: -theme.spacing() * 2,
     position: "absolute" as "absolute",
     top: "calc(50% - 5px)",
     width: 8
@@ -29,7 +24,7 @@ const styles = (theme: Theme) => {
     },
     root: {
       display: "inline-block",
-      marginLeft: theme.spacing.unit + 8,
+      marginLeft: theme.spacing() + 8,
       position: "relative"
     },
     span: {

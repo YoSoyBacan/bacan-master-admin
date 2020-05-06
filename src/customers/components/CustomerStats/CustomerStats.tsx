@@ -1,26 +1,21 @@
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import CardTitle from '@saleor/components/CardTitle';
+import { DateTime } from '@saleor/components/Date';
+import { Hr } from '@saleor/components/Hr';
+import Skeleton from '@saleor/components/Skeleton';
+import React from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 
-import CardTitle from "@saleor/components/CardTitle";
-import { DateTime } from "@saleor/components/Date";
-import { Hr } from "@saleor/components/Hr";
-import Skeleton from "@saleor/components/Skeleton";
-import { maybe } from "../../../misc";
-import { CustomerDetails_user } from "../../types/CustomerDetails";
+import { maybe } from '../../../misc';
+import { CustomerDetails_user } from '../../types/CustomerDetails';
 
 const styles = (theme: Theme) =>
   createStyles({
     label: {
-      marginBottom: theme.spacing.unit
+      marginBottom: theme.spacing()
     },
     value: {
       fontSize: 24

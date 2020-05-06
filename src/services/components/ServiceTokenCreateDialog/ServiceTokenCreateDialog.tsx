@@ -1,25 +1,22 @@
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import Paper from "@material-ui/core/Paper";
-import { Theme } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/styles";
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
-
-import { fade } from "@material-ui/core/styles/colorManipulator";
-import CardSpacer from "@saleor/components/CardSpacer";
-import ConfirmButton, {
-  ConfirmButtonTransitionState
-} from "@saleor/components/ConfirmButton";
-import Form from "@saleor/components/Form";
-import FormSpacer from "@saleor/components/FormSpacer";
-import useModalDialogOpen from "@saleor/hooks/useModalDialogOpen";
-import { buttonMessages } from "@saleor/intl";
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Paper from '@material-ui/core/Paper';
+import { Theme } from '@material-ui/core/styles';
+import { fade } from '@material-ui/core/styles/colorManipulator';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/styles';
+import CardSpacer from '@saleor/components/CardSpacer';
+import ConfirmButton, { ConfirmButtonTransitionState } from '@saleor/components/ConfirmButton';
+import Form from '@saleor/components/Form';
+import FormSpacer from '@saleor/components/FormSpacer';
+import useModalDialogOpen from '@saleor/hooks/useModalDialogOpen';
+import { buttonMessages } from '@saleor/intl';
+import React from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 export interface ServiceTokenCreateDialogProps {
   confirmButtonState: ConfirmButtonTransitionState;
@@ -34,16 +31,16 @@ type ServiceTokenCreateStep = "form" | "summary";
 const useStyles = makeStyles(
   (theme: Theme) => ({
     cancel: {
-      marginRight: theme.spacing.unit
+      marginRight: theme.spacing()
     },
     copy: {
-      marginTop: theme.spacing.unit,
+      marginTop: theme.spacing(),
       position: "relative",
-      right: theme.spacing.unit
+      right: theme.spacing()
     },
     paper: {
       background: fade(theme.palette.primary.main, 0.05),
-      padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px`
+      padding: `${theme.spacing() * 2}px ${theme.spacing() * 3}px`
     }
   }),
   {

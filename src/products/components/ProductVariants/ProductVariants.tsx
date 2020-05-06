@@ -44,7 +44,7 @@ const styles = (theme: Theme) =>
     colStatus: {},
     denseTable: {
       "& td, & th": {
-        paddingRight: theme.spacing.unit * 3
+        paddingRight: theme.spacing() * 3
       }
     },
     link: {

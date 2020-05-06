@@ -136,8 +136,8 @@ const styles = (theme: Theme) =>
     buttonContainer: {
       display: "flex",
       justifyContent: "space-between",
-      paddingTop: theme.spacing.unit * 2,
-      paddingBottom: theme.spacing.unit * 2
+      paddingTop: theme.spacing() * 2,
+      paddingBottom: theme.spacing() * 2
     },
     nexButton: {
       width: 140
@@ -152,16 +152,16 @@ const styles = (theme: Theme) =>
     },
     title: {
       flex: 1,
-      paddingBottom: theme.spacing.unit * 2,
+      paddingBottom: theme.spacing() * 2,
     },
     panel: {
       "& span": {
         color: theme.palette.error.contrastText,
       },
       background: theme.palette.error.main,
-      borderRadius: theme.spacing.unit,
-      marginBottom: theme.spacing.unit * 3,
-      padding: theme.spacing.unit * 1.5,
+      borderRadius: theme.spacing(),
+      marginBottom: theme.spacing() * 3,
+      padding: theme.spacing() * 1.5,
     },
   });
 

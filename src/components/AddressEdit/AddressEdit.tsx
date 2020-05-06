@@ -1,26 +1,19 @@
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import React from "react";
-import { useIntl } from "react-intl";
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import { AddressTypeInput } from '@saleor/customers/types';
+import { commonMessages } from '@saleor/intl';
+import { FormErrors } from '@saleor/types';
+import React from 'react';
+import { useIntl } from 'react-intl';
 
-import { AddressTypeInput } from "@saleor/customers/types";
-import { commonMessages } from "@saleor/intl";
-import { FormErrors } from "@saleor/types";
-import FormSpacer from "../FormSpacer";
-import SingleAutocompleteSelectField, {
-  SingleAutocompleteChoiceType
-} from "../SingleAutocompleteSelectField";
+import FormSpacer from '../FormSpacer';
+import SingleAutocompleteSelectField, { SingleAutocompleteChoiceType } from '../SingleAutocompleteSelectField';
 
 const styles = (theme: Theme) =>
   createStyles({
     root: {
       display: "grid",
-      gridColumnGap: `${theme.spacing.unit * 2}px`,
+      gridColumnGap: `${theme.spacing() * 2}px`,
       gridTemplateColumns: "1fr 1fr"
     }
   });

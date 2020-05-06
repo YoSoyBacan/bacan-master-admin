@@ -1,12 +1,7 @@
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import classNames from "classnames";
-import React from "react";
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import classNames from 'classnames';
+import React from 'react';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -32,7 +27,7 @@ const styles = (theme: Theme) =>
       lineHeight: 1
     },
     toolbar: {
-      marginRight: -theme.spacing.unit
+      marginRight: -theme.spacing()
     }
   });
 

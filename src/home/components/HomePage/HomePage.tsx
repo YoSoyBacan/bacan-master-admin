@@ -1,40 +1,31 @@
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import React from "react";
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import CardSpacer from '@saleor/components/CardSpacer';
+import Container from '@saleor/components/Container';
+import Grid from '@saleor/components/Grid';
+import Money from '@saleor/components/Money';
+import RequirePermissions from '@saleor/components/RequirePermissions';
+import Skeleton from '@saleor/components/Skeleton';
+import { UserPermissionProps } from '@saleor/types';
+import { PermissionEnum } from '@saleor/types/globalTypes';
+import React from 'react';
 
-import CardSpacer from "@saleor/components/CardSpacer";
-import Container from "@saleor/components/Container";
-import Grid from "@saleor/components/Grid";
-import Money from "@saleor/components/Money";
-import RequirePermissions from "@saleor/components/RequirePermissions";
-import Skeleton from "@saleor/components/Skeleton";
-import { UserPermissionProps } from "@saleor/types";
-import { PermissionEnum } from "@saleor/types/globalTypes";
-import Orders from "../../../icons/Orders";
-import Sales from "../../../icons/Sales";
-import {
-  Home_activities_edges_node,
-  Home_productTopToday_edges_node,
-  Home_salesToday_gross
-} from "../../types/Home";
-import HomeActivityCard from "../HomeActivityCard";
-import HomeAnalyticsCard from "../HomeAnalyticsCard";
-import HomeHeader from "../HomeHeader";
-import HomeNotificationTable from "../HomeNotificationTable/HomeNotificationTable";
-import HomeProductListCard from "../HomeProductListCard";
+import Orders from '../../../icons/Orders';
+import Sales from '../../../icons/Sales';
+import { Home_activities_edges_node, Home_productTopToday_edges_node, Home_salesToday_gross } from '../../types/Home';
+import HomeActivityCard from '../HomeActivityCard';
+import HomeAnalyticsCard from '../HomeAnalyticsCard';
+import HomeHeader from '../HomeHeader';
+import HomeNotificationTable from '../HomeNotificationTable/HomeNotificationTable';
+import HomeProductListCard from '../HomeProductListCard';
 
 const styles = (theme: Theme) =>
   createStyles({
     cardContainer: {
       display: "grid",
-      gridColumnGap: `${theme.spacing.unit * 3}px`,
+      gridColumnGap: `${theme.spacing() * 3}px`,
       gridTemplateColumns: "1fr 1fr",
       [theme.breakpoints.down("sm")]: {
-        gridColumnGap: `${theme.spacing.unit}px`
+        gridColumnGap: `${theme.spacing()}px`
       },
       [theme.breakpoints.down("xs")]: {
         gridTemplateColumns: "1fr"
@@ -85,7 +76,7 @@ const HomePage = withStyles(styles, { name: "HomePage" })(
           >
             <div className={classes.cardContainer}>
               <HomeAnalyticsCard
-                title={"Sales"}
+                title={"Ventas"}
                 icon={<Sales fontSize={"inherit"} viewBox="0 0 64 64" />}
               >
                 {sales ? (
@@ -95,7 +86,7 @@ const HomePage = withStyles(styles, { name: "HomePage" })(
                 )}
               </HomeAnalyticsCard>
               <HomeAnalyticsCard
-                title={"Orders"}
+                title={"Órdenes"}
                 icon={<Orders fontSize={"inherit"} viewBox="0 0 64 64" />}
               >
                 {orders === undefined ? (

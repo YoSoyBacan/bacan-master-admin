@@ -1,30 +1,25 @@
-import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import DeleteIcon from "@material-ui/icons/Delete";
-import EditIcon from "@material-ui/icons/Edit";
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import CardTitle from '@saleor/components/CardTitle';
+import IconButtonTableCell from '@saleor/components/IconButtonTableCell';
+import Money from '@saleor/components/Money';
+import MoneyRange from '@saleor/components/MoneyRange';
+import Skeleton from '@saleor/components/Skeleton';
+import WeightRange from '@saleor/components/WeightRange';
+import React from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 
-import CardTitle from "@saleor/components/CardTitle";
-import IconButtonTableCell from "@saleor/components/IconButtonTableCell";
-import Money from "@saleor/components/Money";
-import MoneyRange from "@saleor/components/MoneyRange";
-import Skeleton from "@saleor/components/Skeleton";
-import WeightRange from "@saleor/components/WeightRange";
-import { maybe, renderCollection } from "../../../misc";
-import { ICONBUTTON_SIZE } from "../../../theme";
-import { ShippingZoneDetailsFragment_shippingMethods } from "../../types/ShippingZoneDetailsFragment";
+import { maybe, renderCollection } from '../../../misc';
+import { ICONBUTTON_SIZE } from '../../../theme';
+import { ShippingZoneDetailsFragment_shippingMethods } from '../../types/ShippingZoneDetailsFragment';
 
 export interface ShippingZoneRatesProps {
   disabled: boolean;
@@ -42,7 +37,7 @@ const styles = (theme: Theme) =>
         paddingRight: 0
       },
       paddingRight: 0,
-      width: ICONBUTTON_SIZE + theme.spacing.unit / 2
+      width: ICONBUTTON_SIZE + theme.spacing() / 2
     },
     nameColumn: {
       width: 300

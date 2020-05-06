@@ -1,16 +1,11 @@
-import { Omit } from "@material-ui/core";
-import Button from "@material-ui/core/Button";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import TextField, { StandardTextFieldProps } from "@material-ui/core/TextField";
-import React from "react";
-import { FormattedMessage } from "react-intl";
+import { Omit } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import TextField, { StandardTextFieldProps } from '@material-ui/core/TextField';
+import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
-import Chip from "../Chip";
+import Chip from '../Chip';
 
 interface ListFieldState {
   newValueCounter: number;
@@ -20,10 +15,10 @@ interface ListFieldState {
 const styles = (theme: Theme) =>
   createStyles({
     chip: {
-      marginBottom: theme.spacing.unit
+      marginBottom: theme.spacing()
     },
     chipContainer: {
-      marginTop: theme.spacing.unit * 2,
+      marginTop: theme.spacing() * 2,
       width: 552
     }
   });

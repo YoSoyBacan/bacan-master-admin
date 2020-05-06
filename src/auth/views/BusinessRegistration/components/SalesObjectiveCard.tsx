@@ -15,15 +15,15 @@ const styles = (theme: Theme) =>
     buttonContainer: {
       display: "flex",
       justifyContent: "space-between",
-      paddingTop: theme.spacing.unit * 2,
-      paddingBottom: theme.spacing.unit * 2
+      paddingTop: theme.spacing() * 2,
+      paddingBottom: theme.spacing() * 2
     },
     nexButton: {
       width: 140
     },
     title: {
       flex: 1,
-      paddingBottom: theme.spacing.unit * 2,
+      paddingBottom: theme.spacing() * 2,
     }
   });
 function valuetext(value: number) {

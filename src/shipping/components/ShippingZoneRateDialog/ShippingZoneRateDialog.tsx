@@ -1,32 +1,25 @@
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import Typography from "@material-ui/core/Typography";
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
+import ConfirmButton, { ConfirmButtonTransitionState } from '@saleor/components/ConfirmButton';
+import ControlledCheckbox from '@saleor/components/ControlledCheckbox';
+import Form from '@saleor/components/Form';
+import FormSpacer from '@saleor/components/FormSpacer';
+import Hr from '@saleor/components/Hr';
+import Skeleton from '@saleor/components/Skeleton';
+import { buttonMessages } from '@saleor/intl';
+import React from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 
-import ConfirmButton, {
-  ConfirmButtonTransitionState
-} from "@saleor/components/ConfirmButton";
-import ControlledCheckbox from "@saleor/components/ControlledCheckbox";
-import Form from "@saleor/components/Form";
-import FormSpacer from "@saleor/components/FormSpacer";
-import Hr from "@saleor/components/Hr";
-import Skeleton from "@saleor/components/Skeleton";
-import { buttonMessages } from "@saleor/intl";
-import { maybe } from "../../../misc";
-import { FormErrors, UserError } from "../../../types";
-import { ShippingMethodTypeEnum } from "../../../types/globalTypes";
-import { ShippingZoneDetailsFragment_shippingMethods } from "../../types/ShippingZoneDetailsFragment";
+import { maybe } from '../../../misc';
+import { FormErrors, UserError } from '../../../types';
+import { ShippingMethodTypeEnum } from '../../../types/globalTypes';
+import { ShippingZoneDetailsFragment_shippingMethods } from '../../types/ShippingZoneDetailsFragment';
 
 export interface FormData {
   name: string;
@@ -54,12 +47,12 @@ const styles = (theme: Theme) =>
   createStyles({
     grid: {
       display: "grid",
-      gridColumnGap: theme.spacing.unit * 2 + "px",
+      gridColumnGap: theme.spacing() * 2 + "px",
       gridTemplateColumns: "1fr 1fr"
     },
     subheading: {
-      marginBottom: theme.spacing.unit * 2,
-      marginTop: theme.spacing.unit * 2
+      marginBottom: theme.spacing() * 2,
+      marginTop: theme.spacing() * 2
     }
   });
 const ShippingZoneRateDialog = withStyles(styles, {

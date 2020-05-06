@@ -1,30 +1,25 @@
-import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
-import IconButton from "@material-ui/core/IconButton";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableFooter from "@material-ui/core/TableFooter";
-import TableRow from "@material-ui/core/TableRow";
-import DeleteIcon from "@material-ui/icons/Delete";
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import IconButton from '@material-ui/core/IconButton';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableFooter from '@material-ui/core/TableFooter';
+import TableRow from '@material-ui/core/TableRow';
+import DeleteIcon from '@material-ui/icons/Delete';
+import CardTitle from '@saleor/components/CardTitle';
+import Checkbox from '@saleor/components/Checkbox';
+import Skeleton from '@saleor/components/Skeleton';
+import TableHead from '@saleor/components/TableHead';
+import TablePagination from '@saleor/components/TablePagination';
+import React from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 
-import CardTitle from "@saleor/components/CardTitle";
-import Checkbox from "@saleor/components/Checkbox";
-import Skeleton from "@saleor/components/Skeleton";
-import TableHead from "@saleor/components/TableHead";
-import TablePagination from "@saleor/components/TablePagination";
-import { maybe, renderCollection } from "../../../misc";
-import { ListActions, ListProps } from "../../../types";
-import { SaleDetails_sale } from "../../types/SaleDetails";
-import { VoucherDetails_voucher } from "../../types/VoucherDetails";
+import { maybe, renderCollection } from '../../../misc';
+import { ListActions, ListProps } from '../../../types';
+import { SaleDetails_sale } from '../../types/SaleDetails';
+import { VoucherDetails_voucher } from '../../types/VoucherDetails';
 
 export interface DiscountCollectionsProps extends ListProps, ListActions {
   discount: SaleDetails_sale | VoucherDetails_voucher;
@@ -38,7 +33,7 @@ const styles = (theme: Theme) =>
       "&:last-child": {
         paddingRight: 0
       },
-      width: 48 + theme.spacing.unit / 2
+      width: 48 + theme.spacing() / 2
     },
     tableRow: {
       cursor: "pointer"

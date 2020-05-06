@@ -1,26 +1,21 @@
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import React from "react";
-import { useIntl } from "react-intl";
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import AppHeader from '@saleor/components/AppHeader';
+import CardTitle from '@saleor/components/CardTitle';
+import { ConfirmButtonTransitionState } from '@saleor/components/ConfirmButton';
+import Container from '@saleor/components/Container';
+import Form from '@saleor/components/Form';
+import Grid from '@saleor/components/Grid';
+import PageHeader from '@saleor/components/PageHeader';
+import SaveButtonBar from '@saleor/components/SaveButtonBar';
+import Skeleton from '@saleor/components/Skeleton';
+import { commonMessages } from '@saleor/intl';
+import React from 'react';
+import { useIntl } from 'react-intl';
 
-import AppHeader from "@saleor/components/AppHeader";
-import CardTitle from "@saleor/components/CardTitle";
-import { ConfirmButtonTransitionState } from "@saleor/components/ConfirmButton";
-import Container from "@saleor/components/Container";
-import Form from "@saleor/components/Form";
-import Grid from "@saleor/components/Grid";
-import PageHeader from "@saleor/components/PageHeader";
-import SaveButtonBar from "@saleor/components/SaveButtonBar";
-import Skeleton from "@saleor/components/Skeleton";
-import { commonMessages } from "@saleor/intl";
-import ProductImageNavigation from "../ProductImageNavigation";
+import ProductImageNavigation from '../ProductImageNavigation';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -32,10 +27,10 @@ const styles = (theme: Theme) =>
     imageContainer: {
       background: "#ffffff",
       border: "1px solid #eaeaea",
-      borderRadius: theme.spacing.unit,
-      margin: `0 auto ${theme.spacing.unit * 2}px`,
+      borderRadius: theme.spacing(),
+      margin: `0 auto ${theme.spacing() * 2}px`,
       maxWidth: 552,
-      padding: theme.spacing.unit * 2
+      padding: theme.spacing() * 2
     }
   });
 

@@ -1,32 +1,24 @@
-import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
-import { Theme } from "@material-ui/core/styles";
-import makeStyles from "@material-ui/styles/makeStyles";
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
-
-import ColumnPicker, {
-  ColumnPickerChoice
-} from "@saleor/components/ColumnPicker";
-import Container from "@saleor/components/Container";
-import PageHeader from "@saleor/components/PageHeader";
-import { ProductListColumns } from "@saleor/config";
-import { sectionNames } from "@saleor/intl";
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import { Theme } from '@material-ui/core/styles';
+import makeStyles from '@material-ui/styles/makeStyles';
+import ColumnPicker, { ColumnPickerChoice } from '@saleor/components/ColumnPicker';
+import Container from '@saleor/components/Container';
+import PageHeader from '@saleor/components/PageHeader';
+import { ProductListColumns } from '@saleor/config';
+import { sectionNames } from '@saleor/intl';
 import {
   AvailableInGridAttributes_availableInGrid_edges_node,
-  AvailableInGridAttributes_grid_edges_node
-} from "@saleor/products/types/AvailableInGridAttributes";
-import { ProductList_products_edges_node } from "@saleor/products/types/ProductList";
-import {
-  FetchMoreProps,
-  FilterPageProps,
-  ListActions,
-  PageListProps,
-  SortPage
-} from "@saleor/types";
-import { ProductListUrlSortField } from "../../urls";
-import ProductList from "../ProductList";
-import ProductListFilter, { ProductFilterKeys } from "../ProductListFilter";
+  AvailableInGridAttributes_grid_edges_node,
+} from '@saleor/products/types/AvailableInGridAttributes';
+import { ProductList_products_edges_node } from '@saleor/products/types/ProductList';
+import { FetchMoreProps, FilterPageProps, ListActions, PageListProps, SortPage } from '@saleor/types';
+import React from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
+
+import { ProductListUrlSortField } from '../../urls';
+import ProductList from '../ProductList';
+import ProductListFilter, { ProductFilterKeys } from '../ProductListFilter';
 
 export interface ProductListPageProps
   extends PageListProps<ProductListColumns>,
@@ -44,7 +36,7 @@ export interface ProductListPageProps
 
 const useStyles = makeStyles((theme: Theme) => ({
   columnPicker: {
-    marginRight: theme.spacing.unit * 3
+    marginRight: theme.spacing() * 3
   }
 }));
 

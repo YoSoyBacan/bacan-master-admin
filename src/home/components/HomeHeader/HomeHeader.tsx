@@ -1,19 +1,13 @@
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import React from "react";
-import { FormattedMessage } from "react-intl";
-
-import Skeleton from "@saleor/components/Skeleton";
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Skeleton from '@saleor/components/Skeleton';
+import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
 const styles = (theme: Theme) =>
   createStyles({
     headerContainer: {
-      marginBottom: theme.spacing.unit * 3
+      marginBottom: theme.spacing() * 3
     },
     pageHeader: {
       fontWeight: 600 as 600

@@ -1,23 +1,18 @@
-import Button from "@material-ui/core/Button";
-import ClickAwayListener from "@material-ui/core/ClickAwayListener";
-import Grow from "@material-ui/core/Grow";
-import IconButton from "@material-ui/core/IconButton";
-import Paper from "@material-ui/core/Paper";
-import Popper from "@material-ui/core/Popper";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import DeleteIcon from "@material-ui/icons/Delete";
-import { ContentState } from "draft-js";
-import React from "react";
-import { FormattedMessage } from "react-intl";
+import Button from '@material-ui/core/Button';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import Grow from '@material-ui/core/Grow';
+import IconButton from '@material-ui/core/IconButton';
+import Paper from '@material-ui/core/Paper';
+import Popper from '@material-ui/core/Popper';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import DeleteIcon from '@material-ui/icons/Delete';
+import { buttonMessages } from '@saleor/intl';
+import { ContentState } from 'draft-js';
+import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
-import { buttonMessages } from "@saleor/intl";
-import Link from "../Link";
+import Link from '../Link';
 
 interface LinkEntityProps {
   children: React.ReactNode;
@@ -46,15 +41,15 @@ const styles = (theme: Theme) =>
       alignItems: "center",
       display: "flex",
       minHeight: 72,
-      padding: `${theme.spacing.unit * 1.5}px ${theme.spacing.unit *
-        1.5}px ${theme.spacing.unit * 1.5}px ${theme.spacing.unit * 3}px`
+      padding: `${theme.spacing() * 1.5}px ${theme.spacing() *
+        1.5}px ${theme.spacing() * 1.5}px ${theme.spacing() * 3}px`
     },
     separator: {
       backgroundColor: theme.palette.grey[300],
       display: "inline-block",
       height: 30,
-      marginLeft: theme.spacing.unit * 2,
-      marginRight: theme.spacing.unit,
+      marginLeft: theme.spacing() * 2,
+      marginRight: theme.spacing(),
       width: 1
     }
   });

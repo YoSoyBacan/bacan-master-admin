@@ -1,27 +1,24 @@
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import IconButton from "@material-ui/core/IconButton";
-import { Theme } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
-import makeStyles from "@material-ui/styles/makeStyles";
-import classNames from "classnames";
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
-
-import CardTitle from "@saleor/components/CardTitle";
-import Grid from "@saleor/components/Grid";
-import Hr from "@saleor/components/Hr";
-import MultiAutocompleteSelectField, {
-  MultiAutocompleteChoiceType
-} from "@saleor/components/MultiAutocompleteSelectField";
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import IconButton from '@material-ui/core/IconButton';
+import { Theme } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import makeStyles from '@material-ui/styles/makeStyles';
+import CardTitle from '@saleor/components/CardTitle';
+import Grid from '@saleor/components/Grid';
+import Hr from '@saleor/components/Hr';
+import MultiAutocompleteSelectField, { MultiAutocompleteChoiceType } from '@saleor/components/MultiAutocompleteSelectField';
 import SingleAutocompleteSelectField, {
-  SingleAutocompleteChoiceType
-} from "@saleor/components/SingleAutocompleteSelectField";
-import { FormsetAtomicData, FormsetChange } from "@saleor/hooks/useFormset";
-import { maybe } from "@saleor/misc";
-import { ProductDetails_product_attributes_attribute_values } from "@saleor/products/types/ProductDetails";
-import { AttributeInputTypeEnum } from "@saleor/types/globalTypes";
+  SingleAutocompleteChoiceType,
+} from '@saleor/components/SingleAutocompleteSelectField';
+import { FormsetAtomicData, FormsetChange } from '@saleor/hooks/useFormset';
+import { maybe } from '@saleor/misc';
+import { ProductDetails_product_attributes_attribute_values } from '@saleor/products/types/ProductDetails';
+import { AttributeInputTypeEnum } from '@saleor/types/globalTypes';
+import classNames from 'classnames';
+import React from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 export interface ProductAttributeInputData {
   inputType: AttributeInputTypeEnum;
@@ -44,7 +41,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     "&:last-of-type": {
       paddingBottom: 0
     },
-    padding: `${theme.spacing.unit * 2}px 0`
+    padding: `${theme.spacing() * 2}px 0`
   },
   attributeSectionLabel: {
     alignItems: "center",
@@ -55,15 +52,15 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   cardContent: {
     "&:last-child": {
-      paddingBottom: theme.spacing.unit
+      paddingBottom: theme.spacing()
     },
-    paddingTop: theme.spacing.unit
+    paddingTop: theme.spacing()
   },
   expansionBar: {
     display: "flex"
   },
   expansionBarButton: {
-    marginBottom: theme.spacing.unit
+    marginBottom: theme.spacing()
   },
   expansionBarButtonIcon: {
     transition: theme.transitions.duration.short + "ms"

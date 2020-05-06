@@ -1,14 +1,9 @@
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import { fade } from "@material-ui/core/styles/colorManipulator";
-import Typography from "@material-ui/core/Typography";
-import CloseIcon from "@material-ui/icons/Close";
-import classNames from "classnames";
-import React from "react";
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import { fade } from '@material-ui/core/styles/colorManipulator';
+import Typography from '@material-ui/core/Typography';
+import CloseIcon from '@material-ui/icons/Close';
+import classNames from 'classnames';
+import React from 'react';
 
 export interface ChipProps {
   className?: string;
@@ -21,7 +16,7 @@ const styles = (theme: Theme) =>
     closeIcon: {
       cursor: "pointer",
       fontSize: 16,
-      marginLeft: theme.spacing.unit,
+      marginLeft: theme.spacing(),
       verticalAlign: "middle"
     },
     label: {
@@ -31,7 +26,7 @@ const styles = (theme: Theme) =>
       background: fade(theme.palette.secondary.main, 0.8),
       borderRadius: 8,
       display: "inline-block",
-      marginRight: theme.spacing.unit * 2,
+      marginRight: theme.spacing() * 2,
       padding: "6px 12px"
     }
   });

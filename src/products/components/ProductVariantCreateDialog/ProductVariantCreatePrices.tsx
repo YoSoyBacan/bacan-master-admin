@@ -1,27 +1,27 @@
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Radio from "@material-ui/core/Radio";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import { Theme } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/styles";
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import { Theme } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/styles';
+import FormSpacer from '@saleor/components/FormSpacer';
+import Grid from '@saleor/components/Grid';
+import Hr from '@saleor/components/Hr';
+import SingleSelectField from '@saleor/components/SingleSelectField';
+import { ProductDetails_product_productType_variantAttributes } from '@saleor/products/types/ProductDetails';
+import React from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 
-import FormSpacer from "@saleor/components/FormSpacer";
-import Grid from "@saleor/components/Grid";
-import Hr from "@saleor/components/Hr";
-import SingleSelectField from "@saleor/components/SingleSelectField";
-import { ProductDetails_product_productType_variantAttributes } from "@saleor/products/types/ProductDetails";
-import { ProductVariantCreateFormData } from "./form";
+import { ProductVariantCreateFormData } from './form';
 
 const useStyles = makeStyles((theme: Theme) => ({
   hr: {
-    marginBottom: theme.spacing.unit,
-    marginTop: theme.spacing.unit / 2
+    marginBottom: theme.spacing(),
+    marginTop: theme.spacing() / 2
   },
   hrAttribute: {
-    marginTop: theme.spacing.unit * 2
+    marginTop: theme.spacing() * 2
   },
   label: {
     alignSelf: "center"

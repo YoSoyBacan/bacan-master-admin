@@ -1,13 +1,13 @@
-import { Theme } from "@material-ui/core/styles";
-import { makeStyles } from "@material-ui/styles";
-import React from "react";
-import { FormattedMessage } from "react-intl";
+import { Theme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
+import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
-import { SearchPageProps } from "../../types";
-import Debounce from "../Debounce";
-import { FilterActionsOnlySearch } from "../Filter/FilterActions";
-import Hr from "../Hr";
-import Link from "../Link";
+import { SearchPageProps } from '../../types';
+import Debounce from '../Debounce';
+import { FilterActionsOnlySearch } from '../Filter/FilterActions';
+import Hr from '../Hr';
+import Link from '../Link';
 
 export interface FilterSearchProps extends SearchPageProps {
   displaySearchAction: "save" | "delete" | null;
@@ -25,8 +25,8 @@ const useStyles = makeStyles(
       borderBottom: `1px solid ${theme.palette.divider}`,
       display: "flex",
       justifyContent: "flex-end",
-      marginTop: theme.spacing.unit,
-      padding: `0 ${theme.spacing.unit * 3}px ${theme.spacing.unit}px`
+      marginTop: theme.spacing(),
+      padding: `0 ${theme.spacing() * 3}px ${theme.spacing()}px`
     }
   }),
   {

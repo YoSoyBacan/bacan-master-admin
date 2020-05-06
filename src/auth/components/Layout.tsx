@@ -10,13 +10,13 @@ const useStyles = makeStyles(
       "& svg": {
         display: "block",
         height: 40,
-        marginBottom: theme.spacing.unit * 2,
+        marginBottom: theme.spacing() * 2,
         paddingTop: "25%"
       }
     },
     mainPanel: {
       [theme.breakpoints.down("sm")]: {
-        padding: theme.spacing.unit * 2
+        padding: theme.spacing() * 2
       },
       background: theme.palette.background.paper,
       display: "flex",
@@ -24,7 +24,7 @@ const useStyles = makeStyles(
       height: "100vh",
       overflowY: "auto",
       justifyContent: "center",
-      padding: theme.spacing.unit * 6,
+      padding: theme.spacing() * 6,
       width: "100%"
     },
     mainPanelContent: {

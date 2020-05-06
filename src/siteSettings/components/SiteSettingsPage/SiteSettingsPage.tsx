@@ -1,31 +1,29 @@
-import { Theme } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/styles";
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import { Theme } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/styles';
+import AppHeader from '@saleor/components/AppHeader';
+import { ConfirmButtonTransitionState } from '@saleor/components/ConfirmButton';
+import Container from '@saleor/components/Container';
+import Form from '@saleor/components/Form';
+import Grid from '@saleor/components/Grid';
+import Hr from '@saleor/components/Hr';
+import PageHeader from '@saleor/components/PageHeader';
+import SaveButtonBar from '@saleor/components/SaveButtonBar';
+import useStateFromProps from '@saleor/hooks/useStateFromProps';
+import { commonMessages, sectionNames } from '@saleor/intl';
+import { UserError } from '@saleor/types';
+import createSingleAutocompleteSelectHandler from '@saleor/utils/handlers/singleAutocompleteSelectChangeHandler';
+import { mapCountriesToChoices } from '@saleor/utils/maps';
+import React from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 
-import AppHeader from "@saleor/components/AppHeader";
-import { ConfirmButtonTransitionState } from "@saleor/components/ConfirmButton";
-import Container from "@saleor/components/Container";
-import Form from "@saleor/components/Form";
-import Grid from "@saleor/components/Grid";
-import Hr from "@saleor/components/Hr";
-import PageHeader from "@saleor/components/PageHeader";
-import SaveButtonBar from "@saleor/components/SaveButtonBar";
-import useStateFromProps from "@saleor/hooks/useStateFromProps";
-import { commonMessages, sectionNames } from "@saleor/intl";
-import { UserError } from "@saleor/types";
-import createSingleAutocompleteSelectHandler from "@saleor/utils/handlers/singleAutocompleteSelectChangeHandler";
-import { mapCountriesToChoices } from "@saleor/utils/maps";
-import { maybe } from "../../../misc";
-import { AuthorizationKeyType } from "../../../types/globalTypes";
-import { SiteSettings_shop } from "../../types/SiteSettings";
-import SiteSettingsAddress from "../SiteSettingsAddress/SiteSettingsAddress";
-import SiteSettingsDetails from "../SiteSettingsDetails/SiteSettingsDetails";
-import SiteSettingsKeys from "../SiteSettingsKeys/SiteSettingsKeys";
-import SiteSettingsMailing, {
-  SiteSettingsMailingFormData
-} from "../SiteSettingsMailing";
+import { maybe } from '../../../misc';
+import { AuthorizationKeyType } from '../../../types/globalTypes';
+import { SiteSettings_shop } from '../../types/SiteSettings';
+import SiteSettingsAddress from '../SiteSettingsAddress/SiteSettingsAddress';
+import SiteSettingsDetails from '../SiteSettingsDetails/SiteSettingsDetails';
+import SiteSettingsKeys from '../SiteSettingsKeys/SiteSettingsKeys';
+import SiteSettingsMailing, { SiteSettingsMailingFormData } from '../SiteSettingsMailing';
 
 export interface SiteSettingsPageAddressFormData {
   city: string;
@@ -61,7 +59,7 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     hr: {
       gridColumnEnd: "span 2",
-      margin: `${theme.spacing.unit}px 0`
+      margin: `${theme.spacing()}px 0`
     }
   }),
   {

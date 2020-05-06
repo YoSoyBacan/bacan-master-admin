@@ -1,23 +1,18 @@
-import ButtonBase from "@material-ui/core/ButtonBase";
-import Grow from "@material-ui/core/Grow";
-import Paper from "@material-ui/core/Paper";
-import Popper from "@material-ui/core/Popper";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import { fade } from "@material-ui/core/styles/colorManipulator";
-import Typography from "@material-ui/core/Typography";
-import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
-import classNames from "classnames";
-import React from "react";
-import { FormattedMessage } from "react-intl";
+import ButtonBase from '@material-ui/core/ButtonBase';
+import Grow from '@material-ui/core/Grow';
+import Paper from '@material-ui/core/Paper';
+import Popper from '@material-ui/core/Popper';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import { fade } from '@material-ui/core/styles/colorManipulator';
+import Typography from '@material-ui/core/Typography';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import classNames from 'classnames';
+import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
-import { FilterContent } from ".";
-import { FilterContentSubmitData } from "./FilterContent";
-import { IFilter } from "./types";
+import { FilterContent } from '.';
+import { FilterContentSubmitData } from './FilterContent';
+import { IFilter } from './types';
 
 export interface FilterProps<TFilterKeys = string> {
   currencySymbol: string;
@@ -37,7 +32,7 @@ const styles = (theme: Theme) =>
         border: `1px solid ${theme.palette.primary.main}`,
         cursor: "pointer",
         marginBottom: 0,
-        marginRight: theme.spacing.unit * 2,
+        marginRight: theme.spacing() * 2,
         marginTop: 0,
         transition: theme.transitions.duration.short + "ms"
       }
@@ -64,7 +59,7 @@ const styles = (theme: Theme) =>
       display: "flex",
       height: "45px",
       justifyContent: "space-around",
-      margin: `0 ${theme.spacing.unit * 2}px ${theme.spacing.unit}px`,
+      margin: `0 ${theme.spacing() * 2}px ${theme.spacing()}px`,
       marginLeft: 0,
       padding: "0 16px",
       position: "relative",
@@ -74,8 +69,8 @@ const styles = (theme: Theme) =>
       "& p": {
         paddingBottom: 10
       },
-      marginTop: theme.spacing.unit * 2,
-      padding: theme.spacing.unit * 2,
+      marginTop: theme.spacing() * 2,
+      padding: theme.spacing() * 2,
       width: 240
     },
     popover: {

@@ -1,21 +1,21 @@
-import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import { Theme } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import makeStyles from "@material-ui/styles/makeStyles";
-import classNames from "classnames";
-import React from "react";
-import InfiniteScroll from "react-infinite-scroller";
-import { FormattedMessage } from "react-intl";
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { Theme } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import makeStyles from '@material-ui/styles/makeStyles';
+import useElementScroll from '@saleor/hooks/useElementScroll';
+import { buttonMessages } from '@saleor/intl';
+import { FetchMoreProps } from '@saleor/types';
+import { isSelected } from '@saleor/utils/lists';
+import classNames from 'classnames';
+import React from 'react';
+import InfiniteScroll from 'react-infinite-scroller';
+import { FormattedMessage } from 'react-intl';
 
-import useElementScroll from "@saleor/hooks/useElementScroll";
-import { buttonMessages } from "@saleor/intl";
-import { FetchMoreProps } from "@saleor/types";
-import { isSelected } from "@saleor/utils/lists";
-import ControlledCheckbox from "../ControlledCheckbox";
-import Hr from "../Hr";
+import ControlledCheckbox from '../ControlledCheckbox';
+import Hr from '../Hr';
 
 export interface ColumnPickerChoice {
   label: string;
@@ -41,16 +41,16 @@ const useStyles = makeStyles((theme: Theme) => ({
     transition: theme.transitions.duration.short + "ms"
   },
   cancelButton: {
-    marginRight: theme.spacing.unit * 2
+    marginRight: theme.spacing() * 2
   },
   content: {
     display: "grid",
-    gridColumnGap: theme.spacing.unit * 3,
+    gridColumnGap: theme.spacing() * 3,
     gridTemplateColumns: "repeat(3, 1fr)",
     maxHeight: 256,
     overflowX: "visible",
     overflowY: "scroll",
-    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px`
+    padding: `${theme.spacing() * 2}px ${theme.spacing() * 3}px`
   },
   contentContainer: {
     padding: 0
@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     alignItems: "center",
     display: "flex",
     gridColumnEnd: "span 3",
-    height: theme.spacing.unit * 3,
+    height: theme.spacing() * 3,
     justifyContent: "center"
   },
   root: {

@@ -1,28 +1,23 @@
-import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import IconButton from "@material-ui/core/IconButton";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import ArrowIcon from "@material-ui/icons/ArrowDropDown";
-import CardTitle from "@saleor/components/CardTitle";
-import { ConfirmButtonTransitionState } from "@saleor/components/ConfirmButton";
-import Grid from "@saleor/components/Grid";
-import Hr from "@saleor/components/Hr";
-import Skeleton from "@saleor/components/Skeleton";
-import classNames from "classnames";
-import React from "react";
-import { FormattedMessage } from "react-intl";
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import IconButton from '@material-ui/core/IconButton';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import ArrowIcon from '@material-ui/icons/ArrowDropDown';
+import CardTitle from '@saleor/components/CardTitle';
+import { ConfirmButtonTransitionState } from '@saleor/components/ConfirmButton';
+import Grid from '@saleor/components/Grid';
+import Hr from '@saleor/components/Hr';
+import Skeleton from '@saleor/components/Skeleton';
+import { buttonMessages } from '@saleor/intl';
+import classNames from 'classnames';
+import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
-import { buttonMessages } from "@saleor/intl";
-import TranslationFieldsLong from "./TranslationFieldsLong";
-import TranslationFieldsRich from "./TranslationFieldsRich";
-import TranslationFieldsShort from "./TranslationFieldsShort";
+import TranslationFieldsLong from './TranslationFieldsLong';
+import TranslationFieldsRich from './TranslationFieldsRich';
+import TranslationFieldsShort from './TranslationFieldsShort';
 
 interface TranslationField {
   displayName: string;
@@ -51,37 +46,37 @@ const styles = (theme: Theme) =>
     },
     cardContent: {
       "&:last-child": {
-        paddingBottom: theme.spacing.unit
+        paddingBottom: theme.spacing()
       }
     },
     columnHeader: {
-      marginBottom: theme.spacing.unit / 2
+      marginBottom: theme.spacing() / 2
     },
     content: {
       "& a": {
         color: theme.palette.secondary.light
       },
       "& blockquote": {
-        borderLeft: `2px solid ${theme.overrides.MuiCard.root.borderColor}`,
+        borderLeft: `2px solid ${theme.palette.divider}`,
         margin: 0,
-        padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`
+        padding: `${theme.spacing()}px ${theme.spacing() * 2}px`
       },
       "& h2": {
         fontSize: 22,
-        marginBottom: theme.spacing.unit
+        marginBottom: theme.spacing()
       },
       "& h3": {
         fontSize: 19,
-        marginBottom: theme.spacing.unit
+        marginBottom: theme.spacing()
       },
       "& p": {
         "&:last-child": {
           marginBottom: 0
         },
-        marginBottom: theme.spacing.unit,
+        marginBottom: theme.spacing(),
         marginTop: 0
       },
-      paddingBottom: theme.spacing.unit * 2
+      paddingBottom: theme.spacing() * 2
     },
     editButtonContainer: {
       alignItems: "center",
@@ -92,8 +87,8 @@ const styles = (theme: Theme) =>
       color: theme.typography.caption.color,
       fontSize: 14,
       fontWeight: 500,
-      marginBottom: theme.spacing.unit,
-      marginTop: theme.spacing.unit * 2,
+      marginBottom: theme.spacing(),
+      marginTop: theme.spacing() * 2,
       textTransform: "uppercase"
     },
     grid: {

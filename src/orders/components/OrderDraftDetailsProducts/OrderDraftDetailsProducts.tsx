@@ -1,30 +1,23 @@
-import IconButton from "@material-ui/core/IconButton";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import TextField from "@material-ui/core/TextField";
-import Typography from "@material-ui/core/Typography";
-import DeleteIcon from "@material-ui/icons/Delete";
-import React from "react";
-import { FormattedMessage } from "react-intl";
+import IconButton from '@material-ui/core/IconButton';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
+import DeleteIcon from '@material-ui/icons/Delete';
+import { DebounceForm } from '@saleor/components/DebounceForm';
+import Form from '@saleor/components/Form';
+import Money from '@saleor/components/Money';
+import Skeleton from '@saleor/components/Skeleton';
+import TableCellAvatar, { AVATAR_MARGIN } from '@saleor/components/TableCellAvatar';
+import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
-import { DebounceForm } from "@saleor/components/DebounceForm";
-import Form from "@saleor/components/Form";
-import Money from "@saleor/components/Money";
-import Skeleton from "@saleor/components/Skeleton";
-import TableCellAvatar, {
-  AVATAR_MARGIN
-} from "@saleor/components/TableCellAvatar";
-import { maybe, renderCollection } from "../../../misc";
-import { OrderDetails_order_lines } from "../../types/OrderDetails";
+import { maybe, renderCollection } from '../../../misc';
+import { OrderDetails_order_lines } from '../../types/OrderDetails';
 
 export interface FormData {
   quantity: number;
@@ -36,7 +29,7 @@ const styles = (theme: Theme) =>
       "&:last-child": {
         paddingRight: 0
       },
-      width: 76 + theme.spacing.unit / 2
+      width: 76 + theme.spacing() / 2
     },
     colName: {
       width: "auto"

@@ -1,31 +1,26 @@
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import { IconProps } from "@material-ui/core/Icon";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import React from "react";
-import { FormattedMessage } from "react-intl";
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import { IconProps } from '@material-ui/core/Icon';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
 const styles = (theme: Theme) =>
   createStyles({
     cardContent: {
       "&:last-child": {
-        padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px`
+        padding: `${theme.spacing() * 2}px ${theme.spacing() * 3}px`
       },
       display: "grid",
-      gridColumnGap: theme.spacing.unit * 3 + "px",
+      gridColumnGap: theme.spacing() * 3 + "px",
       gridTemplateColumns: "1fr 64px"
     },
     cardSpacing: {
       [theme.breakpoints.down("sm")]: {
-        marginBottom: theme.spacing.unit
+        marginBottom: theme.spacing()
       },
-      marginBottom: theme.spacing.unit * 3
+      marginBottom: theme.spacing() * 3
     },
     cardSubtitle: {
       fontSize: 12,

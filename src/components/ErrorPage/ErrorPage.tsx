@@ -1,16 +1,10 @@
-import Button from "@material-ui/core/Button";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import React from "react";
-import SVG from "react-inlinesvg";
-import { FormattedMessage } from "react-intl";
-
-import notFoundImage from "@assets/images/what.svg";
+import notFoundImage from '@assets/images/what.svg';
+import Button from '@material-ui/core/Button';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import React from 'react';
+import SVG from 'react-inlinesvg';
+import { FormattedMessage } from 'react-intl';
 
 export interface ErrorPageProps extends WithStyles<typeof styles> {
   onBack: () => void;
@@ -23,13 +17,13 @@ const styles = (theme: Theme) =>
       textTransform: "uppercase"
     },
     button: {
-      marginTop: theme.spacing.unit * 2,
+      marginTop: theme.spacing() * 2,
       padding: 20
     },
     container: {
       [theme.breakpoints.down("sm")]: {
         gridTemplateColumns: "1fr",
-        padding: theme.spacing.unit * 3,
+        padding: theme.spacing() * 3,
         width: "100%"
       },
       display: "grid",

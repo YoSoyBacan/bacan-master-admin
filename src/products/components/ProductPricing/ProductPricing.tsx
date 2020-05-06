@@ -1,23 +1,17 @@
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import React from "react";
-import { useIntl } from "react-intl";
-
-import CardTitle from "@saleor/components/CardTitle";
-import ControlledCheckbox from "@saleor/components/ControlledCheckbox";
-import PriceField from "@saleor/components/PriceField";
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import CardTitle from '@saleor/components/CardTitle';
+import ControlledCheckbox from '@saleor/components/ControlledCheckbox';
+import PriceField from '@saleor/components/PriceField';
+import React from 'react';
+import { useIntl } from 'react-intl';
 
 const styles = (theme: Theme) =>
   createStyles({
     root: {
       display: "grid",
-      gridColumnGap: theme.spacing.unit * 2 + "px",
+      gridColumnGap: theme.spacing() * 2 + "px",
       gridTemplateColumns: "1fr 1fr"
     }
   });

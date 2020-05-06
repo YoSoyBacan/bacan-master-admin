@@ -1,38 +1,31 @@
-import Button from "@material-ui/core/Button";
-import Portal from "@material-ui/core/Portal";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import classNames from "classnames";
-import React from "react";
-import { useIntl } from "react-intl";
+import Button from '@material-ui/core/Button';
+import Portal from '@material-ui/core/Portal';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import useWindowScroll from '@saleor/hooks/useWindowScroll';
+import { buttonMessages } from '@saleor/intl';
+import classNames from 'classnames';
+import React from 'react';
+import { useIntl } from 'react-intl';
 
-import useWindowScroll from "@saleor/hooks/useWindowScroll";
-import { buttonMessages } from "@saleor/intl";
-import { maybe } from "../../misc";
-import AppActionContext from "../AppLayout/AppActionContext";
-import ConfirmButton, {
-  ConfirmButtonTransitionState
-} from "../ConfirmButton/ConfirmButton";
-import Container from "../Container";
+import { maybe } from '../../misc';
+import AppActionContext from '../AppLayout/AppActionContext';
+import ConfirmButton, { ConfirmButtonTransitionState } from '../ConfirmButton/ConfirmButton';
+import Container from '../Container';
 
 const styles = (theme: Theme) =>
   createStyles({
     button: {
-      marginRight: theme.spacing.unit
+      marginRight: theme.spacing()
     },
     cancelButton: {
-      marginRight: theme.spacing.unit * 2
+      marginRight: theme.spacing() * 2
     },
     container: {
       display: "flex",
-      paddingBottom: theme.spacing.unit * 2,
-      paddingTop: theme.spacing.unit * 2,
+      paddingBottom: theme.spacing() * 2,
+      paddingTop: theme.spacing() * 2,
       [theme.breakpoints.down("sm")]: {
-        marginTop: theme.spacing.unit
+        marginTop: theme.spacing()
       }
     },
     deleteButton: {

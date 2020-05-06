@@ -1,21 +1,16 @@
-import Hidden from "@material-ui/core/Hidden";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import classNames from "classnames";
-import React from "react";
-import SVG from "react-inlinesvg";
+import menuArrowIcon from '@assets/images/menu-arrow-icon.svg';
+import Hidden from '@material-ui/core/Hidden';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import useTheme from '@saleor/hooks/useTheme';
+import { createHref } from '@saleor/misc';
+import classNames from 'classnames';
+import React from 'react';
+import SVG from 'react-inlinesvg';
 
-import menuArrowIcon from "@assets/images/menu-arrow-icon.svg";
-import useTheme from "@saleor/hooks/useTheme";
-import { createHref } from "@saleor/misc";
-import { drawerWidthExpanded } from "./consts";
-import { IActiveSubMenu } from "./MenuList";
-import { IMenuItem } from "./menuStructure";
+import { drawerWidthExpanded } from './consts';
+import { IActiveSubMenu } from './MenuList';
+import { IMenuItem } from './menuStructure';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -70,7 +65,7 @@ const styles = (theme: Theme) =>
         }
       },
       display: "block",
-      marginBottom: theme.spacing.unit * 2,
+      marginBottom: theme.spacing() * 2,
       padding: "0px 30px",
       textDecoration: "none"
     },

@@ -19,11 +19,11 @@ const styles = (theme: Theme) =>
       marginBottom: "30px"
     },
     sectionTitle: {
-      paddingBottom: theme.spacing.unit * 1,
+      paddingBottom: theme.spacing() * 1,
       fontWeight: 600
     },
     sectionSubtitle: {
-      paddingBottom: theme.spacing.unit * 1,
+      paddingBottom: theme.spacing() * 1,
       fontWeight: 400
     }
   });

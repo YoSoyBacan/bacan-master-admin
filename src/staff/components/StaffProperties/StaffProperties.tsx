@@ -1,22 +1,17 @@
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import Typography from "@material-ui/core/Typography";
-import React from "react";
-import SVG from "react-inlinesvg";
-import { FormattedMessage, useIntl } from "react-intl";
+import photoIcon from '@assets/images/photo-icon.svg';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
+import CardTitle from '@saleor/components/CardTitle';
+import { commonMessages } from '@saleor/intl';
+import React from 'react';
+import SVG from 'react-inlinesvg';
+import { FormattedMessage, useIntl } from 'react-intl';
 
-import photoIcon from "@assets/images/photo-icon.svg";
-import CardTitle from "@saleor/components/CardTitle";
-import { commonMessages } from "@saleor/intl";
-import { getUserInitials, maybe } from "../../../misc";
-import { StaffMemberDetails_user } from "../../types/StaffMemberDetails";
+import { getUserInitials, maybe } from '../../../misc';
+import { StaffMemberDetails_user } from '../../types/StaffMemberDetails';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -62,7 +57,7 @@ const styles = (theme: Theme) =>
       borderRadius: "100%",
       height: 120,
       opacity: 0,
-      padding: `${theme.spacing.unit * 2.5}px 0`,
+      padding: `${theme.spacing() * 2.5}px 0`,
       position: "absolute",
       textAlign: "center",
       textTransform: "uppercase",
@@ -77,12 +72,12 @@ const styles = (theme: Theme) =>
       display: "none"
     },
     prop: {
-      marginBottom: theme.spacing.unit * 2 + "px"
+      marginBottom: theme.spacing() * 2 + "px"
     },
     propGrid: {
       display: "grid",
-      gridColumnGap: theme.spacing.unit * 2 + "px",
-      gridRowGap: theme.spacing.unit + "px",
+      gridColumnGap: theme.spacing() * 2 + "px",
+      gridRowGap: theme.spacing() + "px",
       gridTemplateColumns: "1fr 1fr",
       [theme.breakpoints.down("xs")]: {
         gridTemplateColumns: "1fr"
@@ -90,7 +85,7 @@ const styles = (theme: Theme) =>
     },
     root: {
       display: "grid",
-      gridColumnGap: theme.spacing.unit * 4 + "px",
+      gridColumnGap: theme.spacing() * 4 + "px",
       gridTemplateColumns: "120px 1fr"
     }
   });

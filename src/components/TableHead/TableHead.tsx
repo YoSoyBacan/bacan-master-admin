@@ -1,23 +1,15 @@
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import { fade } from "@material-ui/core/styles/colorManipulator";
-import TableCell from "@material-ui/core/TableCell";
-import MuiTableHead, {
-  TableHeadProps as MuiTableHeadProps
-} from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Typography from "@material-ui/core/Typography";
-import classNames from "classnames";
-import React from "react";
-import { FormattedMessage } from "react-intl";
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import { fade } from '@material-ui/core/styles/colorManipulator';
+import TableCell from '@material-ui/core/TableCell';
+import MuiTableHead, { TableHeadProps as MuiTableHeadProps } from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Typography from '@material-ui/core/Typography';
+import classNames from 'classnames';
+import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
-import { Node } from "../../types";
-
-import Checkbox from "../Checkbox";
+import { Node } from '../../types';
+import Checkbox from '../Checkbox';
 
 export interface TableHeadProps extends MuiTableHeadProps {
   colSpan: number;
@@ -58,7 +50,7 @@ const styles = (theme: Theme) =>
       alignItems: "center",
       display: "flex",
       height: 47,
-      marginRight: -theme.spacing.unit * 2
+      marginRight: -theme.spacing() * 2
     },
     dragRows: {
       padding: 0,
@@ -79,7 +71,7 @@ const styles = (theme: Theme) =>
     },
     toolbar: {
       "& > *": {
-        marginLeft: theme.spacing.unit
+        marginLeft: theme.spacing()
       }
     }
   });

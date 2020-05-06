@@ -1,16 +1,12 @@
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import { fade } from "@material-ui/core/styles/colorManipulator";
-import Typography from "@material-ui/core/Typography";
-import classNames from "classnames";
-import React from "react";
-import { FormattedMessage } from "react-intl";
-import ImageIcon from "../../icons/Image";
-import Dropzone from "../Dropzone";
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import { fade } from '@material-ui/core/styles/colorManipulator';
+import Typography from '@material-ui/core/Typography';
+import classNames from 'classnames';
+import React from 'react';
+import { FormattedMessage } from 'react-intl';
+
+import ImageIcon from '../../icons/Image';
+import Dropzone from '../Dropzone';
 
 interface ImageUploadProps {
   children?: (props: { isDragActive: boolean }) => React.ReactNode;
@@ -34,11 +30,11 @@ const styles = (theme: Theme) =>
     imageContainer: {
       background: "#ffffff",
       border: "1px solid #eaeaea",
-      borderRadius: theme.spacing.unit,
+      borderRadius: theme.spacing(),
       height: 148,
       justifySelf: "start",
       overflow: "hidden",
-      padding: theme.spacing.unit * 2,
+      padding: theme.spacing() * 2,
       position: "relative",
       transition: theme.transitions.duration.standard + "s",
       width: 148
@@ -49,7 +45,7 @@ const styles = (theme: Theme) =>
       width: "64px"
     },
     photosIconContainer: {
-      padding: `${theme.spacing.unit * 5}px 0`,
+      padding: `${theme.spacing() * 5}px 0`,
       textAlign: "center"
     },
     uploadText: {

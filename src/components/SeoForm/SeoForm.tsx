@@ -1,20 +1,15 @@
-import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import Typography from "@material-ui/core/Typography";
-import classNames from "classnames";
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
+import classNames from 'classnames';
+import React from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 
-import CardTitle from "../CardTitle";
-import FormSpacer from "../FormSpacer";
+import CardTitle from '../CardTitle';
+import FormSpacer from '../FormSpacer';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -37,7 +32,7 @@ const styles = (theme: Theme) =>
       overflowWrap: "break-word"
     },
     helperText: {
-      marginBottom: theme.spacing.unit * 3
+      marginBottom: theme.spacing() * 3
     },
     label: {
       flex: 1
@@ -49,7 +44,7 @@ const styles = (theme: Theme) =>
       display: "flex"
     },
     preview: {
-      minHeight: theme.spacing.unit * 10
+      minHeight: theme.spacing() * 10
     },
     title: {
       padding: 0

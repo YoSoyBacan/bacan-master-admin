@@ -1,22 +1,17 @@
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import React from "react";
-import { useIntl } from "react-intl";
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import { IconProps } from '@material-ui/core/Icon';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import { sectionNames } from '@saleor/intl';
+import React from 'react';
+import { useIntl } from 'react-intl';
 
-import { IconProps } from "@material-ui/core/Icon";
-import { sectionNames } from "@saleor/intl";
-import { hasPermission } from "../auth/misc";
-import { User } from "../auth/types/User";
-import Container from "../components/Container";
-import PageHeader from "../components/PageHeader";
-import { PermissionEnum } from "../types/globalTypes";
+import { hasPermission } from '../auth/misc';
+import { User } from '../auth/types/User';
+import Container from '../components/Container';
+import PageHeader from '../components/PageHeader';
+import { PermissionEnum } from '../types/globalTypes';
 
 export interface MenuItem {
   description: string;
@@ -38,7 +33,7 @@ const styles = (theme: Theme) =>
         boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.15);"
       },
       cursor: "pointer",
-      marginBottom: theme.spacing.unit * 3,
+      marginBottom: theme.spacing() * 3,
       transition: theme.transitions.duration.standard + "ms"
     },
     cardContent: {
@@ -47,14 +42,14 @@ const styles = (theme: Theme) =>
         paddingBottom: 16
       },
       display: "grid",
-      gridColumnGap: theme.spacing.unit * 4 + "px",
+      gridColumnGap: theme.spacing() * 4 + "px",
       gridTemplateColumns: "48px 1fr"
     },
     cardDisabled: {
       "& $icon, & $sectionTitle, & $sectionDescription": {
         color: theme.palette.text.disabled
       },
-      marginBottom: theme.spacing.unit * 3
+      marginBottom: theme.spacing() * 3
     },
     configurationCategory: {
       [theme.breakpoints.down("md")]: {
@@ -62,13 +57,13 @@ const styles = (theme: Theme) =>
       },
       borderTop: `solid 1px ${theme.palette.divider}`,
       display: "grid",
-      gridColumnGap: theme.spacing.unit * 4 + "px",
+      gridColumnGap: theme.spacing() * 4 + "px",
       gridTemplateColumns: "1fr 3fr",
-      paddingTop: theme.spacing.unit * 3 + "px"
+      paddingTop: theme.spacing() * 3 + "px"
     },
     configurationItem: {
       display: "grid",
-      gridColumnGap: theme.spacing.unit * 4 + "px",
+      gridColumnGap: theme.spacing() * 4 + "px",
       gridTemplateColumns: "1fr 1fr"
     },
     configurationLabel: {

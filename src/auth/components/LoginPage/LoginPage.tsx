@@ -23,7 +23,7 @@ const styles = (theme: Theme) =>
     title: {
       flex: 1,
       fontSize: 24,
-      paddingBottom: theme.spacing.unit * 2
+      paddingBottom: theme.spacing() * 2
     },
     link: {
       color: theme.palette.primary.main,
@@ -38,9 +38,9 @@ const styles = (theme: Theme) =>
         color: theme.palette.error.contrastText
       },
       background: theme.palette.error.main,
-      borderRadius: theme.spacing.unit,
-      marginBottom: theme.spacing.unit * 3,
-      padding: theme.spacing.unit * 1.5
+      borderRadius: theme.spacing(),
+      marginBottom: theme.spacing() * 3,
+      padding: theme.spacing() * 1.5
     }
   });
 

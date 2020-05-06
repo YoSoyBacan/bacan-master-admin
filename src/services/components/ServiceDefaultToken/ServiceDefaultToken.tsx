@@ -1,17 +1,17 @@
-import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import IconButton from "@material-ui/core/IconButton";
-import Paper from "@material-ui/core/Paper";
-import { Theme } from "@material-ui/core/styles";
-import { fade } from "@material-ui/core/styles/colorManipulator";
-import Typography from "@material-ui/core/Typography";
-import CloseIcon from "@material-ui/icons/Close";
-import { makeStyles } from "@material-ui/styles";
-import Link from "@saleor/components/Link";
-import useClipboard from "@saleor/hooks/useClipboard";
-import React from "react";
-import { FormattedMessage } from "react-intl";
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import IconButton from '@material-ui/core/IconButton';
+import Paper from '@material-ui/core/Paper';
+import { Theme } from '@material-ui/core/styles';
+import { fade } from '@material-ui/core/styles/colorManipulator';
+import Typography from '@material-ui/core/Typography';
+import CloseIcon from '@material-ui/icons/Close';
+import { makeStyles } from '@material-ui/styles';
+import Link from '@saleor/components/Link';
+import useClipboard from '@saleor/hooks/useClipboard';
+import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
 export interface ServiceDefaultTokenProps {
   apiUri: string;
@@ -23,29 +23,29 @@ export interface ServiceDefaultTokenProps {
 const useStyles = makeStyles(
   (theme: Theme) => ({
     cancel: {
-      marginRight: theme.spacing.unit
+      marginRight: theme.spacing()
     },
     closeContainer: {
       display: "flex",
       justifyContent: "flex-end",
       position: "relative",
-      right: -theme.spacing.unit,
-      top: -theme.spacing.unit
+      right: -theme.spacing(),
+      top: -theme.spacing()
     },
     content: {
       display: "grid",
-      gridColumnGap: theme.spacing.unit * 3 + "px",
+      gridColumnGap: theme.spacing() * 3 + "px",
       gridTemplateColumns: "1fr 60px",
-      marginBottom: theme.spacing.unit * 3
+      marginBottom: theme.spacing() * 3
     },
     copy: {
-      marginTop: theme.spacing.unit,
+      marginTop: theme.spacing(),
       position: "relative",
-      right: theme.spacing.unit
+      right: theme.spacing()
     },
     paper: {
       background: fade(theme.palette.primary.main, 0.05),
-      padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px`
+      padding: `${theme.spacing() * 2}px ${theme.spacing() * 3}px`
     },
     root: {
       boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.05)"
