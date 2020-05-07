@@ -1,32 +1,22 @@
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableFooter from "@material-ui/core/TableFooter";
-import TableRow from "@material-ui/core/TableRow";
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableFooter from '@material-ui/core/TableFooter';
+import TableRow from '@material-ui/core/TableRow';
+import Checkbox from '@saleor/components/Checkbox';
+import { DateTime } from '@saleor/components/Date';
+import Money from '@saleor/components/Money';
+import Skeleton from '@saleor/components/Skeleton';
+import StatusLabel from '@saleor/components/StatusLabel';
+import TableHead from '@saleor/components/TableHead';
+import TablePagination from '@saleor/components/TablePagination';
+import { maybe, renderCollection, transformOrderStatus, transformPaymentStatus } from '@saleor/misc';
+import { ListActions, ListProps } from '@saleor/types';
+import React from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 
-import Checkbox from "@saleor/components/Checkbox";
-import { DateTime } from "@saleor/components/Date";
-import Money from "@saleor/components/Money";
-import Skeleton from "@saleor/components/Skeleton";
-import StatusLabel from "@saleor/components/StatusLabel";
-import TableHead from "@saleor/components/TableHead";
-import TablePagination from "@saleor/components/TablePagination";
-import {
-  maybe,
-  renderCollection,
-  transformOrderStatus,
-  transformPaymentStatus
-} from "@saleor/misc";
-import { ListActions, ListProps } from "@saleor/types";
-import { OrderList_orders_edges_node } from "../../types/OrderList";
+import { OrderList_orders_edges_node } from '../../types/OrderList';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -104,31 +94,31 @@ export const OrderList = withStyles(styles, { name: "OrderList" })(
           toggleAll={toggleAll}
           toolbar={toolbar}
         >
-          <TableCell padding="dense" className={classes.colNumber}>
+          <TableCell  className={classes.colNumber}>
             <FormattedMessage defaultMessage="No. of Order" />
           </TableCell>
-          <TableCell padding="dense" className={classes.colDate}>
+          <TableCell  className={classes.colDate}>
             <FormattedMessage
               defaultMessage="Date"
               description="date when order was placed"
             />
           </TableCell>
-          <TableCell padding="dense" className={classes.colCustomer}>
+          <TableCell  className={classes.colCustomer}>
             <FormattedMessage
               defaultMessage="Customer"
               description="e-mail or full name"
             />
           </TableCell>
-          <TableCell padding="dense" className={classes.colPayment}>
+          <TableCell  className={classes.colPayment}>
             <FormattedMessage
               defaultMessage="Payment"
               description="payment status"
             />
           </TableCell>
-          <TableCell padding="dense" className={classes.colFulfillment}>
+          <TableCell  className={classes.colFulfillment}>
             <FormattedMessage defaultMessage="Fulfillment status" />
           </TableCell>
-          <TableCell className={classes.colTotal} padding="dense">
+          <TableCell className={classes.colTotal} >
             <FormattedMessage
               defaultMessage="Total"
               description="total order price"
@@ -172,21 +162,21 @@ export const OrderList = withStyles(styles, { name: "OrderList" })(
                       onChange={() => toggle(order.id)}
                     />
                   </TableCell>
-                  <TableCell padding="dense" className={classes.colNumber}>
+                  <TableCell  className={classes.colNumber}>
                     {maybe(() => order.number) ? (
                       "#" + order.number
                     ) : (
                       <Skeleton />
                     )}
                   </TableCell>
-                  <TableCell padding="dense" className={classes.colDate}>
+                  <TableCell  className={classes.colDate}>
                     {maybe(() => order.created) ? (
                       <DateTime date={order.created} />
                     ) : (
                       <Skeleton />
                     )}
                   </TableCell>
-                  <TableCell padding="dense" className={classes.colCustomer}>
+                  <TableCell  className={classes.colCustomer}>
                     {maybe(() => order.billingAddress) ? (
                       <>
                         {order.billingAddress.firstName}
@@ -199,7 +189,7 @@ export const OrderList = withStyles(styles, { name: "OrderList" })(
                       <Skeleton />
                     )}
                   </TableCell>
-                  <TableCell padding="dense" className={classes.colPayment}>
+                  <TableCell  className={classes.colPayment}>
                     {maybe(() => order.paymentStatus.status) !== undefined ? (
                       order.paymentStatus.status === null ? null : (
                         <StatusLabel
@@ -211,7 +201,7 @@ export const OrderList = withStyles(styles, { name: "OrderList" })(
                       <Skeleton />
                     )}
                   </TableCell>
-                  <TableCell padding="dense" className={classes.colFulfillment}>
+                  <TableCell  className={classes.colFulfillment}>
                     {maybe(() => order.status) ? (
                       <StatusLabel
                         status={order.status.status}
@@ -221,7 +211,7 @@ export const OrderList = withStyles(styles, { name: "OrderList" })(
                       <Skeleton />
                     )}
                   </TableCell>
-                  <TableCell className={classes.colTotal} padding="dense">
+                  <TableCell className={classes.colTotal} >
                     {maybe(() => order.total.gross) ? (
                       <Money money={order.total.gross} />
                     ) : (

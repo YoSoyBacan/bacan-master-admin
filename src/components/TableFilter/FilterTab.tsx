@@ -1,18 +1,18 @@
-import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Tab from '@material-ui/core/Tab';
 import classNames from 'classnames';
 import React from 'react';
 
-const styles = (theme: Theme) =>
-  createStyles({
+const useStyles = makeStyles(
+  theme => ({
     selectedTabLabel: {
       "&$tabLabel": {
-        color: theme.typography.body2.color
+        color: theme.typography.body1.color
       }
     },
     tabLabel: {
       "&:hover": {
-        color: theme.typography.body2.color
+        color: theme.typography.body1.color
       },
       color: theme.typography.caption.color,
       fontSize: "1rem",
@@ -21,33 +21,39 @@ const styles = (theme: Theme) =>
     tabRoot: {
       minWidth: "80px",
       opacity: 1,
-      paddingTop: `${theme.spacing() * 1}px`,
+      paddingTop: theme.spacing(1),
       textTransform: "initial" as "initial"
     }
-  });
+  }),
+  { name: "FilterTab" }
+);
 
-interface FilterTabProps extends WithStyles<typeof styles> {
+interface FilterTabProps {
   onClick: () => void;
   label: string;
   selected?: boolean;
   value?: number;
 }
 
-export const FilterTab = withStyles(styles, { name: "FilterTab" })(
-  ({ classes, onClick, label, selected, value }: FilterTabProps) => (
+export const FilterTab: React.FC<FilterTabProps> = props => {
+  const { onClick, label, selected, value } = props;
+
+  const classes = useStyles(props);
+
+  return (
     <Tab
       disableRipple
       label={label}
       classes={{
-        label: classNames(classes.tabLabel, {
+        root: classes.tabRoot,
+        wrapper: classNames(classes.tabLabel, {
           [classes.selectedTabLabel]: selected
-        }),
-        root: classes.tabRoot
+        })
       }}
       onClick={onClick}
       value={value}
     />
-  )
-);
+  );
+};
 FilterTab.displayName = "FilterTab";
 export default FilterTab;

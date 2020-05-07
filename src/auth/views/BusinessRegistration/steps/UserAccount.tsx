@@ -1,6 +1,4 @@
 import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
 import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
@@ -10,6 +8,7 @@ import ConfirmButton from '@saleor/components/ConfirmButton';
 import Container from '@saleor/components/Container';
 import Form from '@saleor/components/Form';
 import { FormSpacer } from '@saleor/components/FormSpacer';
+import SingleSelectField from '@saleor/components/SingleSelectField';
 import useNotifier from '@saleor/hooks/useNotifier';
 import { commonMessages } from '@saleor/intl';
 import React, { useEffect } from 'react';
@@ -278,17 +277,15 @@ const UserAccount = withStyles(styles, { name: "UserAccount" })(
                   <FormSpacer />
                   <>
                     <InputLabel>País</InputLabel>
-                    <Select
-                    fullWidth
-                    id="pais-select"
-                    value={data.country}
-                    name="country"
-                    onChange={handleChange}
-                    required
-                    >
-                      <MenuItem value={Countries.ECUADOR}>Ecuador</MenuItem>
-                      <MenuItem value={Countries.COLOMBIA}>Colombia</MenuItem>
-                    </Select>
+                    <FormSpacer />
+                    <SingleSelectField
+                      label="País"
+                      value={data.country}
+                      name="country"
+                      onChange={handleChange}
+                      required
+                      choices={[{ value: Countries.ECUADOR, label: Countries.ECUADOR }, { value: Countries.COLOMBIA, label: Countries.COLOMBIA }]}
+                    />
                   </>
                   <FormSpacer />
                   <TextField

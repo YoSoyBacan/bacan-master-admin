@@ -1,11 +1,11 @@
-import createGenerateClassName from "@material-ui/core/styles/createGenerateClassName";
-import createHookGenerateClassName from "@material-ui/styles/createGenerateClassName";
-import initStoryshots from "@storybook/addon-storyshots";
 // tslint:disable no-submodule-imports
-import generateRandomKey from "draft-js/lib/generateRandomKey";
-import { configure, render } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
-import toJSON from "enzyme-to-json";
+import { createGenerateClassName } from '@material-ui/core/styles';
+import createHookGenerateClassName from '@material-ui/styles/createGenerateClassName';
+import initStoryshots from '@storybook/addon-storyshots';
+import generateRandomKey from 'draft-js/lib/generateRandomKey';
+import { configure, render } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import toJSON from 'enzyme-to-json';
 
 configure({ adapter: new Adapter() });
 

@@ -1,10 +1,5 @@
-import Card from '@material-ui/core/Card';
 import { createMuiTheme, Theme } from '@material-ui/core/styles';
 import { darken, fade } from '@material-ui/core/styles/colorManipulator';
-import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
-
-import { IThemeColors } from './components/Theme/themes';
 
 const createShadow = (pv, pb, ps, uv, ub, us, av, ab, as) =>
   [
@@ -14,6 +9,38 @@ const createShadow = (pv, pb, ps, uv, ub, us, av, ab, as) =>
   ].join(",");
 
 export const ICONBUTTON_SIZE = 48;
+
+export type IThemeColors = Record<
+  "primary" | "secondary" | "error" | "paperBorder" | "autofill",
+  string
+> & {
+  background: Record<"default" | "paper", string>;
+} & {
+  checkbox: Record<"default", string>;
+} & {
+  divider: string;
+} & {
+  font: Record<
+    "default" | "gray" | "button" | "textButton" | "textDisabled",
+    string
+  >;
+} & {
+  gray: Record<"default" | "disabled", string>;
+} & {
+  input: Record<
+    | "default"
+    | "border"
+    | "disabled"
+    | "disabledBackground"
+    | "disabledText"
+    | "error"
+    | "text"
+    | "textHover",
+    string
+  >;
+} & {
+  theme: "dark" | "light";
+};
 
 const fontFamily = '"Montserrat", "sans-serif"';
 
@@ -89,35 +116,18 @@ export default (colors: IThemeColors): Theme =>
           width: 32
         }
       },
-      MuiDialogActions: {
-        root: {
-          borderTop: `1px solid ${colors.divider}`,
-          padding: `16px 24px`
-        }
-      },
       MuiDialogContent: {
         root: {
           "& label": {
             overflowX: "hidden"
           },
-          padding: 24
-        }
-      },
-      MuiDialogContentText: {
-        root: {
-          "&:last-child": {
-            marginBottom: 0
-          }
-        }
-      },
-      MuiDialogTitle: {
-        root: {
-          borderBottom: `1px solid ${colors.divider}`
+          padding: "5px 24px 24px"
         }
       },
       MuiFormControlLabel: {
-        label: {
-          marginLeft: 4
+        root: {
+          display: "grid",
+          gridTemplateColumns: "48px 1fr"
         }
       },
       MuiFormLabel: {
@@ -164,12 +174,15 @@ export default (colors: IThemeColors): Theme =>
             color: colors.font.gray,
             opacity: "1 !important" as any
           },
-          zIndex: 2
+          zIndex: 1
         }
       },
       MuiInputLabel: {
-        filled: {
-          zIndex: 2
+        error: {
+          "&$focused": {
+            color: colors.error
+          },
+          color: colors.error
         },
         formControl: {
           transform: "translate(0, 1.5px) scale(0.75)",
@@ -187,13 +200,10 @@ export default (colors: IThemeColors): Theme =>
           "&$disabled": {
             color: `${fade(colors.primary, 0.4)} !important` as any
           },
-          "&$error": {
-            "&$focused": {
+          "&&$focused": {
+            "&$error": {
               color: colors.error
             },
-            color: colors.error
-          },
-          "&&$focused": {
             "&:not($error)": {
               color: colors.primary
             }
@@ -248,6 +258,26 @@ export default (colors: IThemeColors): Theme =>
         }
       },
       MuiOutlinedInput: {
+        error: {
+          "&$focused": {
+            "& fieldset": {
+              borderColor: colors.error
+            },
+            "& input": {
+              color: colors.error,
+              zIndex: 2
+            }
+          },
+          "&:hover": {
+            "& fieldset": {
+              borderColor: colors.error
+            },
+            "& input": {
+              color: colors.error,
+              zIndex: 2
+            }
+          }
+        },
         input: {
           "&:-webkit-autofill": {
             borderRadius: 4,
@@ -286,35 +316,20 @@ export default (colors: IThemeColors): Theme =>
               zIndex: 2
             }
           },
-          "&$error": {
-            "&$focused": {
-              "& fieldset": {
-                borderColor: colors.error
-              },
-              "& input": {
-                color: colors.error,
-                zIndex: 2
-              }
-            },
-            "&:hover": {
-              "& fieldset": {
-                borderColor: colors.error
-              },
-              "& input": {
-                color: colors.error,
-                zIndex: 2
-              }
-            }
-          },
           "&$focused": {
             "& input": {
-              "& fieldset": {
-                borderColor: colors.primary
-              },
               "&::placeholder": {
                 opacity: [[1], "!important"] as any
               },
               color: colors.font.default
+            },
+            "&&&": {
+              "& fieldset": {
+                borderColor: colors.primary
+              },
+              "&$error fieldset": {
+                borderColor: colors.error
+              }
             }
           },
           "&:hover": {
@@ -330,7 +345,6 @@ export default (colors: IThemeColors): Theme =>
               }
             }
           },
-          backgroundColor: colors.background.paper,
           borderColor: colors.input.border,
           top: 0
         }
@@ -341,20 +355,13 @@ export default (colors: IThemeColors): Theme =>
             "& svg": {
               color: colors.font.default
             }
-          },
-          alignSelf: "baseline"
-        },
-        message: {
-          fontSize: 16
+          }
         },
         root: {
           backgroundColor: colors.background.paper,
           boxShadow:
             "0 6px 10px 0px rgba(0, 0, 0, 0.15), 0 1px 18px 0px rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.10)",
-          color: colors.font.default,
-          display: "grid",
-          gridTemplateColumns: "1fr 56px",
-          maxWidth: 480
+          color: colors.font.default
         }
       },
       MuiSwitch: {
@@ -366,7 +373,7 @@ export default (colors: IThemeColors): Theme =>
         root: {
           "&$disabled": {
             "&$switchBase": {
-              "& + $thumb": {
+              "& + $bar": {
                 backgroundColor: colors.gray.disabled
               }
             }
@@ -405,12 +412,12 @@ export default (colors: IThemeColors): Theme =>
       },
       MuiTableCell: {
         body: {
-          fontSize: "1rem",
+          fontSize: ".875rem",
           paddingBottom: 8,
           paddingTop: 8
         },
         head: {
-          fontSize: "1rem"
+          fontSize: ".875rem"
         },
         paddingCheckbox: {
           "&:first-child": {
@@ -545,17 +552,3 @@ export default (colors: IThemeColors): Theme =>
       }
     }
   });
-
-TextField.defaultProps = {
-  ...TextField.defaultProps,
-  variant: "outlined"
-};
-
-Card.defaultProps = {
-  ...Card.defaultProps,
-  elevation: 0
-};
-
-Typography.defaultProps = {
-  component: "div"
-};

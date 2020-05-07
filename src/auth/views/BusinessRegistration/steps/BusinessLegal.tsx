@@ -1,12 +1,11 @@
 import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
 import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import ConfirmButton from '@saleor/components/ConfirmButton';
 import Form from '@saleor/components/Form';
 import { FormSpacer } from '@saleor/components/FormSpacer';
+import SingleSelectField from '@saleor/components/SingleSelectField';
 import useNotifier from '@saleor/hooks/useNotifier';
 import React, { useEffect } from 'react';
 
@@ -48,7 +47,7 @@ const BankOptionsList = [
   BankOptions.BANCO_GENERAL_RUMINAUI,
   BankOptions.BANCO_LOJA,
   BankOptions.BANCO_MACHALA
-]
+];
 
 enum EntityType {
   PERSONA_NATURAL = "Persona Natural",
@@ -392,40 +391,24 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
               <FormSpacer />
               <>
                 <InputLabel>Tipo de Personería</InputLabel>
-                <Select
-                  fullWidth
-                  required
-                  id="pais-select"
+                <SingleSelectField
+                  required={true}
                   value={data.entityType}
                   name="entityType"
                   onChange={handleChange}
-                >
-                  <MenuItem value={EntityType.PERSONA_JURIDICA}>
-                    Persona Jurídica
-                  </MenuItem>
-                  <MenuItem value={EntityType.PERSONA_NATURAL}>
-                    Persona Natural
-                  </MenuItem>
-                </Select>
+                  choices={[{ value: EntityType.PERSONA_JURIDICA, label: 'Persona Jurídica'}, { value: EntityType.PERSONA_NATURAL , label: 'Persona Natural' }]}
+                />
               </>
               <FormSpacer />
               <>
                 <InputLabel>¿ Tienes Facturación Electrónica ?</InputLabel>
-                <Select
-                  fullWidth
-                  required
-                  id="accounting-bool"
+                <SingleSelectField
+                  required={true}
                   value={data.hasAccounting}
                   name="hasAccounting"
                   onChange={handleChange}
-                >
-                  <MenuItem value={"true"}>
-                    Si
-                  </MenuItem>
-                  <MenuItem value={"false"}>
-                    No
-                  </MenuItem>
-                </Select>
+                  choices={[{ value: "true", label: "Si" }, { value: "false", label: "No" }]}
+                />
               </>
               <FormSpacer />
               <Typography variant="h5" className={classes.title}>
@@ -483,39 +466,24 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
               <FormSpacer />
               <>
                 <InputLabel>Nombre de Banco</InputLabel>
-                <Select
-                  fullWidth
+                <SingleSelectField
                   required
-                  id="bank-select"
                   value={data.bankName}
                   name="bankName"
                   onChange={handleChange}
-                >
-                  {
-                    BankOptionsList.map((bank) => (
-                      <MenuItem value={bank}>
-                        {bank}
-                      </MenuItem>
-                    ))
-                  }
-                </Select>
+                  choices={BankOptionsList.map((choice) => ({ value: choice, label: choice }))}
+                />
               </>
               <FormSpacer />
               <>
                 <InputLabel >Tipo de Cuenta</InputLabel>
-                <Select
-                  fullWidth
+                <SingleSelectField
                   required
-                  id="account-select"
                   value={data.bankAccountType}
                   name="bankAccountType"
                   onChange={handleChange}
-                >
-                  <MenuItem value={BankAccountType.AHORROS}>Ahorros</MenuItem>
-                  <MenuItem value={BankAccountType.CORRIENTE}>
-                    Corriente
-                  </MenuItem>
-                </Select>
+                  choices={[{ value: BankAccountType.AHORROS, label: BankAccountType.AHORROS }, { value: BankAccountType.CORRIENTE, label: BankAccountType.CORRIENTE }]}
+                />
               </>
               <FormSpacer />
               <TextField

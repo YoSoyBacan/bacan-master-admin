@@ -1,26 +1,21 @@
-import Card from "@material-ui/core/Card";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableFooter from "@material-ui/core/TableFooter";
-import TableRow from "@material-ui/core/TableRow";
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import Card from '@material-ui/core/Card';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableFooter from '@material-ui/core/TableFooter';
+import TableRow from '@material-ui/core/TableRow';
+import Checkbox from '@saleor/components/Checkbox';
+import Skeleton from '@saleor/components/Skeleton';
+import StatusLabel from '@saleor/components/StatusLabel';
+import TableHead from '@saleor/components/TableHead';
+import TablePagination from '@saleor/components/TablePagination';
+import { maybe, renderCollection } from '@saleor/misc';
+import { ListActions, ListProps } from '@saleor/types';
+import React from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 
-import Checkbox from "@saleor/components/Checkbox";
-import Skeleton from "@saleor/components/Skeleton";
-import StatusLabel from "@saleor/components/StatusLabel";
-import TableHead from "@saleor/components/TableHead";
-import TablePagination from "@saleor/components/TablePagination";
-import { maybe, renderCollection } from "@saleor/misc";
-import { ListActions, ListProps } from "@saleor/types";
-import { PageList_pages_edges_node } from "../../types/PageList";
+import { PageList_pages_edges_node } from '../../types/PageList';
 
 export interface PageListProps extends ListProps, ListActions {
   pages: PageList_pages_edges_node[];
@@ -79,19 +74,19 @@ const PageList = withStyles(styles, { name: "PageList" })(
             toggleAll={toggleAll}
             toolbar={toolbar}
           >
-            <TableCell className={classes.colTitle} padding="dense">
+            <TableCell className={classes.colTitle} >
               <FormattedMessage
                 defaultMessage="Title"
                 description="dialog header"
               />
             </TableCell>
-            <TableCell className={classes.colSlug} padding="dense">
+            <TableCell className={classes.colSlug} >
               <FormattedMessage
                 defaultMessage="Slug"
                 description="page internal name"
               />
             </TableCell>
-            <TableCell className={classes.colVisibility} padding="dense">
+            <TableCell className={classes.colVisibility} >
               <FormattedMessage
                 defaultMessage="Visibility"
                 description="page status"

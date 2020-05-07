@@ -1,13 +1,13 @@
-import FormControl from "@material-ui/core/FormControl";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import OutlinedInput from "@material-ui/core/OutlinedInput";
-import Select, { SelectProps } from "@material-ui/core/Select";
-import { createStyles, withStyles, WithStyles } from "@material-ui/core/styles";
-import classNames from "classnames";
-import React from "react";
-import { FormattedMessage } from "react-intl";
+import FormControl from '@material-ui/core/FormControl';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import Select, { SelectProps } from '@material-ui/core/Select';
+import { createStyles, WithStyles, withStyles } from '@material-ui/core/styles';
+import classNames from 'classnames';
+import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
 const styles = createStyles({
   formControl: {
@@ -32,6 +32,7 @@ interface SingleSelectFieldProps extends WithStyles<typeof styles> {
   selectProps?: SelectProps;
   placeholder?: string;
   value?: string;
+  required?: boolean;
   onChange(event: any);
 }
 
@@ -50,7 +51,8 @@ export const SingleSelectField = withStyles(styles, {
     name,
     hint,
     selectProps,
-    placeholder
+    placeholder,
+    required
   }: SingleSelectFieldProps) => {
     const choicesByKey: { [key: string]: string } =
       choices === undefined
@@ -75,6 +77,7 @@ export const SingleSelectField = withStyles(styles, {
           }
           value={value || ""}
           onChange={onChange}
+          required={required === true}
           input={<OutlinedInput name={name} labelWidth={180} />}
           {...selectProps}
         >

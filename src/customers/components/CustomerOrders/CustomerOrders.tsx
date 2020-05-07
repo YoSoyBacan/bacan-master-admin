@@ -1,21 +1,21 @@
-import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
-import { createStyles, withStyles, WithStyles } from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import { createStyles, WithStyles, withStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import CardTitle from '@saleor/components/CardTitle';
+import { DateTime } from '@saleor/components/Date';
+import Money from '@saleor/components/Money';
+import Skeleton from '@saleor/components/Skeleton';
+import StatusLabel from '@saleor/components/StatusLabel';
+import React from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 
-import CardTitle from "@saleor/components/CardTitle";
-import { DateTime } from "@saleor/components/Date";
-import Money from "@saleor/components/Money";
-import Skeleton from "@saleor/components/Skeleton";
-import StatusLabel from "@saleor/components/StatusLabel";
-import { maybe, renderCollection, transformPaymentStatus } from "../../../misc";
-import { CustomerDetails_user_orders_edges_node } from "../../types/CustomerDetails";
+import { maybe, renderCollection, transformPaymentStatus } from '../../../misc';
+import { CustomerDetails_user_orders_edges_node } from '../../types/CustomerDetails';
 
 const styles = createStyles({
   link: {
@@ -70,25 +70,25 @@ const CustomerOrders = withStyles(styles, { name: "CustomerOrders" })(
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell padding="dense">
+              <TableCell >
                 <FormattedMessage
                   defaultMessage="No. of Order"
                   description="number of order"
                 />
               </TableCell>
-              <TableCell padding="dense">
+              <TableCell >
                 <FormattedMessage
                   defaultMessage="Date"
                   description="order placement date"
                 />
               </TableCell>
-              <TableCell padding="dense">
+              <TableCell >
                 <FormattedMessage
                   defaultMessage="Status"
                   description="order status"
                 />
               </TableCell>
-              <TableCell className={classes.textRight} padding="dense">
+              <TableCell className={classes.textRight} >
                 <FormattedMessage
                   defaultMessage="Total"
                   description="order total amount"
@@ -106,21 +106,21 @@ const CustomerOrders = withStyles(styles, { name: "CustomerOrders" })(
                   onClick={order ? () => onRowClick(order.id) : undefined}
                   key={order ? order.id : "skeleton"}
                 >
-                  <TableCell padding="dense">
+                  <TableCell >
                     {maybe(() => order.number) ? (
                       "#" + order.number
                     ) : (
                       <Skeleton />
                     )}
                   </TableCell>
-                  <TableCell padding="dense">
+                  <TableCell >
                     {maybe(() => order.created) ? (
                       <DateTime date={order.created} />
                     ) : (
                       <Skeleton />
                     )}
                   </TableCell>
-                  <TableCell padding="dense">
+                  <TableCell >
                     {maybe(() => order.paymentStatus.status) !== undefined ? (
                       order.paymentStatus.status === null ? null : (
                         <StatusLabel
@@ -132,7 +132,7 @@ const CustomerOrders = withStyles(styles, { name: "CustomerOrders" })(
                       <Skeleton />
                     )}
                   </TableCell>
-                  <TableCell className={classes.textRight} padding="dense">
+                  <TableCell className={classes.textRight} >
                     {maybe(() => order.total.gross) ? (
                       <Money money={order.total.gross} />
                     ) : (
