@@ -116,18 +116,35 @@ export default (colors: IThemeColors): Theme =>
           width: 32
         }
       },
+      MuiDialogActions: {
+        root: {
+          borderTop: `1px solid ${colors.divider}`,
+          padding: `16px 24px`
+        }
+      },
       MuiDialogContent: {
         root: {
           "& label": {
             overflowX: "hidden"
           },
-          padding: "5px 24px 24px"
+          padding: 24
+        }
+      },
+      MuiDialogContentText: {
+        root: {
+          "&:last-child": {
+            marginBottom: 0
+          }
+        }
+      },
+      MuiDialogTitle: {
+        root: {
+          borderBottom: `1px solid ${colors.divider}`
         }
       },
       MuiFormControlLabel: {
-        root: {
-          display: "grid",
-          gridTemplateColumns: "48px 1fr"
+        label: {
+          marginLeft: 4
         }
       },
       MuiFormLabel: {
@@ -174,15 +191,12 @@ export default (colors: IThemeColors): Theme =>
             color: colors.font.gray,
             opacity: "1 !important" as any
           },
-          zIndex: 1
+          zIndex: 2
         }
       },
       MuiInputLabel: {
-        error: {
-          "&$focused": {
-            color: colors.error
-          },
-          color: colors.error
+        filled: {
+          zIndex: 2
         },
         formControl: {
           transform: "translate(0, 1.5px) scale(0.75)",
@@ -200,10 +214,13 @@ export default (colors: IThemeColors): Theme =>
           "&$disabled": {
             color: `${fade(colors.primary, 0.4)} !important` as any
           },
-          "&&$focused": {
-            "&$error": {
+          "&$error": {
+            "&$focused": {
               color: colors.error
             },
+            color: colors.error
+          },
+          "&&$focused": {
             "&:not($error)": {
               color: colors.primary
             }
@@ -258,26 +275,6 @@ export default (colors: IThemeColors): Theme =>
         }
       },
       MuiOutlinedInput: {
-        error: {
-          "&$focused": {
-            "& fieldset": {
-              borderColor: colors.error
-            },
-            "& input": {
-              color: colors.error,
-              zIndex: 2
-            }
-          },
-          "&:hover": {
-            "& fieldset": {
-              borderColor: colors.error
-            },
-            "& input": {
-              color: colors.error,
-              zIndex: 2
-            }
-          }
-        },
         input: {
           "&:-webkit-autofill": {
             borderRadius: 4,
@@ -316,20 +313,35 @@ export default (colors: IThemeColors): Theme =>
               zIndex: 2
             }
           },
+          "&$error": {
+            "&$focused": {
+              "& fieldset": {
+                borderColor: colors.error
+              },
+              "& input": {
+                color: colors.error,
+                zIndex: 2
+              }
+            },
+            "&:hover": {
+              "& fieldset": {
+                borderColor: colors.error
+              },
+              "& input": {
+                color: colors.error,
+                zIndex: 2
+              }
+            }
+          },
           "&$focused": {
             "& input": {
+              "& fieldset": {
+                borderColor: colors.primary
+              },
               "&::placeholder": {
                 opacity: [[1], "!important"] as any
               },
               color: colors.font.default
-            },
-            "&&&": {
-              "& fieldset": {
-                borderColor: colors.primary
-              },
-              "&$error fieldset": {
-                borderColor: colors.error
-              }
             }
           },
           "&:hover": {
@@ -345,6 +357,7 @@ export default (colors: IThemeColors): Theme =>
               }
             }
           },
+          backgroundColor: colors.background.paper,
           borderColor: colors.input.border,
           top: 0
         }
@@ -355,13 +368,20 @@ export default (colors: IThemeColors): Theme =>
             "& svg": {
               color: colors.font.default
             }
-          }
+          },
+          alignSelf: "baseline"
+        },
+        message: {
+          fontSize: 16
         },
         root: {
           backgroundColor: colors.background.paper,
           boxShadow:
             "0 6px 10px 0px rgba(0, 0, 0, 0.15), 0 1px 18px 0px rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.10)",
-          color: colors.font.default
+          color: colors.font.default,
+          display: "grid",
+          gridTemplateColumns: "1fr 56px",
+          maxWidth: 480
         }
       },
       MuiSwitch: {
@@ -373,7 +393,7 @@ export default (colors: IThemeColors): Theme =>
         root: {
           "&$disabled": {
             "&$switchBase": {
-              "& + $bar": {
+              "& + $thumb": {
                 backgroundColor: colors.gray.disabled
               }
             }
@@ -412,12 +432,12 @@ export default (colors: IThemeColors): Theme =>
       },
       MuiTableCell: {
         body: {
-          fontSize: ".875rem",
+          fontSize: "1rem",
           paddingBottom: 8,
           paddingTop: 8
         },
         head: {
-          fontSize: ".875rem"
+          fontSize: "1rem"
         },
         paddingCheckbox: {
           "&:first-child": {

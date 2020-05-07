@@ -1,46 +1,41 @@
-import { ContentState, convertToRaw, RawDraftContentState } from "draft-js";
-import React from "react";
-import { useIntl } from "react-intl";
-
-import AppHeader from "@saleor/components/AppHeader";
-import CardSpacer from "@saleor/components/CardSpacer";
-import { ConfirmButtonTransitionState } from "@saleor/components/ConfirmButton";
-import Container from "@saleor/components/Container";
-import Form from "@saleor/components/Form";
-import Grid from "@saleor/components/Grid";
-import { MultiAutocompleteChoiceType } from "@saleor/components/MultiAutocompleteSelectField";
-import PageHeader from "@saleor/components/PageHeader";
-import SaveButtonBar from "@saleor/components/SaveButtonBar";
-import SeoForm from "@saleor/components/SeoForm";
-import VisibilityCard from "@saleor/components/VisibilityCard";
-import { SearchCategories_search_edges_node } from "@saleor/containers/SearchCategories/types/SearchCategories";
-import { SearchCollections_search_edges_node } from "@saleor/containers/SearchCollections/types/SearchCollections";
-import { SearchProductTypes_search_edges_node_productAttributes } from "@saleor/containers/SearchProductTypes/types/SearchProductTypes";
-import useDateLocalize from "@saleor/hooks/useDateLocalize";
-import useFormset from "@saleor/hooks/useFormset";
-import useStateFromProps from "@saleor/hooks/useStateFromProps";
-import { sectionNames } from "@saleor/intl";
+import AppHeader from '@saleor/components/AppHeader';
+import CardSpacer from '@saleor/components/CardSpacer';
+import { ConfirmButtonTransitionState } from '@saleor/components/ConfirmButton';
+import Container from '@saleor/components/Container';
+import Form from '@saleor/components/Form';
+import Grid from '@saleor/components/Grid';
+import { MultiAutocompleteChoiceType } from '@saleor/components/MultiAutocompleteSelectField';
+import PageHeader from '@saleor/components/PageHeader';
+import SaveButtonBar from '@saleor/components/SaveButtonBar';
+import SeoForm from '@saleor/components/SeoForm';
+import VisibilityCard from '@saleor/components/VisibilityCard';
+import { SearchCategories_search_edges_node } from '@saleor/containers/SearchCategories/types/SearchCategories';
+import { SearchCollections_search_edges_node } from '@saleor/containers/SearchCollections/types/SearchCollections';
 import {
-  getChoices,
-  ProductAttributeValueChoices,
-  ProductType
-} from "@saleor/products/utils/data";
-import createMultiAutocompleteSelectHandler from "@saleor/utils/handlers/multiAutocompleteSelectChangeHandler";
-import createSingleAutocompleteSelectHandler from "@saleor/utils/handlers/singleAutocompleteSelectChangeHandler";
-import { FetchMoreProps, UserError } from "../../../types";
+  SearchProductTypes_search_edges_node_productAttributes,
+} from '@saleor/containers/SearchProductTypes/types/SearchProductTypes';
+import useDateLocalize from '@saleor/hooks/useDateLocalize';
+import useFormset from '@saleor/hooks/useFormset';
+import useStateFromProps from '@saleor/hooks/useStateFromProps';
+import { sectionNames } from '@saleor/intl';
+import { getChoices, ProductAttributeValueChoices, ProductType } from '@saleor/products/utils/data';
+import createMultiAutocompleteSelectHandler from '@saleor/utils/handlers/multiAutocompleteSelectChangeHandler';
+import createSingleAutocompleteSelectHandler from '@saleor/utils/handlers/singleAutocompleteSelectChangeHandler';
+import { ContentState, convertToRaw, RawDraftContentState } from 'draft-js';
+import React from 'react';
+import { useIntl } from 'react-intl';
+
+import { FetchMoreProps, UserError } from '../../../types';
 import {
   createAttributeChangeHandler,
   createAttributeMultiChangeHandler,
-  createProductTypeSelectHandler
-} from "../../utils/handlers";
-import ProductAttributes, {
-  ProductAttributeInput,
-  ProductAttributeInputData
-} from "../ProductAttributes";
-import ProductDetailsForm from "../ProductDetailsForm";
-import ProductOrganization from "../ProductOrganization";
-import ProductPricing from "../ProductPricing";
-import ProductStock from "../ProductStock";
+  createProductTypeSelectHandler,
+} from '../../utils/handlers';
+import ProductAttributes, { ProductAttributeInput, ProductAttributeInputData } from '../ProductAttributes';
+import ProductDetailsForm from '../ProductDetailsForm';
+import ProductOrganization from '../ProductOrganization';
+import ProductPricing from '../ProductPricing';
+import ProductStock from '../ProductStock';
 
 interface FormData {
   basePrice: number;
@@ -114,7 +109,11 @@ export const ProductCreatePage: React.StatelessComponent<
     set: setAttributeData
   } = useFormset<ProductAttributeInputData>([]);
 
-  const initialDescription = convertToRaw(ContentState.createFromText(""));
+  // Ensures that it will not change after component rerenders, because it
+  // generates different block keys and it causes editor to lose its content.
+  const initialDescription = React.useRef(
+    convertToRaw(ContentState.createFromText(""))
+  );  
   const initialData: FormData = {
     basePrice: 0,
     category: "",
@@ -221,7 +220,7 @@ export const ProductCreatePage: React.StatelessComponent<
                   data={data}
                   disabled={disabled}
                   errors={errors}
-                  initialDescription={initialDescription}
+                  initialDescription={initialDescription.current}
                   onChange={change}
                 />
                 <CardSpacer />

@@ -90,7 +90,11 @@ const CreateBusiness: React.StatelessComponent<
     data: attributes,
   } = useFormset<ProductAttributeInputData>([]);
 
-  const initialDescription = convertToRaw(ContentState.createFromText(""));
+  // Ensures that it will not change after component rerenders, because it
+  // generates different block keys and it causes editor to lose its content.
+  const initialDescription = React.useRef(
+    convertToRaw(ContentState.createFromText(""))
+  );  
   const initialData: FormData = {
     basePrice: 0,
     category: "",
@@ -149,7 +153,7 @@ const CreateBusiness: React.StatelessComponent<
                   data={data}
                   disabled={disabled}
                   errors={errors}
-                  initialDescription={initialDescription}
+                  initialDescription={initialDescription.current}
                   onChange={change}
                 />
               </div>

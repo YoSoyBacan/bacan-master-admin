@@ -1,4 +1,3 @@
-import InputLabel from '@material-ui/core/InputLabel';
 import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
@@ -389,27 +388,23 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
                 }}
               />
               <FormSpacer />
-              <>
-                <InputLabel>Tipo de Personería</InputLabel>
-                <SingleSelectField
-                  required={true}
-                  value={data.entityType}
-                  name="entityType"
-                  onChange={handleChange}
-                  choices={[{ value: EntityType.PERSONA_JURIDICA, label: 'Persona Jurídica'}, { value: EntityType.PERSONA_NATURAL , label: 'Persona Natural' }]}
-                />
-              </>
+              <SingleSelectField
+                label="Tipo de Personería"
+                required={true}
+                value={data.entityType}
+                name="entityType"
+                onChange={handleChange}
+                choices={[{ value: EntityType.PERSONA_JURIDICA, label: 'Persona Jurídica'}, { value: EntityType.PERSONA_NATURAL , label: 'Persona Natural' }]}
+              />
               <FormSpacer />
-              <>
-                <InputLabel>¿ Tienes Facturación Electrónica ?</InputLabel>
-                <SingleSelectField
-                  required={true}
-                  value={data.hasAccounting}
-                  name="hasAccounting"
-                  onChange={handleChange}
-                  choices={[{ value: "true", label: "Si" }, { value: "false", label: "No" }]}
-                />
-              </>
+              <SingleSelectField
+                label="¿ Tienes Facturación Electrónica ?"
+                required={true}
+                value={data.hasAccounting}
+                name="hasAccounting"
+                onChange={handleChange}
+                choices={[{ value: "true", label: "Si" }, { value: "false", label: "No" }]}
+              />
               <FormSpacer />
               <Typography variant="h5" className={classes.title}>
                 Información de Representante Legal
@@ -463,28 +458,23 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
               <Typography variant="subtitle2">
                 Necesitamos esta información para depositar las ventas de tus Tarjetas Bacán.
               </Typography>
+              <SingleSelectField
+                required
+                label="Nombre de Banco"
+                value={data.bankName}
+                name="bankName"
+                onChange={handleChange}
+                choices={BankOptionsList.map((choice) => ({ value: choice, label: choice }))}
+              />
               <FormSpacer />
-              <>
-                <InputLabel>Nombre de Banco</InputLabel>
-                <SingleSelectField
-                  required
-                  value={data.bankName}
-                  name="bankName"
-                  onChange={handleChange}
-                  choices={BankOptionsList.map((choice) => ({ value: choice, label: choice }))}
-                />
-              </>
-              <FormSpacer />
-              <>
-                <InputLabel >Tipo de Cuenta</InputLabel>
-                <SingleSelectField
-                  required
-                  value={data.bankAccountType}
-                  name="bankAccountType"
-                  onChange={handleChange}
-                  choices={[{ value: BankAccountType.AHORROS, label: BankAccountType.AHORROS }, { value: BankAccountType.CORRIENTE, label: BankAccountType.CORRIENTE }]}
-                />
-              </>
+              <SingleSelectField
+                required
+                label={"Tipo de Cuenta"}
+                value={data.bankAccountType}
+                name="bankAccountType"
+                onChange={handleChange}
+                choices={[{ value: BankAccountType.AHORROS, label: BankAccountType.AHORROS }, { value: BankAccountType.CORRIENTE, label: BankAccountType.CORRIENTE }]}
+              />
               <FormSpacer />
               <TextField
                 autoFocus

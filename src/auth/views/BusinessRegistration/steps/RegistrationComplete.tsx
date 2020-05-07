@@ -51,7 +51,7 @@ const RegistrationComplete = withStyles(styles, { name: "RegistrationComplete" }
     }, []);
     return (
         <>
-          <Typography variant="h4" className={classes.title}>&#9989; Ya estas 100% registrado en Bacán &#9989; </Typography>
+          <Typography variant="h4" className={classes.title}>&#9989; Ya estás 100% registrado en Bacán &#9989; </Typography>
             <Grid variant="uniform">
             <Card>
               <CardTitle 

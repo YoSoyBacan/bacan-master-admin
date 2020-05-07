@@ -1,4 +1,3 @@
-import InputLabel from '@material-ui/core/InputLabel';
 import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
@@ -275,18 +274,14 @@ const UserAccount = withStyles(styles, { name: "UserAccount" })(
                     helperText={getErrorField('email').errorText}
                   />
                   <FormSpacer />
-                  <>
-                    <InputLabel>País</InputLabel>
-                    <FormSpacer />
-                    <SingleSelectField
-                      label="País"
-                      value={data.country}
-                      name="country"
-                      onChange={handleChange}
-                      required
-                      choices={[{ value: Countries.ECUADOR, label: Countries.ECUADOR }, { value: Countries.COLOMBIA, label: Countries.COLOMBIA }]}
-                    />
-                  </>
+                  <SingleSelectField
+                    label="País"
+                    value={data.country}
+                    name="country"
+                    onChange={handleChange}
+                    required
+                    choices={[{ value: Countries.ECUADOR, label: Countries.ECUADOR }, { value: Countries.COLOMBIA, label: Countries.COLOMBIA }]}
+                  />
                   <FormSpacer />
                   <TextField
                   fullWidth
