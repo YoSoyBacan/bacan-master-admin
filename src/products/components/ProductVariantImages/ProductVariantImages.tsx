@@ -1,19 +1,14 @@
-import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import CardTitle from '@saleor/components/CardTitle';
+import Skeleton from '@saleor/components/Skeleton';
+import React from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 
-import CardTitle from "@saleor/components/CardTitle";
-import Skeleton from "@saleor/components/Skeleton";
-import { ProductImage } from "../../types/ProductImage";
+import { ProductImage } from '../../types/ProductImage';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -33,14 +28,14 @@ const styles = (theme: Theme) =>
     imageContainer: {
       background: "#ffffff",
       border: "1px solid #eaeaea",
-      borderRadius: theme.spacing.unit,
-      height: theme.spacing.unit * 17.5,
-      marginBottom: theme.spacing.unit * 2,
-      padding: theme.spacing.unit * 2
+      borderRadius: theme.spacing(),
+      height: theme.spacing() * 17.5,
+      marginBottom: theme.spacing() * 2,
+      padding: theme.spacing() * 2
     },
     root: {
       display: "grid",
-      gridColumnGap: theme.spacing.unit * 2 + "px",
+      gridColumnGap: theme.spacing() * 2 + "px",
       gridTemplateColumns: "repeat(4, 1fr)"
     }
   });

@@ -1,24 +1,19 @@
-import Card from "@material-ui/core/Card";
-import ClickAwayListener from "@material-ui/core/ClickAwayListener";
-import Grow from "@material-ui/core/Grow";
-import MenuItem from "@material-ui/core/MenuItem";
-import Menu from "@material-ui/core/MenuList";
-import Paper from "@material-ui/core/Paper";
-import Popper from "@material-ui/core/Popper";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import ArrowDropDown from "@material-ui/icons/ArrowDropDown";
-import classNames from "classnames";
-import React from "react";
-import { FormattedMessage } from "react-intl";
+import Card from '@material-ui/core/Card';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import Grow from '@material-ui/core/Grow';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/MenuList';
+import Paper from '@material-ui/core/Paper';
+import Popper from '@material-ui/core/Popper';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
+import classNames from 'classnames';
+import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
-import { LanguageCodeEnum } from "../../types/globalTypes";
-import { ShopInfo_shop_languages } from "../Shop/types/ShopInfo";
+import { LanguageCodeEnum } from '../../types/globalTypes';
+import { ShopInfo_shop_languages } from '../Shop/types/ShopInfo';
 
 export interface LanguageSwitchProps {
   currentLanguage: LanguageCodeEnum;
@@ -33,21 +28,21 @@ const styles = (theme: Theme) =>
       transition: theme.transitions.duration.standard + "ms"
     },
     container: {
-      paddingBottom: theme.spacing.unit
+      paddingBottom: theme.spacing()
     },
     menuContainer: {
       cursor: "pointer",
       display: "flex",
       justifyContent: "space-between",
       minWidth: 90,
-      padding: theme.spacing.unit,
+      padding: theme.spacing(),
       position: "relative"
     },
     menuItem: {
       textAlign: "justify"
     },
     menuPaper: {
-      maxHeight: `calc(100vh - ${theme.spacing.unit * 2}px)`,
+      maxHeight: `calc(100vh - ${theme.spacing() * 2}px)`,
       overflow: "scroll"
     },
     popover: {

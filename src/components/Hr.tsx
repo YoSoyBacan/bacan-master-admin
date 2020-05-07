@@ -1,11 +1,6 @@
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import classNames from "classnames";
-import React from "react";
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import classNames from 'classnames';
+import React from 'react';
 
 interface HrProps {
   className?: string;
@@ -14,7 +9,7 @@ interface HrProps {
 const styles = (theme: Theme) =>
   createStyles({
     root: {
-      backgroundColor: theme.overrides.MuiCard.root.borderColor,
+      backgroundColor: theme.palette.divider,
       border: "none",
       display: "block",
       height: 1,

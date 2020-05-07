@@ -13,7 +13,7 @@ import Checkbox from '../Checkbox';
 const styles = (theme: Theme) =>
   createStyles({
     checkbox: {
-      marginRight: -theme.spacing.unit * 2
+      marginRight: -theme.spacing() * 2
     },
     formControl: {
       width: "100%"

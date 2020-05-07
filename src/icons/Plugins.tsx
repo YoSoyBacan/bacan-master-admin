@@ -1,5 +1,5 @@
-import createSvgIcon from "@material-ui/icons/utils/createSvgIcon";
-import React from "react";
+import createSvgIcon from '@material-ui/icons/utils/createSvgIcon';
+import React from 'react';
 
 export const Plugins = createSvgIcon(
   <>
@@ -11,7 +11,7 @@ export const Plugins = createSvgIcon(
         fill="#06847B"
       />
     </g>
-  </>
+  </>,
+  "Plugins"
 );
-Plugins.displayName = "Plugins";
 export default Plugins;

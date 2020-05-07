@@ -1,16 +1,15 @@
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import { Theme } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/styles";
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
-
-import CardTitle from "@saleor/components/CardTitle";
-import FormSpacer from "@saleor/components/FormSpacer";
-import Hr from "@saleor/components/Hr";
-import { FormErrors } from "@saleor/types";
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import { Theme } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/styles';
+import CardTitle from '@saleor/components/CardTitle';
+import FormSpacer from '@saleor/components/FormSpacer';
+import Hr from '@saleor/components/Hr';
+import { FormErrors } from '@saleor/types';
+import React from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 export interface SiteSettingsMailingFormData {
   defaultMailSenderName: string;
@@ -32,10 +31,10 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     cardHelperText: {
       position: "relative",
-      top: -theme.spacing.unit
+      top: -theme.spacing()
     },
     cardHelperTextCaption: {
-      marginBottom: theme.spacing.unit * 2
+      marginBottom: theme.spacing() * 2
     }
   }),
   {

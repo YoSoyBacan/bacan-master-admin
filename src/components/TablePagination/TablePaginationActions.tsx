@@ -1,16 +1,11 @@
-import IconButton from "@material-ui/core/IconButton";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import { fade } from "@material-ui/core/styles/colorManipulator";
-import ArrowLeft from "@material-ui/icons/ArrowLeft";
-import ArrowRight from "@material-ui/icons/ArrowRight";
-import useTheme from "@saleor/hooks/useTheme";
-import classNames from "classnames";
-import React from "react";
+import IconButton from '@material-ui/core/IconButton';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import { fade } from '@material-ui/core/styles/colorManipulator';
+import ArrowLeft from '@material-ui/icons/ArrowLeft';
+import ArrowRight from '@material-ui/icons/ArrowRight';
+import useTheme from '@saleor/hooks/useTheme';
+import classNames from 'classnames';
+import React from 'react';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -51,7 +46,7 @@ const styles = (theme: Theme) =>
     root: {
       color: theme.palette.text.secondary,
       flexShrink: 0,
-      margin: `0 ${theme.spacing.unit * 2.5}px`
+      margin: `0 ${theme.spacing() * 2.5}px`
     }
   });
 

@@ -1,16 +1,16 @@
-import ButtonBase from "@material-ui/core/ButtonBase";
-import { Theme } from "@material-ui/core/styles";
-import { fade } from "@material-ui/core/styles/colorManipulator";
-import Typography from "@material-ui/core/Typography";
-import ClearIcon from "@material-ui/icons/Clear";
-import { makeStyles, useTheme } from "@material-ui/styles";
-import React from "react";
-import { FormattedMessage } from "react-intl";
+import ButtonBase from '@material-ui/core/ButtonBase';
+import { Theme } from '@material-ui/core/styles';
+import { fade } from '@material-ui/core/styles/colorManipulator';
+import Typography from '@material-ui/core/Typography';
+import ClearIcon from '@material-ui/icons/Clear';
+import { makeStyles, useTheme } from '@material-ui/styles';
+import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
-import Filter from "../Filter";
-import FilterActions, { FilterActionsProps } from "../Filter/FilterActions";
-import Hr from "../Hr";
-import Link from "../Link";
+import Filter from '../Filter';
+import FilterActions, { FilterActionsProps } from '../Filter/FilterActions';
+import Hr from '../Hr';
+import Link from '../Link';
 
 export interface Filter {
   label: string;
@@ -26,9 +26,9 @@ const useStyles = makeStyles(
       display: "flex",
       height: "38px",
       justifyContent: "space-around",
-      margin: `0 ${theme.spacing.unit * 2}px ${theme.spacing.unit}px`,
+      margin: `0 ${theme.spacing() * 2}px ${theme.spacing()}px`,
       marginLeft: 0,
-      padding: `0 ${theme.spacing.unit * 2}px`
+      padding: `0 ${theme.spacing() * 2}px`
     },
     filterChipContainer: {
       display: "flex",
@@ -41,8 +41,8 @@ const useStyles = makeStyles(
       },
       borderBottom: `1px solid ${theme.palette.divider}`,
       display: "flex",
-      marginTop: theme.spacing.unit,
-      padding: `0 ${theme.spacing.unit * 3}px ${theme.spacing.unit}px`
+      marginTop: theme.spacing(),
+      padding: `0 ${theme.spacing() * 3}px ${theme.spacing()}px`
     },
     filterIcon: {
       color: theme.palette.common.white,
@@ -61,7 +61,7 @@ const useStyles = makeStyles(
       width: 32
     },
     filterLabel: {
-      marginBottom: theme.spacing.unit
+      marginBottom: theme.spacing()
     },
     filterText: {
       color: theme.palette.common.white,

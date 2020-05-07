@@ -1,19 +1,13 @@
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import React from "react";
-
-import SingleSelectField from "@saleor/components/SingleSelectField";
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import SingleSelectField from '@saleor/components/SingleSelectField';
+import React from 'react';
 
 const styles = (theme: Theme) =>
   createStyles({
     root: {
       display: "grid",
-      gridColumnGap: `${theme.spacing.unit * 2}px`,
+      gridColumnGap: `${theme.spacing() * 2}px`,
       gridTemplateColumns: "5rem 1fr"
     }
   });

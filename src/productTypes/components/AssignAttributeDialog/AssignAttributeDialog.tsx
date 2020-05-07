@@ -1,33 +1,33 @@
-import Button from "@material-ui/core/Button";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import { Theme } from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableRow from "@material-ui/core/TableRow";
-import TextField from "@material-ui/core/TextField";
-import Typography from "@material-ui/core/Typography";
-import makeStyles from "@material-ui/styles/makeStyles";
-import React from "react";
-import InfiniteScroll from "react-infinite-scroller";
-import { FormattedMessage, useIntl } from "react-intl";
+import Button from '@material-ui/core/Button';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import { Theme } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableRow from '@material-ui/core/TableRow';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
+import makeStyles from '@material-ui/styles/makeStyles';
+import Checkbox from '@saleor/components/Checkbox';
+import ConfirmButton, { ConfirmButtonTransitionState } from '@saleor/components/ConfirmButton';
+import useModalDialogErrors from '@saleor/hooks/useModalDialogErrors';
+import useModalDialogOpen from '@saleor/hooks/useModalDialogOpen';
+import useSearchQuery from '@saleor/hooks/useSearchQuery';
+import { buttonMessages } from '@saleor/intl';
+import { maybe, renderCollection } from '@saleor/misc';
+import { FetchMoreProps } from '@saleor/types';
+import React from 'react';
+import InfiniteScroll from 'react-infinite-scroller';
+import { FormattedMessage, useIntl } from 'react-intl';
 
-import Checkbox from "@saleor/components/Checkbox";
-import ConfirmButton, {
-  ConfirmButtonTransitionState
-} from "@saleor/components/ConfirmButton";
-import useModalDialogErrors from "@saleor/hooks/useModalDialogErrors";
-import useModalDialogOpen from "@saleor/hooks/useModalDialogOpen";
-import useSearchQuery from "@saleor/hooks/useSearchQuery";
-import { buttonMessages } from "@saleor/intl";
-import { maybe, renderCollection } from "@saleor/misc";
-import { FetchMoreProps } from "@saleor/types";
-import { SearchAttributes_productType_availableAttributes_edges_node } from "../../containers/SearchAttributes/types/SearchAttributes";
+import {
+  SearchAttributes_productType_availableAttributes_edges_node,
+} from '../../containers/SearchAttributes/types/SearchAttributes';
 
 const useStyles = makeStyles((theme: Theme) => ({
   checkboxCell: {
@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   loadMoreLoaderContainer: {
     alignItems: "center",
     display: "flex",
-    height: theme.spacing.unit * 3,
+    height: theme.spacing() * 3,
     justifyContent: "center"
   },
   scrollArea: {

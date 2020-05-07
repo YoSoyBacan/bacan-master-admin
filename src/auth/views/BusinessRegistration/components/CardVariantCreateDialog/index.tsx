@@ -22,7 +22,7 @@ import { CardVariantCreateStep } from './types';
 
 const useStyles = makeStyles((theme: Theme) => ({
   button: {
-    marginLeft: theme.spacing.unit * 2
+    marginLeft: theme.spacing() * 2
   },
   content: {
     overflowX: "visible",

@@ -1,6 +1,6 @@
 // FIXME: https://github.com/mirumee/saleor/issues/4174
+import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import OldMuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
-import MuiThemeProvider from '@material-ui/styles/ThemeProvider';
 import React from 'react';
 
 import Baseline from '../../Baseline';
@@ -40,7 +40,8 @@ const dark: IThemeColors = {
   },
   paperBorder: "#252728",
   primary: "#10CFC9",
-  secondary: "#1d224c"
+  secondary: "#1d224c",
+  theme: 'dark'
 };
 const light: IThemeColors = {
   autofill: "#f4f6c5",
@@ -76,7 +77,8 @@ const light: IThemeColors = {
   },
   paperBorder: "#EAEAEA",
   primary: "#1d224c",
-  secondary: "#10CFC9"
+  secondary: "#10CFC9",
+  theme: 'light'
 };
 
 interface IThemeContext {

@@ -1,17 +1,12 @@
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import Tabs from "@material-ui/core/Tabs";
-import React from "react";
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import Tabs from '@material-ui/core/Tabs';
+import React from 'react';
 
 const styles = (theme: Theme) =>
   createStyles({
     tabsRoot: {
-      borderBottom: `1px solid ${theme.overrides.MuiCard.root.borderColor}`,
-      paddingLeft: `${theme.spacing.unit * 3}px`
+      borderBottom: `1px solid ${theme.palette.divider}`,
+      paddingLeft: `${theme.spacing() * 3}px`
     }
   });
 

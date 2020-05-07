@@ -1,16 +1,11 @@
-import Avatar from "@material-ui/core/Avatar";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import TableCell from "@material-ui/core/TableCell";
-import Cached from "@material-ui/icons/Cached";
-import classNames from "classnames";
-import React from "react";
+import Avatar from '@material-ui/core/Avatar';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import TableCell from '@material-ui/core/TableCell';
+import Cached from '@material-ui/icons/Cached';
+import classNames from 'classnames';
+import React from 'react';
 
-import Image from "../../icons/Image";
+import Image from '../../icons/Image';
 
 export const AVATAR_MARGIN = 56;
 
@@ -18,15 +13,15 @@ const styles = (theme: Theme) =>
   createStyles({
     avatar: {
       background: "none",
-      border: `1px solid ${theme.overrides.MuiCard.root.borderColor}`,
+      border: `1px solid ${theme.palette.divider}`,
       borderRadius: 2,
       color: "#bdbdbd",
       display: "inline-flex",
-      padding: theme.spacing.unit / 2
+      padding: theme.spacing() / 2
     },
     children: {
       alignSelf: "center",
-      marginLeft: theme.spacing.unit * 2,
+      marginLeft: theme.spacing() * 2,
       width: "100%"
     },
     content: {
@@ -34,7 +29,7 @@ const styles = (theme: Theme) =>
       display: "flex"
     },
     root: {
-      paddingRight: theme.spacing.unit * 3,
+      paddingRight: theme.spacing() * 3,
       width: "1%"
     }
   });

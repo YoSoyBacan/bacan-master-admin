@@ -1,24 +1,19 @@
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import React from "react";
-import { useIntl } from "react-intl";
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import CardTitle from '@saleor/components/CardTitle';
+import React from 'react';
+import { useIntl } from 'react-intl';
 
-import CardTitle from "@saleor/components/CardTitle";
-import { maybe } from "../../../misc";
-import { ProductDetails_product } from "../../types/ProductDetails";
+import { maybe } from '../../../misc';
+import { ProductDetails_product } from '../../types/ProductDetails';
 
 const styles = (theme: Theme) =>
   createStyles({
     root: {
       display: "grid",
-      gridColumnGap: theme.spacing.unit * 2 + "px",
+      gridColumnGap: theme.spacing() * 2 + "px",
       gridTemplateColumns: "1fr 1fr"
     }
   });

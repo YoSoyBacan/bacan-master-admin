@@ -1,19 +1,14 @@
-import Avatar from "@material-ui/core/Avatar";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import * as colors from "@material-ui/core/colors";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import PersonIcon from "@material-ui/icons/Person";
-import CRC from "crc-32";
-import React from "react";
+import Avatar from '@material-ui/core/Avatar';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import * as colors from '@material-ui/core/colors';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import PersonIcon from '@material-ui/icons/Person';
+import CRC from 'crc-32';
+import React from 'react';
 
-import { DateTime } from "../Date";
+import { DateTime } from '../Date';
 
 const palette = [
   colors.amber,
@@ -42,8 +37,8 @@ const styles = (theme: Theme) =>
       top: 0
     },
     card: {
-      marginBottom: theme.spacing.unit * 3,
-      marginLeft: theme.spacing.unit * 3,
+      marginBottom: theme.spacing() * 3,
+      marginLeft: theme.spacing() * 3,
       position: "relative"
     },
     cardContent: {
@@ -62,8 +57,8 @@ const styles = (theme: Theme) =>
       alignItems: "center",
       display: "flex",
       justifyContent: "space-between",
-      marginBottom: theme.spacing.unit,
-      paddingLeft: theme.spacing.unit * 3
+      marginBottom: theme.spacing(),
+      paddingLeft: theme.spacing() * 3
     }
   });
 

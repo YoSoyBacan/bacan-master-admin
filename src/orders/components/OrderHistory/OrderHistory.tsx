@@ -1,27 +1,14 @@
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import React from "react";
-import { FormattedMessage, IntlShape, useIntl } from "react-intl";
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Form from '@saleor/components/Form';
+import Hr from '@saleor/components/Hr';
+import Skeleton from '@saleor/components/Skeleton';
+import { Timeline, TimelineAddNote, TimelineEvent, TimelineNote } from '@saleor/components/Timeline';
+import React from 'react';
+import { FormattedMessage, IntlShape, useIntl } from 'react-intl';
 
-import Form from "@saleor/components/Form";
-import Hr from "@saleor/components/Hr";
-import Skeleton from "@saleor/components/Skeleton";
-import {
-  Timeline,
-  TimelineAddNote,
-  TimelineEvent,
-  TimelineNote
-} from "@saleor/components/Timeline";
-import {
-  OrderEventsEmailsEnum,
-  OrderEventsEnum
-} from "../../../types/globalTypes";
-import { OrderDetails_order_events } from "../../types/OrderDetails";
+import { OrderEventsEmailsEnum, OrderEventsEnum } from '../../../types/globalTypes';
+import { OrderDetails_order_events } from '../../types/OrderDetails';
 
 export interface FormData {
   message: string;
@@ -181,11 +168,11 @@ const styles = (theme: Theme) =>
   createStyles({
     header: {
       fontWeight: 500,
-      marginBottom: theme.spacing.unit
+      marginBottom: theme.spacing()
     },
-    root: { marginTop: theme.spacing.unit * 4 },
+    root: { marginTop: theme.spacing() * 4 },
     user: {
-      marginBottom: theme.spacing.unit
+      marginBottom: theme.spacing()
     }
   });
 

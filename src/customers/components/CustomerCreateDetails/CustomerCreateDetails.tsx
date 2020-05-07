@@ -1,26 +1,21 @@
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import React from "react";
-import { useIntl } from "react-intl";
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import CardTitle from '@saleor/components/CardTitle';
+import { commonMessages } from '@saleor/intl';
+import React from 'react';
+import { useIntl } from 'react-intl';
 
-import CardTitle from "@saleor/components/CardTitle";
-import { commonMessages } from "@saleor/intl";
-import { FormErrors } from "../../../types";
-import { CustomerCreatePageFormData } from "../CustomerCreatePage";
+import { FormErrors } from '../../../types';
+import { CustomerCreatePageFormData } from '../CustomerCreatePage';
 
 const styles = (theme: Theme) =>
   createStyles({
     root: {
       display: "grid",
-      gridColumnGap: theme.spacing.unit * 2 + "px",
-      gridRowGap: theme.spacing.unit * 3 + "px",
+      gridColumnGap: theme.spacing() * 2 + "px",
+      gridRowGap: theme.spacing() * 3 + "px",
       gridTemplateColumns: "1fr 1fr"
     }
   });

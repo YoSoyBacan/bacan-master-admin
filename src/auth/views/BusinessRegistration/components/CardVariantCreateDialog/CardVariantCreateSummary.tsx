@@ -20,13 +20,13 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     attributeValue: {
       display: "inline-block",
-      marginRight: theme.spacing.unit
+      marginRight: theme.spacing()
     },
     col: {
       ...theme.typography.body2,
       fontSize: 14,
-      paddingLeft: theme.spacing.unit,
-      paddingRight: theme.spacing.unit
+      paddingLeft: theme.spacing(),
+      paddingRight: theme.spacing()
     },
     colHeader: {
       ...theme.typography.body2,
@@ -37,32 +37,32 @@ const useStyles = makeStyles(
         paddingLeft: "0 !important"
       },
       "&:not($colHeader)": {
-        paddingTop: theme.spacing.unit * 2
+        paddingTop: theme.spacing() * 2
       }
     },
     colPrice: {},
     colSku: {},
     colStock: {},
     delete: {
-      marginTop: theme.spacing.unit / 2
+      marginTop: theme.spacing() / 2
     },
     errorRow: {},
     hr: {
-      marginBottom: theme.spacing.unit,
-      marginTop: theme.spacing.unit / 2
+      marginBottom: theme.spacing(),
+      marginTop: theme.spacing() / 2
     },
     input: {
       "& input": {
         padding: "16px 12px 17px",
         color: "black"
       },
-      marginTop: theme.spacing.unit / 2
+      marginTop: theme.spacing() / 2
     },
     row: {
       borderBottom: `1px solid ${theme.palette.divider}`,
       display: "grid",
       gridTemplateColumns: "1fr 200px 220px 80px",
-      padding: `${theme.spacing.unit}px 0`
+      padding: `${theme.spacing()}px 0`
     }
   }),
   {

@@ -1,20 +1,20 @@
-import { Theme } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import makeStyles from "@material-ui/styles/makeStyles";
-import React from "react";
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import { Theme } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import makeStyles from '@material-ui/styles/makeStyles';
+import CardTitle from '@saleor/components/CardTitle';
+import Hr from '@saleor/components/Hr';
+import ImageTile from '@saleor/components/ImageTile';
+import ImageUpload from '@saleor/components/ImageUpload';
+import Skeleton from '@saleor/components/Skeleton';
+import { commonMessages } from '@saleor/intl';
+import React from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 
-import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import CardTitle from "@saleor/components/CardTitle";
-import Hr from "@saleor/components/Hr";
-import ImageTile from "@saleor/components/ImageTile";
-import ImageUpload from "@saleor/components/ImageUpload";
-import Skeleton from "@saleor/components/Skeleton";
-import { commonMessages } from "@saleor/intl";
-import { FormattedMessage, useIntl } from "react-intl";
-import { CategoryDetails_category_backgroundImage } from "../../types/CategoryDetails";
-import { FormData } from "../CategoryUpdatePage";
+import { CategoryDetails_category_backgroundImage } from '../../types/CategoryDetails';
+import { FormData } from '../CategoryUpdatePage';
 
 const useStyles = makeStyles((theme: Theme) => ({
   fileField: {
@@ -29,11 +29,11 @@ const useStyles = makeStyles((theme: Theme) => ({
   imageContainer: {
     background: "#ffffff",
     border: "1px solid #eaeaea",
-    borderRadius: theme.spacing.unit,
+    borderRadius: theme.spacing(),
     height: 148,
     justifySelf: "start",
     overflow: "hidden",
-    padding: theme.spacing.unit * 2,
+    padding: theme.spacing() * 2,
     position: "relative",
     width: 148
   }

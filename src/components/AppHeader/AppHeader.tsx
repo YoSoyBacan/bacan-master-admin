@@ -1,15 +1,11 @@
-import Portal from "@material-ui/core/Portal";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-import React from "react";
-import AppHeaderContext from "../AppLayout/AppHeaderContext";
-import Skeleton from "../Skeleton";
+import Portal from '@material-ui/core/Portal';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import React from 'react';
+
+import AppHeaderContext from '../AppLayout/AppHeaderContext';
+import Skeleton from '../Skeleton';
 
 export interface AppHeaderProps {
   children: React.ReactNode;
@@ -23,9 +19,9 @@ const styles = (theme: Theme) =>
     },
     menuButton: {
       flex: "0 0 auto",
-      marginLeft: theme.spacing.unit * -2,
-      marginRight: theme.spacing.unit,
-      marginTop: -theme.spacing.unit * 2
+      marginLeft: theme.spacing() * -2,
+      marginRight: theme.spacing(),
+      marginTop: -theme.spacing() * 2
     },
     root: {
       "&:hover": {
@@ -35,17 +31,17 @@ const styles = (theme: Theme) =>
       color: theme.palette.grey[500],
       cursor: "pointer",
       display: "flex",
-      marginTop: theme.spacing.unit / 2,
+      marginTop: theme.spacing() / 2,
       transition: theme.transitions.duration.standard + "ms"
     },
     skeleton: {
-      marginBottom: theme.spacing.unit * 2,
+      marginBottom: theme.spacing() * 2,
       width: "10rem"
     },
     title: {
       color: "inherit",
       flex: 1,
-      marginLeft: theme.spacing.unit,
+      marginLeft: theme.spacing(),
       textTransform: "uppercase"
     }
   });

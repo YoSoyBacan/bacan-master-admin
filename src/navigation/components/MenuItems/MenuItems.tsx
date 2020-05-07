@@ -1,30 +1,25 @@
-import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import IconButton from "@material-ui/core/IconButton";
-import Paper from "@material-ui/core/Paper";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import DeleteIcon from "@material-ui/icons/Delete";
-import EditIcon from "@material-ui/icons/Edit";
-import classNames from "classnames";
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
-import SortableTree, { NodeRendererProps, TreeItem } from "react-sortable-tree";
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import IconButton from '@material-ui/core/IconButton';
+import Paper from '@material-ui/core/Paper';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import CardTitle from '@saleor/components/CardTitle';
+import Skeleton from '@saleor/components/Skeleton';
+import useTheme from '@saleor/hooks/useTheme';
+import { buttonMessages } from '@saleor/intl';
+import classNames from 'classnames';
+import React from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
+import SortableTree, { NodeRendererProps, TreeItem } from 'react-sortable-tree';
 
-import CardTitle from "@saleor/components/CardTitle";
-import Skeleton from "@saleor/components/Skeleton";
-import useTheme from "@saleor/hooks/useTheme";
-import { buttonMessages } from "@saleor/intl";
-import Draggable from "../../../icons/Draggable";
-import { MenuDetails_menu_items } from "../../types/MenuDetails";
-import { MenuItemType } from "../MenuItemDialog";
-import { getDiff, getNodeData, getNodeQuantity, TreeOperation } from "./tree";
+import Draggable from '../../../icons/Draggable';
+import { MenuDetails_menu_items } from '../../types/MenuDetails';
+import { MenuItemType } from '../MenuItemDialog';
+import { getDiff, getNodeData, getNodeQuantity, TreeOperation } from './tree';
 
 const NODE_HEIGHT = 56;
 const NODE_MARGIN = 40;
@@ -51,14 +46,14 @@ const styles = (theme: Theme) =>
       background: `${theme.palette.grey[800]} !important`
     },
     deleteButton: {
-      marginRight: theme.spacing.unit
+      marginRight: theme.spacing()
     },
     dragIcon: {
       cursor: "grab"
     },
     nodeTitle: {
       cursor: "pointer",
-      marginLeft: theme.spacing.unit * 7
+      marginLeft: theme.spacing() * 7
     },
     root: {
       "& .rst__collapseButton": {
@@ -67,7 +62,7 @@ const styles = (theme: Theme) =>
       "& .rst__node": {
         "&:first-of-type": {
           "& $row": {
-            borderTop: `1px ${theme.overrides.MuiCard.root.borderColor} solid`
+            borderTop: `1px ${theme.palette.divider} solid`
           }
         }
       }
@@ -75,13 +70,13 @@ const styles = (theme: Theme) =>
     row: {
       alignItems: "center",
       background: theme.palette.background.paper,
-      borderBottom: `1px ${theme.overrides.MuiCard.root.borderColor} solid`,
+      borderBottom: `1px ${theme.palette.divider} solid`,
       borderRadius: 0,
       display: "flex",
       flexDirection: "row",
       height: NODE_HEIGHT,
       justifyContent: "flex-start",
-      paddingLeft: theme.spacing.unit * 3
+      paddingLeft: theme.spacing() * 3
     },
     rowContainer: {
       "& > *": {

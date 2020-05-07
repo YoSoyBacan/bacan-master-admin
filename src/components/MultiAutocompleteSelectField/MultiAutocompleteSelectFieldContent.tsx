@@ -1,22 +1,20 @@
-import CircularProgress from "@material-ui/core/CircularProgress";
-import MenuItem from "@material-ui/core/MenuItem";
-import Paper from "@material-ui/core/Paper";
-import { Theme } from "@material-ui/core/styles";
-import AddIcon from "@material-ui/icons/Add";
-import { makeStyles } from "@material-ui/styles";
-import classNames from "classnames";
-import { GetItemPropsOptions } from "downshift";
-import React from "react";
-import SVG from "react-inlinesvg";
-import { FormattedMessage } from "react-intl";
+import chevronDown from '@assets/images/ChevronDown.svg';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import MenuItem from '@material-ui/core/MenuItem';
+import Paper from '@material-ui/core/Paper';
+import { Theme } from '@material-ui/core/styles';
+import AddIcon from '@material-ui/icons/Add';
+import { makeStyles } from '@material-ui/styles';
+import Checkbox from '@saleor/components/Checkbox';
+import useElementScroll, { isScrolledToBottom } from '@saleor/hooks/useElementScroll';
+import { FetchMoreProps } from '@saleor/types';
+import classNames from 'classnames';
+import { GetItemPropsOptions } from 'downshift';
+import React from 'react';
+import SVG from 'react-inlinesvg';
+import { FormattedMessage } from 'react-intl';
 
-import chevronDown from "@assets/images/ChevronDown.svg";
-import Checkbox from "@saleor/components/Checkbox";
-import useElementScroll, {
-  isScrolledToBottom
-} from "@saleor/hooks/useElementScroll";
-import { FetchMoreProps } from "@saleor/types";
-import Hr from "../Hr";
+import Hr from '../Hr';
 
 const menuItemHeight = 46;
 const maxMenuItems = 5;
@@ -63,7 +61,7 @@ const useStyles = makeStyles(
       width: 20
     },
     content: {
-      maxHeight: menuItemHeight * maxMenuItems + theme.spacing.unit * 2,
+      maxHeight: menuItemHeight * maxMenuItems + theme.spacing() * 2,
       overflow: "scroll",
       padding: 8
     },
@@ -71,7 +69,7 @@ const useStyles = makeStyles(
       opacity: 0
     },
     hr: {
-      margin: `${theme.spacing.unit}px 0`
+      margin: `${theme.spacing()}px 0`
     },
     menuItem: {
       "&:focus": {
@@ -92,7 +90,7 @@ const useStyles = makeStyles(
       },
       borderRadius: 4,
       display: "grid",
-      gridColumnGap: theme.spacing.unit + "px",
+      gridColumnGap: theme.spacing() + "px",
       gridTemplateColumns: "30px 1fr",
       height: "auto",
       padding: 0,
@@ -110,7 +108,7 @@ const useStyles = makeStyles(
       borderBottomLeftRadius: 8,
       borderBottomRightRadius: 8,
       left: 0,
-      marginTop: theme.spacing.unit,
+      marginTop: theme.spacing(),
       overflow: "hidden",
       position: "absolute",
       right: 0,

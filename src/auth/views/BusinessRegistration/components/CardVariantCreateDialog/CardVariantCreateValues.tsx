@@ -12,14 +12,14 @@ import { CardVariantCreateFormData } from './form';
 
 const useStyles = makeStyles((theme: Theme) => ({
     hr: {
-      marginBottom: theme.spacing.unit,
-      marginTop: theme.spacing.unit / 2
+      marginBottom: theme.spacing(),
+      marginTop: theme.spacing() / 2
     },
     valueContainer: {
       display: "grid",
-      gridColumnGap: theme.spacing.unit * 3 + "px",
+      gridColumnGap: theme.spacing() * 3 + "px",
       gridTemplateColumns: "repeat(3, 1fr)",
-      marginBottom: theme.spacing.unit * 3
+      marginBottom: theme.spacing() * 3
     }
 }));
 

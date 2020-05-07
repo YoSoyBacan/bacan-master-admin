@@ -1,5 +1,5 @@
-import createSvgIcon from "@material-ui/icons/utils/createSvgIcon";
-import React from "react";
+import createSvgIcon from '@material-ui/icons/utils/createSvgIcon';
+import React from 'react';
 
 export const Draggable = createSvgIcon(
   <>
@@ -25,7 +25,7 @@ export const Draggable = createSvgIcon(
         <stop offset="1" stopColor="#3EE7CD" />
       </linearGradient>
     </defs>
-  </>
+  </>,
+  "Draggable"
 );
-Draggable.displayName = "Draggable";
 export default Draggable;

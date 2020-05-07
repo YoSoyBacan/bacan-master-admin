@@ -1,6 +1,3 @@
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
 import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
@@ -10,6 +7,7 @@ import ConfirmButton from '@saleor/components/ConfirmButton';
 import Container from '@saleor/components/Container';
 import Form from '@saleor/components/Form';
 import { FormSpacer } from '@saleor/components/FormSpacer';
+import SingleSelectField from '@saleor/components/SingleSelectField';
 import useNotifier from '@saleor/hooks/useNotifier';
 import { commonMessages } from '@saleor/intl';
 import React, { useEffect } from 'react';
@@ -41,8 +39,8 @@ const styles = (theme: Theme) =>
     buttonContainer: {
       display: "flex",
       justifyContent: "space-between",
-      paddingTop: theme.spacing.unit * 2,
-      paddingBottom: theme.spacing.unit * 2
+      paddingTop: theme.spacing() * 2,
+      paddingBottom: theme.spacing() * 2
     },
     nexButton: {
       width: 140
@@ -61,7 +59,7 @@ const styles = (theme: Theme) =>
     },
     title: {
         flex: 1,
-        paddingBottom: theme.spacing.unit * 2
+        paddingBottom: theme.spacing() * 2
     },
     checkboxContainer: {
       display: 'flex',
@@ -75,9 +73,9 @@ const styles = (theme: Theme) =>
         color: theme.palette.error.contrastText
       },
       background: theme.palette.error.main,
-      borderRadius: theme.spacing.unit,
-      marginBottom: theme.spacing.unit * 3,
-      padding: theme.spacing.unit * 1.5
+      borderRadius: theme.spacing(),
+      marginBottom: theme.spacing() * 3,
+      padding: theme.spacing() * 1.5
     }
   });
 
@@ -276,20 +274,14 @@ const UserAccount = withStyles(styles, { name: "UserAccount" })(
                     helperText={getErrorField('email').errorText}
                   />
                   <FormSpacer />
-                  <>
-                    <InputLabel>País</InputLabel>
-                    <Select
-                    fullWidth
-                    id="pais-select"
+                  <SingleSelectField
+                    label="País"
                     value={data.country}
                     name="country"
                     onChange={handleChange}
                     required
-                    >
-                      <MenuItem value={Countries.ECUADOR}>Ecuador</MenuItem>
-                      <MenuItem value={Countries.COLOMBIA}>Colombia</MenuItem>
-                    </Select>
-                  </>
+                    choices={[{ value: Countries.ECUADOR, label: Countries.ECUADOR }, { value: Countries.COLOMBIA, label: Countries.COLOMBIA }]}
+                  />
                   <FormSpacer />
                   <TextField
                   fullWidth

@@ -1,18 +1,18 @@
-import Card from "@material-ui/core/Card";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import { createStyles, withStyles, WithStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import Card from '@material-ui/core/Card';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import { createStyles, WithStyles, withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import CardTitle from '@saleor/components/CardTitle';
+import { DateTime } from '@saleor/components/Date';
+import Skeleton from '@saleor/components/Skeleton';
+import React from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 
-import CardTitle from "@saleor/components/CardTitle";
-import { DateTime } from "@saleor/components/Date";
-import Skeleton from "@saleor/components/Skeleton";
-import { renderCollection } from "../../../misc";
-import { Home_activities_edges_node } from "../../types/Home";
-import { getActivityMessage } from "./activityMessages";
+import { renderCollection } from '../../../misc';
+import { Home_activities_edges_node } from '../../types/Home';
+import { getActivityMessage } from './activityMessages';
 
 const styles = createStyles({
   loadingProducts: {
@@ -37,7 +37,7 @@ const HomeActivityCard = withStyles(styles, { name: "HomeActivityCard" })(
       <Card>
         <CardTitle
           title={intl.formatMessage({
-            defaultMessage: "Activity",
+            defaultMessage: "Actividad",
             description: "header",
             id: "homeActivityCardHeader"
           })}

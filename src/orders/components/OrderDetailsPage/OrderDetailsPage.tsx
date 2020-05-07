@@ -1,38 +1,33 @@
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import React from "react";
-import { useIntl } from "react-intl";
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import AppHeader from '@saleor/components/AppHeader';
+import CardMenu from '@saleor/components/CardMenu';
+import { CardSpacer } from '@saleor/components/CardSpacer';
+import { Container } from '@saleor/components/Container';
+import { DateTime } from '@saleor/components/Date';
+import Grid from '@saleor/components/Grid';
+import PageHeader from '@saleor/components/PageHeader';
+import Skeleton from '@saleor/components/Skeleton';
+import { sectionNames } from '@saleor/intl';
+import { UserPermissionProps } from '@saleor/types';
+import React from 'react';
+import { useIntl } from 'react-intl';
 
-import AppHeader from "@saleor/components/AppHeader";
-import CardMenu from "@saleor/components/CardMenu";
-import { CardSpacer } from "@saleor/components/CardSpacer";
-import { Container } from "@saleor/components/Container";
-import { DateTime } from "@saleor/components/Date";
-import Grid from "@saleor/components/Grid";
-import PageHeader from "@saleor/components/PageHeader";
-import Skeleton from "@saleor/components/Skeleton";
-import { sectionNames } from "@saleor/intl";
-import { UserPermissionProps } from "@saleor/types";
-import { maybe, renderCollection } from "../../../misc";
-import { OrderStatus } from "../../../types/globalTypes";
-import { OrderDetails_order } from "../../types/OrderDetails";
-import OrderCustomer from "../OrderCustomer";
-import OrderCustomerNote from "../OrderCustomerNote";
-import OrderFulfillment from "../OrderFulfillment";
-import OrderHistory, { FormData as HistoryFormData } from "../OrderHistory";
-import OrderPayment from "../OrderPayment/OrderPayment";
-import OrderUnfulfilledItems from "../OrderUnfulfilledItems/OrderUnfulfilledItems";
+import { maybe, renderCollection } from '../../../misc';
+import { OrderStatus } from '../../../types/globalTypes';
+import { OrderDetails_order } from '../../types/OrderDetails';
+import OrderCustomer from '../OrderCustomer';
+import OrderCustomerNote from '../OrderCustomerNote';
+import OrderFulfillment from '../OrderFulfillment';
+import OrderHistory, { FormData as HistoryFormData } from '../OrderHistory';
+import OrderPayment from '../OrderPayment/OrderPayment';
+import OrderUnfulfilledItems from '../OrderUnfulfilledItems/OrderUnfulfilledItems';
 
 const styles = (theme: Theme) =>
   createStyles({
     date: {
-      marginBottom: theme.spacing.unit * 3,
-      marginTop: -theme.spacing.unit * 2
+      marginBottom: theme.spacing() * 3,
+      marginTop: -theme.spacing() * 2
     },
     header: {
       marginBottom: 0

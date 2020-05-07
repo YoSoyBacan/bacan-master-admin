@@ -1,16 +1,16 @@
-import { Theme } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import makeStyles from "@material-ui/styles/makeStyles";
-import React from "react";
+import { Theme } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import makeStyles from '@material-ui/styles/makeStyles';
+import ControlledCheckbox from '@saleor/components/ControlledCheckbox';
+import Debounce from '@saleor/components/Debounce';
+import Hr from '@saleor/components/Hr';
+import Skeleton from '@saleor/components/Skeleton';
+import { maybe } from '@saleor/misc';
+import { ProductDetails_product_productType_variantAttributes } from '@saleor/products/types/ProductDetails';
+import { isSelected } from '@saleor/utils/lists';
+import React from 'react';
 
-import ControlledCheckbox from "@saleor/components/ControlledCheckbox";
-import Debounce from "@saleor/components/Debounce";
-import Hr from "@saleor/components/Hr";
-import Skeleton from "@saleor/components/Skeleton";
-import { maybe } from "@saleor/misc";
-import { ProductDetails_product_productType_variantAttributes } from "@saleor/products/types/ProductDetails";
-import { isSelected } from "@saleor/utils/lists";
-import { ProductVariantCreateFormData } from "./form";
+import { ProductVariantCreateFormData } from './form';
 
 export interface ProductVariantCreateValuesProps {
   attributes: ProductDetails_product_productType_variantAttributes[];
@@ -20,14 +20,14 @@ export interface ProductVariantCreateValuesProps {
 
 const useStyles = makeStyles((theme: Theme) => ({
   hr: {
-    marginBottom: theme.spacing.unit,
-    marginTop: theme.spacing.unit / 2
+    marginBottom: theme.spacing(),
+    marginTop: theme.spacing() / 2
   },
   valueContainer: {
     display: "grid",
-    gridColumnGap: theme.spacing.unit * 3 + "px",
+    gridColumnGap: theme.spacing() * 3 + "px",
     gridTemplateColumns: "repeat(3, 1fr)",
-    marginBottom: theme.spacing.unit * 3
+    marginBottom: theme.spacing() * 3
   }
 }));
 

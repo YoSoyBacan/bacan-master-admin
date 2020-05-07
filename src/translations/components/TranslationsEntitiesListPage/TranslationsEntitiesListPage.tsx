@@ -1,18 +1,18 @@
-import Card from "@material-ui/core/Card";
-import React from "react";
-import { IntlShape, useIntl } from "react-intl";
+import Card from '@material-ui/core/Card';
+import AppHeader from '@saleor/components/AppHeader';
+import Container from '@saleor/components/Container';
+import FilterSearch from '@saleor/components/Filter/FilterSearch';
+import PageHeader from '@saleor/components/PageHeader';
+import { ShopInfo_shop_languages } from '@saleor/components/Shop/types/ShopInfo';
+import FilterTabs, { FilterTab } from '@saleor/components/TableFilter';
+import { maybe } from '@saleor/misc';
+import { SearchPageProps } from '@saleor/types';
+import React from 'react';
+import { IntlShape, useIntl } from 'react-intl';
 
-import AppHeader from "@saleor/components/AppHeader";
-import Container from "@saleor/components/Container";
-import FilterSearch from "@saleor/components/Filter/FilterSearch";
-import PageHeader from "@saleor/components/PageHeader";
+import { TranslatableEntities } from '../../urls';
+
 // tslint:disable no-submodule-imports
-import { ShopInfo_shop_languages } from "@saleor/components/Shop/types/ShopInfo";
-import FilterTabs, { FilterTab } from "@saleor/components/TableFilter";
-import { maybe } from "@saleor/misc";
-import { SearchPageProps } from "@saleor/types";
-import { TranslatableEntities } from "../../urls";
-
 export interface TranslationsEntitiesListPageProps extends SearchPageProps {
   children: React.ReactNode;
   filters: TranslationsEntitiesFilters;
@@ -128,25 +128,25 @@ const TranslationsEntitiesListPage: React.StatelessComponent<
           />
           <FilterTab
             label={intl.formatMessage({
-              defaultMessage: "Products"
+              defaultMessage: "Negocios"
             })}
             onClick={filters.onProductsTabClick}
           />
           <FilterTab
             label={intl.formatMessage({
-              defaultMessage: "Sales"
+              defaultMessage: "Ventas"
             })}
             onClick={filters.onSalesTabClick}
           />
           <FilterTab
             label={intl.formatMessage({
-              defaultMessage: "Vouchers"
+              defaultMessage: "Cupones"
             })}
             onClick={filters.onVouchersTabClick}
           />
           <FilterTab
             label={intl.formatMessage({
-              defaultMessage: "Pages"
+              defaultMessage: "Páginas"
             })}
             onClick={filters.onPagesTabClick}
           />

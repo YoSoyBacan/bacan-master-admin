@@ -1,15 +1,10 @@
-import IconButton from "@material-ui/core/IconButton";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import TableCell from "@material-ui/core/TableCell";
-import React from "react";
+import IconButton from '@material-ui/core/IconButton';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import TableCell from '@material-ui/core/TableCell';
+import React from 'react';
 
-import { stopPropagation } from "../../misc";
-import { ICONBUTTON_SIZE } from "../../theme";
+import { stopPropagation } from '../../misc';
+import { ICONBUTTON_SIZE } from '../../theme';
 
 export interface IconButtonTableCellProps {
   children: React.ReactNode;
@@ -24,7 +19,7 @@ const styles = (theme: Theme) =>
         paddingRight: 0
       },
       paddingRight: 0,
-      width: ICONBUTTON_SIZE + theme.spacing.unit / 2
+      width: ICONBUTTON_SIZE + theme.spacing() / 2
     }
   });
 const IconButtonTableCell = withStyles(styles, { name: "IconButtonTableCell" })(

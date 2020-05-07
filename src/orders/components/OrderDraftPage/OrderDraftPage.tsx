@@ -1,38 +1,33 @@
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import React from "react";
-import { useIntl } from "react-intl";
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import AppHeader from '@saleor/components/AppHeader';
+import CardMenu from '@saleor/components/CardMenu';
+import { ConfirmButtonTransitionState } from '@saleor/components/ConfirmButton';
+import { Container } from '@saleor/components/Container';
+import { DateTime } from '@saleor/components/Date';
+import Grid from '@saleor/components/Grid';
+import PageHeader from '@saleor/components/PageHeader';
+import SaveButtonBar from '@saleor/components/SaveButtonBar';
+import Skeleton from '@saleor/components/Skeleton';
+import { sectionNames } from '@saleor/intl';
+import { FetchMoreProps, UserPermissionProps } from '@saleor/types';
+import React from 'react';
+import { useIntl } from 'react-intl';
 
-import AppHeader from "@saleor/components/AppHeader";
-import CardMenu from "@saleor/components/CardMenu";
-import { ConfirmButtonTransitionState } from "@saleor/components/ConfirmButton";
-import { Container } from "@saleor/components/Container";
-import { DateTime } from "@saleor/components/Date";
-import Grid from "@saleor/components/Grid";
-import PageHeader from "@saleor/components/PageHeader";
-import SaveButtonBar from "@saleor/components/SaveButtonBar";
-import Skeleton from "@saleor/components/Skeleton";
-import { sectionNames } from "@saleor/intl";
-import { FetchMoreProps, UserPermissionProps } from "@saleor/types";
-import { SearchCustomers_search_edges_node } from "../../../containers/SearchCustomers/types/SearchCustomers";
-import { maybe } from "../../../misc";
-import { DraftOrderInput } from "../../../types/globalTypes";
-import { OrderDetails_order } from "../../types/OrderDetails";
-import OrderCustomer from "../OrderCustomer";
-import OrderDraftDetails from "../OrderDraftDetails/OrderDraftDetails";
-import { FormData as OrderDraftDetailsProductsFormData } from "../OrderDraftDetailsProducts";
-import OrderHistory, { FormData as HistoryFormData } from "../OrderHistory";
+import { SearchCustomers_search_edges_node } from '../../../containers/SearchCustomers/types/SearchCustomers';
+import { maybe } from '../../../misc';
+import { DraftOrderInput } from '../../../types/globalTypes';
+import { OrderDetails_order } from '../../types/OrderDetails';
+import OrderCustomer from '../OrderCustomer';
+import OrderDraftDetails from '../OrderDraftDetails/OrderDraftDetails';
+import { FormData as OrderDraftDetailsProductsFormData } from '../OrderDraftDetailsProducts';
+import OrderHistory, { FormData as HistoryFormData } from '../OrderHistory';
 
 const styles = (theme: Theme) =>
   createStyles({
     date: {
-      marginBottom: theme.spacing.unit * 3,
-      marginLeft: theme.spacing.unit * 7
+      marginBottom: theme.spacing() * 3,
+      marginLeft: theme.spacing() * 7
     },
     header: {
       marginBottom: 0

@@ -1,24 +1,17 @@
-import IconButton from "@material-ui/core/IconButton";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import Typography from "@material-ui/core/Typography";
-import CloseIcon from "@material-ui/icons/Close";
-import Downshift, { ControllerStateAndHelpers } from "downshift";
-import { filter } from "fuzzaldrin";
-import React from "react";
+import IconButton from '@material-ui/core/IconButton';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import { fade } from '@material-ui/core/styles/colorManipulator';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
+import CloseIcon from '@material-ui/icons/Close';
+import Debounce, { DebounceProps } from '@saleor/components/Debounce';
+import ArrowDropdownIcon from '@saleor/icons/ArrowDropdown';
+import { FetchMoreProps } from '@saleor/types';
+import Downshift, { ControllerStateAndHelpers } from 'downshift';
+import { filter } from 'fuzzaldrin';
+import React from 'react';
 
-import { fade } from "@material-ui/core/styles/colorManipulator";
-import Debounce, { DebounceProps } from "@saleor/components/Debounce";
-import ArrowDropdownIcon from "@saleor/icons/ArrowDropdown";
-import { FetchMoreProps } from "@saleor/types";
-import MultiAutocompleteSelectFieldContent, {
-  MultiAutocompleteChoiceType
-} from "./MultiAutocompleteSelectFieldContent";
+import MultiAutocompleteSelectFieldContent, { MultiAutocompleteChoiceType } from './MultiAutocompleteSelectFieldContent';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -33,7 +26,7 @@ const styles = (theme: Theme) =>
     chipContainer: {
       display: "flex",
       flexDirection: "column",
-      marginTop: theme.spacing.unit
+      marginTop: theme.spacing()
     },
     chipInner: {
       "& svg": {
@@ -45,9 +38,9 @@ const styles = (theme: Theme) =>
       color: theme.palette.primary.contrastText,
       display: "flex",
       justifyContent: "space-between",
-      margin: `${theme.spacing.unit}px 0`,
-      paddingLeft: theme.spacing.unit * 2,
-      paddingRight: theme.spacing.unit
+      margin: `${theme.spacing()}px 0`,
+      paddingLeft: theme.spacing() * 2,
+      paddingRight: theme.spacing()
     },
     chipLabel: {
       color: theme.palette.primary.contrastText
@@ -142,7 +135,7 @@ export const MultiAutocompleteSelectFieldComponent = withStyles(styles, {
                     }),
                     endAdornment: (
                       <div>
-                        <ArrowDropdownIcon onClick={toggleMenu} />
+                        <ArrowDropdownIcon onClick={() => toggleMenu()} />
                       </div>
                     ),
                     id: undefined,

@@ -1,12 +1,10 @@
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
 import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import ConfirmButton from '@saleor/components/ConfirmButton';
 import Form from '@saleor/components/Form';
 import { FormSpacer } from '@saleor/components/FormSpacer';
+import SingleSelectField from '@saleor/components/SingleSelectField';
 import useNotifier from '@saleor/hooks/useNotifier';
 import React, { useEffect } from 'react';
 
@@ -48,7 +46,7 @@ const BankOptionsList = [
   BankOptions.BANCO_GENERAL_RUMINAUI,
   BankOptions.BANCO_LOJA,
   BankOptions.BANCO_MACHALA
-]
+];
 
 enum EntityType {
   PERSONA_NATURAL = "Persona Natural",
@@ -136,8 +134,8 @@ const styles = (theme: Theme) =>
     buttonContainer: {
       display: "flex",
       justifyContent: "space-between",
-      paddingTop: theme.spacing.unit * 2,
-      paddingBottom: theme.spacing.unit * 2
+      paddingTop: theme.spacing() * 2,
+      paddingBottom: theme.spacing() * 2
     },
     nexButton: {
       width: 140
@@ -152,16 +150,16 @@ const styles = (theme: Theme) =>
     },
     title: {
       flex: 1,
-      paddingBottom: theme.spacing.unit * 2,
+      paddingBottom: theme.spacing() * 2,
     },
     panel: {
       "& span": {
         color: theme.palette.error.contrastText,
       },
       background: theme.palette.error.main,
-      borderRadius: theme.spacing.unit,
-      marginBottom: theme.spacing.unit * 3,
-      padding: theme.spacing.unit * 1.5,
+      borderRadius: theme.spacing(),
+      marginBottom: theme.spacing() * 3,
+      padding: theme.spacing() * 1.5,
     },
   });
 
@@ -390,43 +388,23 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
                 }}
               />
               <FormSpacer />
-              <>
-                <InputLabel>Tipo de Personería</InputLabel>
-                <Select
-                  fullWidth
-                  required
-                  id="pais-select"
-                  value={data.entityType}
-                  name="entityType"
-                  onChange={handleChange}
-                >
-                  <MenuItem value={EntityType.PERSONA_JURIDICA}>
-                    Persona Jurídica
-                  </MenuItem>
-                  <MenuItem value={EntityType.PERSONA_NATURAL}>
-                    Persona Natural
-                  </MenuItem>
-                </Select>
-              </>
+              <SingleSelectField
+                label="Tipo de Personería"
+                required={true}
+                value={data.entityType}
+                name="entityType"
+                onChange={handleChange}
+                choices={[{ value: EntityType.PERSONA_JURIDICA, label: 'Persona Jurídica'}, { value: EntityType.PERSONA_NATURAL , label: 'Persona Natural' }]}
+              />
               <FormSpacer />
-              <>
-                <InputLabel>¿ Tienes Facturación Electrónica ?</InputLabel>
-                <Select
-                  fullWidth
-                  required
-                  id="accounting-bool"
-                  value={data.hasAccounting}
-                  name="hasAccounting"
-                  onChange={handleChange}
-                >
-                  <MenuItem value={"true"}>
-                    Si
-                  </MenuItem>
-                  <MenuItem value={"false"}>
-                    No
-                  </MenuItem>
-                </Select>
-              </>
+              <SingleSelectField
+                label="¿ Tienes Facturación Electrónica ?"
+                required={true}
+                value={data.hasAccounting}
+                name="hasAccounting"
+                onChange={handleChange}
+                choices={[{ value: "true", label: "Si" }, { value: "false", label: "No" }]}
+              />
               <FormSpacer />
               <Typography variant="h5" className={classes.title}>
                 Información de Representante Legal
@@ -480,43 +458,23 @@ const BusinessLegal = withStyles(styles, { name: "LoginCard" })(
               <Typography variant="subtitle2">
                 Necesitamos esta información para depositar las ventas de tus Tarjetas Bacán.
               </Typography>
+              <SingleSelectField
+                required
+                label="Nombre de Banco"
+                value={data.bankName}
+                name="bankName"
+                onChange={handleChange}
+                choices={BankOptionsList.map((choice) => ({ value: choice, label: choice }))}
+              />
               <FormSpacer />
-              <>
-                <InputLabel>Nombre de Banco</InputLabel>
-                <Select
-                  fullWidth
-                  required
-                  id="bank-select"
-                  value={data.bankName}
-                  name="bankName"
-                  onChange={handleChange}
-                >
-                  {
-                    BankOptionsList.map((bank) => (
-                      <MenuItem value={bank}>
-                        {bank}
-                      </MenuItem>
-                    ))
-                  }
-                </Select>
-              </>
-              <FormSpacer />
-              <>
-                <InputLabel >Tipo de Cuenta</InputLabel>
-                <Select
-                  fullWidth
-                  required
-                  id="account-select"
-                  value={data.bankAccountType}
-                  name="bankAccountType"
-                  onChange={handleChange}
-                >
-                  <MenuItem value={BankAccountType.AHORROS}>Ahorros</MenuItem>
-                  <MenuItem value={BankAccountType.CORRIENTE}>
-                    Corriente
-                  </MenuItem>
-                </Select>
-              </>
+              <SingleSelectField
+                required
+                label={"Tipo de Cuenta"}
+                value={data.bankAccountType}
+                name="bankAccountType"
+                onChange={handleChange}
+                choices={[{ value: BankAccountType.AHORROS, label: BankAccountType.AHORROS }, { value: BankAccountType.CORRIENTE, label: BankAccountType.CORRIENTE }]}
+              />
               <FormSpacer />
               <TextField
                 autoFocus

@@ -27,8 +27,8 @@ const styles = (theme: Theme) =>
     buttonContainer: {
       display: "flex",
       justifyContent: "space-between",
-      paddingTop: theme.spacing.unit * 2,
-      paddingBottom: theme.spacing.unit * 2
+      paddingTop: theme.spacing() * 2,
+      paddingBottom: theme.spacing() * 2
     },
     link: {
       color: theme.palette.primary.main,
@@ -40,7 +40,7 @@ const styles = (theme: Theme) =>
     },
     title: {
         flex: 1,
-        paddingBottom: theme.spacing.unit * 2
+        paddingBottom: theme.spacing() * 2
     }
   });
 

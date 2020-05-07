@@ -1,10 +1,10 @@
-import { Theme } from "@material-ui/core/styles";
-import TextField, { TextFieldProps } from "@material-ui/core/TextField";
-import { makeStyles } from "@material-ui/styles";
-import React from "react";
+import { Theme } from '@material-ui/core/styles';
+import TextField, { TextFieldProps } from '@material-ui/core/TextField';
+import { makeStyles } from '@material-ui/styles';
+import React from 'react';
 
-import { FilterContentSubmitData, IFilter } from "../Filter";
-import Filter from "./Filter";
+import { FilterContentSubmitData, IFilter } from '../Filter';
+import Filter from './Filter';
 
 const useInputStyles = makeStyles({
   input: {
@@ -33,8 +33,8 @@ const useStyles = makeStyles(
     actionContainer: {
       display: "flex",
       flexWrap: "wrap",
-      padding: `${theme.spacing.unit * 1.5}px ${theme.spacing.unit * 3}px ${
-        theme.spacing.unit
+      padding: `${theme.spacing() * 1.5}px ${theme.spacing() * 3}px ${
+        theme.spacing()
       }px`
     }
   }),

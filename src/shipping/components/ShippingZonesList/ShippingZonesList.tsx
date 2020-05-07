@@ -1,30 +1,25 @@
-import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
-import IconButton from "@material-ui/core/IconButton";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableFooter from "@material-ui/core/TableFooter";
-import TableRow from "@material-ui/core/TableRow";
-import DeleteIcon from "@material-ui/icons/Delete";
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import IconButton from '@material-ui/core/IconButton';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableFooter from '@material-ui/core/TableFooter';
+import TableRow from '@material-ui/core/TableRow';
+import DeleteIcon from '@material-ui/icons/Delete';
+import CardTitle from '@saleor/components/CardTitle';
+import Checkbox from '@saleor/components/Checkbox';
+import Skeleton from '@saleor/components/Skeleton';
+import TableHead from '@saleor/components/TableHead';
+import TablePagination from '@saleor/components/TablePagination';
+import { maybe, renderCollection } from '@saleor/misc';
+import { ICONBUTTON_SIZE } from '@saleor/theme';
+import { ListActions, ListProps } from '@saleor/types';
+import React from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 
-import CardTitle from "@saleor/components/CardTitle";
-import Checkbox from "@saleor/components/Checkbox";
-import Skeleton from "@saleor/components/Skeleton";
-import TableHead from "@saleor/components/TableHead";
-import TablePagination from "@saleor/components/TablePagination";
-import { maybe, renderCollection } from "@saleor/misc";
-import { ICONBUTTON_SIZE } from "@saleor/theme";
-import { ListActions, ListProps } from "@saleor/types";
-import { ShippingZoneFragment } from "../../types/ShippingZoneFragment";
+import { ShippingZoneFragment } from '../../types/ShippingZoneFragment';
 
 export interface ShippingZonesListProps extends ListProps, ListActions {
   shippingZones: ShippingZoneFragment[];
@@ -40,9 +35,9 @@ const styles = (theme: Theme) =>
     },
     alignRight: {
       "&:last-child": {
-        paddingRight: theme.spacing.unit
+        paddingRight: theme.spacing()
       },
-      width: ICONBUTTON_SIZE + theme.spacing.unit / 2
+      width: ICONBUTTON_SIZE + theme.spacing() / 2
     },
     colCountries: {},
     colName: {

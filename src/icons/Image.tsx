@@ -1,5 +1,5 @@
-import createSvgIcon from "@material-ui/icons/utils/createSvgIcon";
-import React from "react";
+import createSvgIcon from '@material-ui/icons/utils/createSvgIcon';
+import React from 'react';
 
 export const Image = createSvgIcon(
   <>
@@ -20,7 +20,7 @@ export const Image = createSvgIcon(
         <stop offset="1" stopColor="#3EE7CD" />
       </linearGradient>
     </defs>
-  </>
+  </>,
+  "Image"
 );
-Image.displayName = "Image";
 export default Image;

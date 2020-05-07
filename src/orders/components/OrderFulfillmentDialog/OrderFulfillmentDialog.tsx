@@ -1,34 +1,25 @@
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import TextField from "@material-ui/core/TextField";
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import TextField from '@material-ui/core/TextField';
+import ConfirmButton, { ConfirmButtonTransitionState } from '@saleor/components/ConfirmButton';
+import Form from '@saleor/components/Form';
+import { FormSpacer } from '@saleor/components/FormSpacer';
+import TableCellAvatar, { AVATAR_MARGIN } from '@saleor/components/TableCellAvatar';
+import { buttonMessages } from '@saleor/intl';
+import React from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 
-import ConfirmButton, {
-  ConfirmButtonTransitionState
-} from "@saleor/components/ConfirmButton";
-import Form from "@saleor/components/Form";
-import { FormSpacer } from "@saleor/components/FormSpacer";
-import TableCellAvatar, {
-  AVATAR_MARGIN
-} from "@saleor/components/TableCellAvatar";
-import { buttonMessages } from "@saleor/intl";
-import { maybe } from "../../../misc";
-import { OrderDetails_order_lines } from "../../types/OrderDetails";
+import { maybe } from '../../../misc';
+import { OrderDetails_order_lines } from '../../types/OrderDetails';
 
 export interface FormData {
   lines: number[];
@@ -58,7 +49,7 @@ const styles = (theme: Theme) =>
       width: "4rem"
     },
     remainingQuantity: {
-      marginLeft: theme.spacing.unit,
+      marginLeft: theme.spacing(),
       paddingTop: 14
     },
     table: {

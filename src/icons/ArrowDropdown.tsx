@@ -1,10 +1,9 @@
-import createSvgIcon from "@material-ui/icons/utils/createSvgIcon";
-import React from "react";
+import createSvgIcon from '@material-ui/icons/utils/createSvgIcon';
+import React from 'react';
 
 export const NoPhoto = createSvgIcon(
   <g style={{ fillRule: "evenodd" }}>
     <path d="M7 10l5 5 5-5z" />
-  </g>
+  </g>, "NoPhoto"
 );
-NoPhoto.displayName = "NoPhoto";
 export default NoPhoto;

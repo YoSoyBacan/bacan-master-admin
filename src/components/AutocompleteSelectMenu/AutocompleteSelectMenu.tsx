@@ -1,25 +1,16 @@
-import CircularProgress from "@material-ui/core/CircularProgress";
-import MenuItem from "@material-ui/core/MenuItem";
-import Paper from "@material-ui/core/Paper";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import ArrowBack from "@material-ui/icons/ArrowBack";
-import Downshift from "downshift";
-import React from "react";
-import { FormattedMessage } from "react-intl";
+import CircularProgress from '@material-ui/core/CircularProgress';
+import MenuItem from '@material-ui/core/MenuItem';
+import Paper from '@material-ui/core/Paper';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import ArrowBack from '@material-ui/icons/ArrowBack';
+import { buttonMessages } from '@saleor/intl';
+import Downshift from 'downshift';
+import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
-import { buttonMessages } from "@saleor/intl";
-import {
-  getMenuItemByPath,
-  IMenu,
-  validateMenuOptions
-} from "../../utils/menu";
-import Debounce, { DebounceProps } from "../Debounce";
+import { getMenuItemByPath, IMenu, validateMenuOptions } from '../../utils/menu';
+import Debounce, { DebounceProps } from '../Debounce';
 
 export interface AutocompleteSelectMenuProps {
   disabled: boolean;
@@ -50,13 +41,13 @@ const styles = (theme: Theme) =>
       position: "relative"
     },
     menuBack: {
-      marginLeft: -theme.spacing.unit / 2,
-      marginRight: theme.spacing.unit
+      marginLeft: -theme.spacing() / 2,
+      marginRight: theme.spacing()
     },
     paper: {
       left: 0,
-      marginTop: theme.spacing.unit,
-      padding: theme.spacing.unit,
+      marginTop: theme.spacing(),
+      padding: theme.spacing(),
       position: "absolute",
       right: 0,
       zIndex: 2

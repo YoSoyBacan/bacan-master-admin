@@ -1,12 +1,7 @@
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import classNames from "classnames";
-import React from "react";
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import classNames from 'classnames';
+import React from 'react';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -16,7 +11,7 @@ const styles = (theme: Theme) =>
     },
     hr: {
       border: "none",
-      borderTop: `1px solid ${theme.overrides.MuiCard.root.borderColor}`,
+      borderTop: `1px solid ${theme.palette.divider}`,
       height: 0,
       marginBottom: 0,
       marginTop: 0,
@@ -32,7 +27,7 @@ const styles = (theme: Theme) =>
       lineHeight: 1
     },
     toolbar: {
-      marginRight: -theme.spacing.unit
+      marginRight: -theme.spacing()
     }
   });
 

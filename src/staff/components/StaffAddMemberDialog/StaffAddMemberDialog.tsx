@@ -1,27 +1,20 @@
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import Typography from "@material-ui/core/Typography";
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
+import ConfirmButton, { ConfirmButtonTransitionState } from '@saleor/components/ConfirmButton';
+import { ControlledCheckbox } from '@saleor/components/ControlledCheckbox';
+import Form from '@saleor/components/Form';
+import FormSpacer from '@saleor/components/FormSpacer';
+import { buttonMessages, commonMessages } from '@saleor/intl';
+import React from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 
-import ConfirmButton, {
-  ConfirmButtonTransitionState
-} from "@saleor/components/ConfirmButton";
-import { ControlledCheckbox } from "@saleor/components/ControlledCheckbox";
-import Form from "@saleor/components/Form";
-import FormSpacer from "@saleor/components/FormSpacer";
-import { buttonMessages, commonMessages } from "@saleor/intl";
-import { UserError } from "../../../types";
+import { UserError } from '../../../types';
 
 export interface FormData {
   email: string;
@@ -47,12 +40,12 @@ const styles = (theme: Theme) =>
     },
     sectionTitle: {
       fontWeight: 600 as 600,
-      marginBottom: theme.spacing.unit,
-      marginTop: theme.spacing.unit * 2
+      marginBottom: theme.spacing(),
+      marginTop: theme.spacing() * 2
     },
     textFieldGrid: {
       display: "grid",
-      gridColumnGap: `${theme.spacing.unit * 2}px`,
+      gridColumnGap: `${theme.spacing() * 2}px`,
       gridTemplateColumns: "1fr 1fr"
     }
   });

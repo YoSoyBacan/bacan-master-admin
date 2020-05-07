@@ -1,40 +1,35 @@
-import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import CardTitle from '@saleor/components/CardTitle';
+import ExternalLink from '@saleor/components/ExternalLink';
+import Form from '@saleor/components/Form';
+import Hr from '@saleor/components/Hr';
+import Link from '@saleor/components/Link';
+import RequirePermissions from '@saleor/components/RequirePermissions';
+import SingleAutocompleteSelectField from '@saleor/components/SingleAutocompleteSelectField';
+import Skeleton from '@saleor/components/Skeleton';
+import useStateFromProps from '@saleor/hooks/useStateFromProps';
+import { buttonMessages } from '@saleor/intl';
+import { FetchMoreProps, UserPermissionProps } from '@saleor/types';
+import { PermissionEnum } from '@saleor/types/globalTypes';
+import createSingleAutocompleteSelectHandler from '@saleor/utils/handlers/singleAutocompleteSelectChangeHandler';
+import React from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 
-import CardTitle from "@saleor/components/CardTitle";
-import ExternalLink from "@saleor/components/ExternalLink";
-import Form from "@saleor/components/Form";
-import Hr from "@saleor/components/Hr";
-import Link from "@saleor/components/Link";
-import RequirePermissions from "@saleor/components/RequirePermissions";
-import SingleAutocompleteSelectField from "@saleor/components/SingleAutocompleteSelectField";
-import Skeleton from "@saleor/components/Skeleton";
-import useStateFromProps from "@saleor/hooks/useStateFromProps";
-import { buttonMessages } from "@saleor/intl";
-import { FetchMoreProps, UserPermissionProps } from "@saleor/types";
-import { PermissionEnum } from "@saleor/types/globalTypes";
-import createSingleAutocompleteSelectHandler from "@saleor/utils/handlers/singleAutocompleteSelectChangeHandler";
-import { SearchCustomers_search_edges_node } from "../../../containers/SearchCustomers/types/SearchCustomers";
-import { customerUrl } from "../../../customers/urls";
-import { createHref, maybe } from "../../../misc";
-import { OrderDetails_order } from "../../types/OrderDetails";
+import { SearchCustomers_search_edges_node } from '../../../containers/SearchCustomers/types/SearchCustomers';
+import { customerUrl } from '../../../customers/urls';
+import { createHref, maybe } from '../../../misc';
+import { OrderDetails_order } from '../../types/OrderDetails';
 
 const styles = (theme: Theme) =>
   createStyles({
     sectionHeader: {
       alignItems: "center",
       display: "flex",
-      marginBottom: theme.spacing.unit * 3
+      marginBottom: theme.spacing() * 3
     },
     sectionHeaderTitle: {
       flex: 1,
@@ -43,11 +38,11 @@ const styles = (theme: Theme) =>
       textTransform: "uppercase"
     },
     sectionHeaderToolbar: {
-      marginRight: -theme.spacing.unit * 2
+      marginRight: -theme.spacing() * 2
     },
     userEmail: {
       fontWeight: 600 as 600,
-      marginBottom: theme.spacing.unit
+      marginBottom: theme.spacing()
     }
   });
 

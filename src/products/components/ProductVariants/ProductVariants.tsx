@@ -44,7 +44,7 @@ const styles = (theme: Theme) =>
     colStatus: {},
     denseTable: {
       "& td, & th": {
-        paddingRight: theme.spacing.unit * 3
+        paddingRight: theme.spacing() * 3
       }
     },
     link: {
@@ -124,7 +124,7 @@ export const ProductVariants = withStyles(styles, { name: "ProductVariants" })(
         />
         {!hasVariants && (
           <CardContent>
-            <Typography color={hasVariants ? "default" : "textSecondary"}>
+            <Typography color={hasVariants ? "textPrimary" : "textSecondary"}>
               <FormattedMessage defaultMessage="Elige tus Tarjetas Bacán con un descuento exclusivo para tus clientes mas fieles." />
             </Typography>
           </CardContent>

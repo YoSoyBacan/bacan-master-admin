@@ -1,17 +1,15 @@
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import { Theme } from "@material-ui/core/styles";
-import { makeStyles } from "@material-ui/styles";
-import React from "react";
-import { IntlShape, useIntl } from "react-intl";
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import { Theme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
+import CardTitle from '@saleor/components/CardTitle';
+import RadioGroupField, { RadioGroupFieldChoice } from '@saleor/components/RadioGroupField';
+import { FormChange } from '@saleor/hooks/useForm';
+import { SaleType as SaleTypeEnum } from '@saleor/types/globalTypes';
+import React from 'react';
+import { IntlShape, useIntl } from 'react-intl';
 
-import CardTitle from "@saleor/components/CardTitle";
-import RadioGroupField, {
-  RadioGroupFieldChoice
-} from "@saleor/components/RadioGroupField";
-import { FormChange } from "@saleor/hooks/useForm";
-import { SaleType as SaleTypeEnum } from "@saleor/types/globalTypes";
-import { FormData } from "../SaleDetailsPage";
+import { FormData } from '../SaleDetailsPage';
 
 export interface SaleTypeProps {
   data: FormData;
@@ -23,7 +21,7 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
       "&&": {
-        paddingBottom: theme.spacing.unit * 1.5
+        paddingBottom: theme.spacing() * 1.5
       }
     }
   }),

@@ -1,23 +1,18 @@
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import CardTitle from '@saleor/components/CardTitle';
+import Hr from '@saleor/components/Hr';
+import ImageTile from '@saleor/components/ImageTile';
+import ImageUpload from '@saleor/components/ImageUpload';
+import Skeleton from '@saleor/components/Skeleton';
+import { commonMessages } from '@saleor/intl';
+import React from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 
-import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import CardTitle from "@saleor/components/CardTitle";
-import Hr from "@saleor/components/Hr";
-import ImageTile from "@saleor/components/ImageTile";
-import ImageUpload from "@saleor/components/ImageUpload";
-import Skeleton from "@saleor/components/Skeleton";
-import { commonMessages } from "@saleor/intl";
-import { CollectionDetails_collection_backgroundImage } from "../../types/CollectionDetails";
+import { CollectionDetails_collection_backgroundImage } from '../../types/CollectionDetails';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -27,7 +22,7 @@ const styles = (theme: Theme) =>
       width: "64px"
     },
     PhotosIconContainer: {
-      margin: `${theme.spacing.unit * 5}px 0`,
+      margin: `${theme.spacing() * 5}px 0`,
       textAlign: "center"
     },
     fileField: {
@@ -42,11 +37,11 @@ const styles = (theme: Theme) =>
     imageContainer: {
       background: "#ffffff",
       border: "1px solid #eaeaea",
-      borderRadius: theme.spacing.unit,
+      borderRadius: theme.spacing(),
       height: 148,
       justifySelf: "start",
       overflow: "hidden",
-      padding: theme.spacing.unit * 2,
+      padding: theme.spacing() * 2,
       position: "relative",
       width: 148
     }

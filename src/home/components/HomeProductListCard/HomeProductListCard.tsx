@@ -1,25 +1,20 @@
-import Card from "@material-ui/core/Card";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableRow from "@material-ui/core/TableRow";
-import Typography from "@material-ui/core/Typography";
-import classNames from "classnames";
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import Card from '@material-ui/core/Card';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableRow from '@material-ui/core/TableRow';
+import Typography from '@material-ui/core/Typography';
+import CardTitle from '@saleor/components/CardTitle';
+import Money from '@saleor/components/Money';
+import Skeleton from '@saleor/components/Skeleton';
+import TableCellAvatar from '@saleor/components/TableCellAvatar';
+import classNames from 'classnames';
+import React from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 
-import CardTitle from "@saleor/components/CardTitle";
-import Money from "@saleor/components/Money";
-import Skeleton from "@saleor/components/Skeleton";
-import TableCellAvatar from "@saleor/components/TableCellAvatar";
-import { maybe, renderCollection } from "../../../misc";
-import { Home_productTopToday_edges_node } from "../../types/Home";
+import { maybe, renderCollection } from '../../../misc';
+import { Home_productTopToday_edges_node } from '../../types/Home';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -28,9 +23,9 @@ const styles = (theme: Theme) =>
       width: 64
     },
     avatarSpacing: {
-      paddingBottom: theme.spacing.unit * 2,
-      paddingRight: theme.spacing.unit,
-      paddingTop: theme.spacing.unit * 2
+      paddingBottom: theme.spacing() * 2,
+      paddingRight: theme.spacing(),
+      paddingTop: theme.spacing() * 2
     },
     label: {
       paddingLeft: 0

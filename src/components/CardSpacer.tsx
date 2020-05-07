@@ -1,18 +1,13 @@
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import React from "react";
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import React from 'react';
 
 const styles = (theme: Theme) =>
   createStyles({
     spacer: {
       [theme.breakpoints.down("sm")]: {
-        marginTop: theme.spacing.unit
+        marginTop: theme.spacing()
       },
-      marginTop: theme.spacing.unit * 3
+      marginTop: theme.spacing() * 3
     }
   });
 

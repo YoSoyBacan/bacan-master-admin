@@ -1,21 +1,21 @@
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import { Theme } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/styles";
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import { Theme } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/styles';
+import CardTitle from '@saleor/components/CardTitle';
+import ControlledCheckbox from '@saleor/components/ControlledCheckbox';
+import { FormSpacer } from '@saleor/components/FormSpacer';
+import Hr from '@saleor/components/Hr';
+import RadioGroupField from '@saleor/components/RadioGroupField';
+import TextFieldWithChoice from '@saleor/components/TextFieldWithChoice';
+import React from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 
-import CardTitle from "@saleor/components/CardTitle";
-import ControlledCheckbox from "@saleor/components/ControlledCheckbox";
-import { FormSpacer } from "@saleor/components/FormSpacer";
-import Hr from "@saleor/components/Hr";
-import RadioGroupField from "@saleor/components/RadioGroupField";
-import TextFieldWithChoice from "@saleor/components/TextFieldWithChoice";
-import { FormErrors } from "../../../types";
-import { DiscountValueTypeEnum } from "../../../types/globalTypes";
-import { translateVoucherTypes } from "../../translations";
-import { FormData } from "../VoucherDetailsPage";
+import { FormErrors } from '../../../types';
+import { DiscountValueTypeEnum } from '../../../types/globalTypes';
+import { translateVoucherTypes } from '../../translations';
+import { FormData } from '../VoucherDetailsPage';
 
 interface VoucherValueProps {
   data: FormData;
@@ -34,7 +34,7 @@ export enum VoucherType {
 const useStyles = makeStyles(
   (theme: Theme) => ({
     hr: {
-      margin: `${theme.spacing.unit * 2}px 0`
+      margin: `${theme.spacing() * 2}px 0`
     }
   }),
   {

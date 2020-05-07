@@ -1,32 +1,25 @@
-import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Typography from "@material-ui/core/Typography";
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Typography from '@material-ui/core/Typography';
+import CardMenu from '@saleor/components/CardMenu';
+import CardTitle from '@saleor/components/CardTitle';
+import Money from '@saleor/components/Money';
+import Skeleton from '@saleor/components/Skeleton';
+import StatusLabel from '@saleor/components/StatusLabel';
+import TableCellAvatar, { AVATAR_MARGIN } from '@saleor/components/TableCellAvatar';
+import React from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 
-import CardMenu from "@saleor/components/CardMenu";
-import CardTitle from "@saleor/components/CardTitle";
-import Money from "@saleor/components/Money";
-import Skeleton from "@saleor/components/Skeleton";
-import StatusLabel from "@saleor/components/StatusLabel";
-import TableCellAvatar, {
-  AVATAR_MARGIN
-} from "@saleor/components/TableCellAvatar";
-import { maybe, renderCollection } from "../../../misc";
-import { FulfillmentStatus } from "../../../types/globalTypes";
-import { OrderDetails_order_fulfillments } from "../../types/OrderDetails";
+import { maybe, renderCollection } from '../../../misc';
+import { FulfillmentStatus } from '../../../types/globalTypes';
+import { OrderDetails_order_fulfillments } from '../../types/OrderDetails';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -54,7 +47,7 @@ const styles = (theme: Theme) =>
 
     orderNumber: {
       display: "inline",
-      marginLeft: theme.spacing.unit
+      marginLeft: theme.spacing()
     },
     statusBar: {
       paddingTop: 0

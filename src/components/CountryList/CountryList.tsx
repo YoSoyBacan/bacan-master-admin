@@ -1,27 +1,22 @@
-import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import IconButton from "@material-ui/core/IconButton";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableRow from "@material-ui/core/TableRow";
-import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
-import DeleteIcon from "@material-ui/icons/Delete";
-import classNames from "classnames";
-import React from "react";
-import { FormattedMessage } from "react-intl";
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import IconButton from '@material-ui/core/IconButton';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableRow from '@material-ui/core/TableRow';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import DeleteIcon from '@material-ui/icons/Delete';
+import CardTitle from '@saleor/components/CardTitle';
+import Skeleton from '@saleor/components/Skeleton';
+import classNames from 'classnames';
+import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
-import CardTitle from "@saleor/components/CardTitle";
-import Skeleton from "@saleor/components/Skeleton";
-import { maybe, renderCollection } from "../../misc";
-import { CountryFragment } from "../../taxes/types/CountryFragment";
+import { maybe, renderCollection } from '../../misc';
+import { CountryFragment } from '../../taxes/types/CountryFragment';
 
 export interface CountryListProps {
   countries: CountryFragment[];
@@ -38,18 +33,18 @@ const styles = (theme: Theme) =>
       "&:last-child": {
         paddingRight: 0
       },
-      width: 48 + theme.spacing.unit / 2
+      width: 48 + theme.spacing() / 2
     },
     indicator: {
       color: theme.palette.text.disabled,
       display: "inline-block",
       left: 0,
-      marginRight: theme.spacing.unit * 2,
+      marginRight: theme.spacing() * 2,
       position: "absolute"
     },
     offsetCell: {
       "&:first-child": {
-        paddingLeft: theme.spacing.unit * 3
+        paddingLeft: theme.spacing() * 3
       },
       position: "relative"
     },

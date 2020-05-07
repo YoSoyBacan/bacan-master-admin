@@ -1,17 +1,15 @@
-import ClickAwayListener from "@material-ui/core/ClickAwayListener";
-import Grow from "@material-ui/core/Grow";
-import Popper from "@material-ui/core/Popper";
-import { Theme } from "@material-ui/core/styles";
-import { fade } from "@material-ui/core/styles/colorManipulator";
-import makeStyles from "@material-ui/styles/makeStyles";
-import React from "react";
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import Grow from '@material-ui/core/Grow';
+import Popper from '@material-ui/core/Popper';
+import { Theme } from '@material-ui/core/styles';
+import { fade } from '@material-ui/core/styles/colorManipulator';
+import makeStyles from '@material-ui/styles/makeStyles';
+import useStateFromProps from '@saleor/hooks/useStateFromProps';
+import { toggle } from '@saleor/utils/lists';
+import React from 'react';
 
-import useStateFromProps from "@saleor/hooks/useStateFromProps";
-import { toggle } from "@saleor/utils/lists";
-import ColumnPickerButton from "./ColumnPickerButton";
-import ColumnPickerContent, {
-  ColumnPickerContentProps
-} from "./ColumnPickerContent";
+import ColumnPickerButton from './ColumnPickerButton';
+import ColumnPickerContent, { ColumnPickerContentProps } from './ColumnPickerContent';
 
 export interface ColumnPickerProps
   extends Omit<
@@ -29,7 +27,7 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     popper: {
       boxShadow: `0px 5px 10px 0 ${fade(theme.palette.common.black, 0.05)}`,
-      marginTop: theme.spacing.unit * 2,
+      marginTop: theme.spacing() * 2,
       zIndex: 1
     }
   }),
