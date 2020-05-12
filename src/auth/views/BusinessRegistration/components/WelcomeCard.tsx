@@ -6,8 +6,9 @@ import CardContent from '@material-ui/core/CardContent';
 import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import CardSpacer from '@saleor/components/CardSpacer';
+import ControlledCheckbox from '@saleor/components/ControlledCheckbox';
+import classnames from 'classnames';
 import React from 'react';
-
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -21,9 +22,14 @@ const styles = (theme: Theme) =>
       flex: 1,
       paddingBottom: theme.spacing() * 2,
     },
-    title: {
-      fontSize: "1rem",
-      fontWeight: 900
+    formSubtitle: {
+      fontSize: "1.5rem",
+      fontWeight: 400,
+      paddingTop: theme.spacing() * 2,
+      [theme.breakpoints.down("sm")]: {
+        fontSize: "0.8rem",
+        fontWeight: 400,
+      }
     },
     formTitle: {
       fontSize: "2rem",
@@ -40,6 +46,12 @@ const styles = (theme: Theme) =>
       objectFit: "contain",
       width: "33%"
     },
+    checkboxContainer: {
+      display: 'flex',
+      flexDirection: 'column',
+      border: `2px solid #1d224c`,
+      padding: theme.spacing() * 1,
+    }
   });
 
 interface WelcomeCardProps extends WithStyles<typeof styles> {
@@ -47,6 +59,8 @@ interface WelcomeCardProps extends WithStyles<typeof styles> {
 
 
 const WelcomeCardComponent: React.FC<WelcomeCardProps> = ({ classes }: WelcomeCardProps) => {
+  const [photoSelected, setPhotoSelected] = React.useState(false);
+  const [docsSecleted, setDocSelected] = React.useState(false);
   return (
     <>
     <Card>
@@ -59,19 +73,45 @@ const WelcomeCardComponent: React.FC<WelcomeCardProps> = ({ classes }: WelcomeCa
           <img src={blueGiftCard} className={classes.giftCardImage} />
           <img src={redGiftCard} className={classes.giftCardImage} />
         </div>
+        <Typography variant="caption">
+          Te recomendamos llenar este Registro en una computadora, en Google Chrome Versión 80 o superior.
+        </Typography>
         <CardSpacer/>
+        <Typography variant="h5" className={classes.text}>
+          Regístrarse es rápido y completamente 💥GRATIS 💥
+        </Typography>
+        <CardSpacer />
+        <div className={classes.checkboxContainer}>
+          <Typography variant="h5" className={classnames(classes.text, classes.formSubtitle)}>
+            ¿ Tienes listos los siguientes datos? 
+          </Typography>
+          <Typography variant="caption" className={classes.text}>
+            Para agilitar el proceso de registro, y que puedas empezar a vender.
+          </Typography>
+          <ControlledCheckbox 
+            name="pictures"
+            label="Fotos de tu Empresa 📸"
+            checked={photoSelected}
+            onChange={() => setPhotoSelected(!photoSelected)}
+          />
+          <ControlledCheckbox 
+            name="legal"
+            label="Datos de RUC y Representante Legal 📖"
+            checked={docsSecleted}
+            onChange={() => setDocSelected(!docsSecleted)}
+          />
+        </div>
+        <CardSpacer />
         <Typography className={classes.text}>
-          Regístrate en menos de 5 minutos en Bacán! <br/> <br/> <br/> Al completar este proceso estarás registrado para vender online en la plataforma de Bacán. <br/> Te ofrecemos una plataforma GRATIS para vender Tarjetas Bacán con descuentos exclusivos a tus clientes.
+          Al completar este proceso estarás registrado para vender online en la plataforma de Bacán.
+        </Typography>
+        <CardSpacer />
+        <Typography className={classes.text}>
           Te daremos acceso a un Link ÚNICO para tu negocio, que lo puedes compartir en cualquier canal digital para incrementar tus ventas.
-          <br/> <br/>
-          Alista logos e imágenes de tu empresa y tus productos para tu perfil en yosoybacan.com
         </Typography>
-        <CardSpacer/>
         <Typography className={classes.text}>
-          Te pediremos unos datos importantes de tu empresa para asegurarnos que puedas vender y recibir tus pagos efectivamente.
-          Recuerda, Bacán es una plataforma digital 100% sin ánimo de lucro así que empieza ya con tu registro!
+          Completa tu registro 👇🏼👇🏼👇🏼👇🏼
         </Typography>
-
       </CardContent>
     </Card>
     </>
